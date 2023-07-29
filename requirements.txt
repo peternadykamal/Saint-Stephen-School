@@ -1,0 +1,5 @@
+Django
+mysqlclient
+Pillow
+whitenoise
+python-dotenv==1.0.0
