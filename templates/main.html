@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block script %}
+    {% endblock script %}
+    <title>{{title}}</title>
+</head>
+<body>
+    {% include 'header.html' %}
+    {% block content %}
+    <!-- where the all child will be the main -->
+    {% endblock content %}
+
+
+
+</body>
+</html>
