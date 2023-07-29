@@ -1,0 +1,53 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "editor.tabSize": 2,
+  "gitlens.hovers.currentLine.over": "line",
+  "explorer.confirmDragAndDrop": false,
+  "[python]": {
+    "editor.detectIndentation": false,
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "solid",
+  "color-highlight.markRuler": false,
+  "cSpell.advanced.feature.useReferenceProviderWithRename": true,
+  "cSpell.allowCompoundWords": true,
+  "cSpell.showStatus": false,
+  "editor.guides.bracketPairs": "active",
+  "cSpell.showAutocompleteSuggestions": true,
+  "cSpell.diagnosticLevel": "Hint",
+  "git.enableSmartCommit": true,
+  "editor.stickyTabStops": true,
+  "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}",
+  "quokka.compactMessageOutput": false,
+  "files.defaultLanguage": "${activeEditorLanguage}",
+  "window.newWindowDimensions": "maximized",
+  "window.restoreFullscreen": true,
+  "[html]": {
+    "editor.quickSuggestions": {
+      "strings": "on"
+    }
+  },
+  "[css]": {
+    "editor.quickSuggestions": {
+      "strings": "on"
+    }
+  },
+  "workbench.editor.splitInGroupLayout": "vertical",
+  "editor.inlineSuggest.enabled": true,
+  "git.confirmSync": false,
+  "editor.cursorSurroundingLines": 100,
+  "terminal.integrated.lineHeight": 1.2,
+  "liveSassCompile.settings.showOutputWindowOn": "Error",
+  "editor.stickyScroll.enabled": true,
+  "errorLens.excludeBySource": ["eslint"],
+  "explorer.sortOrder": "modified",
+  "editor.stickyScroll.maxLineCount": 10,
+  "workbench.productIconTheme": "fluent-icons",
+  "python.analysis.autoImportCompletions": true,
+  "python.formatting.autopep8Args": ["--indent-size=2"],
+  "editor.minimap.enabled": false
+}
