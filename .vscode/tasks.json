@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "install requirments",
+            "type": "shell",
+            "command": "if not exist .\\env\\Scripts\\activate (python -m venv env && .\\env\\Scripts\\activate) else .\\env\\Scripts\\activate && pip install -r requirements.txt",
+            "windows": {
+                "command": "if not exist .\\env\\Scripts\\activate (python -m venv env && .\\env\\Scripts\\activate) else .\\env\\Scripts\\activate && pip install -r requirements.txt"
+            },
+            "group": "none",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            },
+            "runOptions": {
+                "runOn": "folderOpen",
+            }
+        },
+        {
+            "label": "Run server",
+            "type": "shell",
+            "command": "if exist .\\env\\Scripts\\activate ( .\\env\\Scripts\\activate && python manage.py runserver )",
+            "windows": {
+                "command": "if exist .\\env\\Scripts\\activate ( .\\env\\Scripts\\activate && python manage.py runserver )"
+            },
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "runOptions": {
+                "runOn": "folderOpen",
+            },
+            "dependsOn": "install requirements"
+        },
+        {
+            "label": "migrations",
+            "type": "shell",
+            "command": "if exist .\\env\\Scripts\\activate ( .\\env\\Scripts\\activate && python manage.py runserver )",
+            "windows": {
+                "command": "if exist .\\env\\Scripts\\activate ( .\\env\\Scripts\\activate && python manage.py makemigrations && python manage.py migrate )"
+            },
+            "group": "none",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "new"
+            }
+        }
+    ]
+}
