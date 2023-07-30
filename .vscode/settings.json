@@ -7,7 +7,7 @@
   "explorer.confirmDragAndDrop": false,
   "[python]": {
     "editor.detectIndentation": false,
-    "editor.defaultFormatter": "ms-python.python"
+    "editor.defaultFormatter": "ms-python.autopep8"
   },
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.cursorSmoothCaretAnimation": "on",
@@ -49,5 +49,6 @@
   "workbench.productIconTheme": "fluent-icons",
   "python.analysis.autoImportCompletions": true,
   "python.formatting.autopep8Args": ["--indent-size=2"],
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "terminal.integrated.defaultProfile.windows": "PowerShell"
 }
