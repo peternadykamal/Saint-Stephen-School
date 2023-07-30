@@ -19,7 +19,7 @@ class Profile(models.Model):
   user = models.OneToOneField(
       User, on_delete=models.CASCADE)  # TODO delete user when profile deleted
   name = models.CharField(max_length=200, unique=True)
-  birthdate = models.DateField()
+  birthdate = models.DateField(null=True, blank=False)
   talmza_level = models.ForeignKey(
       "TalmzaLevel", on_delete=models.SET_NULL, null=True, blank=True)
   currentTalmzaLevelYear = models.IntegerField(default=1)
@@ -46,7 +46,7 @@ class Profile(models.Model):
                         primary_key=True, editable=False)
 
   def __str__(self):
-    return str(self.name)
+    return str(self.name + " " + self.user.username)
 
 
 class Address(models.Model):
