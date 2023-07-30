@@ -64,7 +64,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -130,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "commands/Django_cheat_sheet.md",
+                "file": "project brainstorming.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "commands/Django_cheat_sheet.md",
+                "file": "project brainstorming.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -170,7 +170,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "commands/Django_cheat_sheet.md"
+                "file": "project brainstorming.md"
               }
             }
           },
@@ -201,12 +201,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "28dfdc38941fab50",
+  "active": "eb3eb872f3d6e0f7",
   "lastOpenFiles": [
-    "commands/Django_commands.md",
     "commands/Django_cheat_sheet.md",
-    "commands/git.md",
     "project brainstorming.md",
+    "commands/Django_commands.md",
+    "commands/git.md",
     "commands"
   ]
 }
