@@ -16,3 +16,14 @@ def profileUpdated(sender, instance, created, **kwargs):
     profile = models.Profile.objects.create(
         user=user
     )
+
+
+# if for some reason an admin decides to delete a profile but they forget to delete the user?
+# In this case, the user would stay.
+
+@receiver(post_delete, sender=models.Profile)
+# Here we remove created argument because if we deleting user we insure it is exist
+def deleteProfile(sender, instance, **kwargs):
+  # Get the user in the profile that we will delete it
+  user = instance.user
+  user.delete()
