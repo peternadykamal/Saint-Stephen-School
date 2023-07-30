@@ -13,7 +13,7 @@ class Profile(models.Model):
   )
   DEACONESS_CHOICES = (
       ('أغس', "أغنسطس"),
-      ('إبص', "إبصالتس")
+      ('إبس', "إبسالطس")
   )
 
   user = models.OneToOneField(
@@ -31,9 +31,10 @@ class Profile(models.Model):
   job = models.CharField(max_length=200, null=True, blank=True)
   gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
   phone_number = models.CharField(max_length=11, null=True, blank=True)
-  fatherPhoneNumber = models.CharField(max_length=11, null=True, blank=True)
-  motherPhoneNumber = models.CharField(max_length=11, null=True, blank=True)
-  # TODO whatsapp
+  father_phone_number = models.CharField(max_length=11, null=True, blank=True)
+  mother_phone_number = models.CharField(max_length=11, null=True, blank=True)
+  mobile_follow_up_on_WhatsApp = models.CharField(
+      max_length=11, null=True, blank=True)
   confessionFather = models.CharField(max_length=200, null=True, blank=True)
   church = models.CharField(
       max_length=200, default="كنيسة السيدة العذراء مريم و الشهيد مارجرجس بغبريال")
