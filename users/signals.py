@@ -1,7 +1,10 @@
+from os import name
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 import users.models as models
+
+import datetime
 
 
 # We make this signal to trigger any time user added make for it a profile
@@ -13,6 +16,11 @@ def profileUpdated(sender, instance, created, **kwargs):
   if created:
     # The instance is the user the trigger this save function
     user = instance
+    year = datetime.date.today().year   # 2023
+    id = user.id
+    user.username = str(year % 2000) + f"{id:05d}"
+    user.save()
+
     profile = models.Profile.objects.create(
         user=user
     )
