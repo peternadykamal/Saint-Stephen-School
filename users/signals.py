@@ -11,7 +11,7 @@ import datetime
 
 
 @receiver(post_save, sender=User)
-def profileUpdated(sender, instance, created, **kwargs):
+def userUsernameUpdated(sender, instance, created, **kwargs):
   # Here we make sure if he want to edit or new user
   if created:
     # The instance is the user the trigger this save function
@@ -21,7 +21,7 @@ def profileUpdated(sender, instance, created, **kwargs):
     user.username = str(year % 2000) + f"{id:05d}"
     user.save()
 
-    profile = models.Profile.objects.create(
+    profile, _ = models.Profile.objects.get_or_create(
         user=user
     )
 
