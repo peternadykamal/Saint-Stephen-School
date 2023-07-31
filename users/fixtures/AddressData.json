@@ -1,0 +1,58 @@
+[
+{
+  "model": "users.address",
+  "pk": "2e3f9832-b2f1-4c5c-ab9b-f5659b34ae75",
+  "fields": {
+    "building": "┘ä┘ê╪¬╪│",
+    "street": "╪¼┘à┘è┘ä╪⌐ ╪º╪¿┘ê ╪¡╪▒┘è╪»",
+    "branches_from": "┘è┘é┘ê╪¬ ╪º┘ä╪¡┘à┘ê┘è",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": null,
+    "district": "╪º┘ä╪│┘è┘ê┘ü",
+    "additional_details": "╪¿╪¼┘ê╪º╪▒ ┘à╪º╪▒┘â╪¬ ┘à╪╡╪¿╪º╪¡"
+  }
+},
+{
+  "model": "users.address",
+  "pk": "72e74c5f-e753-4852-8ad8-7fd2d76783dd",
+  "fields": {
+    "building": "┘ä┘ê╪¬╪│",
+    "street": "╪¼┘à┘è┘ä╪⌐ ╪º╪¿┘ê ╪¡╪▒┘è╪»",
+    "branches_from": "┘è┘é┘ê╪¬ ╪º┘ä╪¡┘à┘ê┘è",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": null,
+    "district": "╪º┘ä╪│┘è┘ê┘ü",
+    "additional_details": "╪¿╪¼┘ê╪º╪▒ ┘à╪º╪▒┘â╪¬ ┘à╪╡╪¿╪º╪¡"
+  }
+},
+{
+  "model": "users.address",
+  "pk": "b8e42c89-a886-4ec6-9f96-095c6c29f573",
+  "fields": {
+    "building": "┘ä┘ê╪¬╪│",
+    "street": "╪¼┘à┘è┘ä╪⌐ ╪º╪¿┘ê ╪¡╪▒┘è╪»",
+    "branches_from": "┘è┘é┘ê╪¬ ╪º┘ä╪¡┘à┘ê┘è",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": null,
+    "district": "╪º┘ä╪│┘è┘ê┘ü",
+    "additional_details": "╪¿╪¼┘ê╪º╪▒ ┘à╪º╪▒┘â╪¬ ┘à╪╡╪¿╪º╪¡"
+  }
+},
+{
+  "model": "users.address",
+  "pk": "c76010b9-a1bd-4239-9140-7c1115789b85",
+  "fields": {
+    "building": "┘ä┘ê╪¬╪│",
+    "street": "╪¼┘à┘è┘ä╪⌐ ╪º╪¿┘ê ╪¡╪▒┘è╪»",
+    "branches_from": "┘è┘é┘ê╪¬ ╪º┘ä╪¡┘à┘ê┘è",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": null,
+    "district": "╪º┘ä╪│┘è┘ê┘ü",
+    "additional_details": "╪¿╪¼┘ê╪º╪▒ ┘à╪º╪▒┘â╪¬ ┘à╪╡╪¿╪º╪¡"
+  }
+}
+]
