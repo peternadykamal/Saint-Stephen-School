@@ -4,10 +4,11 @@ tag have many privileges and privilege have many tags
 tag have many profiles and profile have many tags
 
 ---
-user 
+
+user
 username (id code)
 email
-first name 
+first name
 last name
 password
 
@@ -53,12 +54,12 @@ Residential Complexes
 district
 Additional Details
 
-masreef
+Expenses
 id
 year
 amount of money payed
 "created for" profile id (foreign key)
-total number of masreef (not as a proprty in the table but an constant stored in a spearte table or as .env file in backend)
+total number of Expenses (not as a proprty in the table but an constant stored in a spearte table or as .env file in backend)
 
 profile form log
 "created for" profile id (foreign key)
@@ -66,5 +67,3 @@ log date
 "created by" profile id (foreign key)
 category action
 action
-
-
