@@ -33,3 +33,33 @@ to craete super user in the database
 python manage.py shell
 ```
 open python shell
+
+
+to test in tests.py file you have to make virtual database first and it will be empty so you want to fill it with actual data so you can store data from database table to file json and call it in fixtures list like this 
+```python
+fixtures = ['users/fixtures/ProfileData.json',
+
+            'users/fixtures/UserData.json',
+
+            'users/fixtures/AddressData.json',
+
+            'users/fixtures/TalmzaLevelData.json',
+
+            'users/fixtures/SchoolLevelData.json',
+
+            ]
+```
+
+to store data use this command
+```cmd
+python -Xutf8 manage.py dumpdata auth.User --indent 2 > users/fixtures/UserData.json
+```
+
+```cmd
+python -Xutf8 manage.py dumpdata users.Profile --indent 2 > users/fixtures/ProfileData.json
+```
+
+to start testing
+```cmd
+python manage.py test users.tests
+```
