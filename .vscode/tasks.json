@@ -46,6 +46,22 @@
         "reveal": "always",
         "panel": "new"
       }
+    },
+    {
+      "label": "dumpdata",
+      "type": "shell",
+      "command": ".\\env\\Scripts\\activate; python -Xutf8 manage.py dumpdata auth.User --indent 2 > users/fixtures/UserData.json && python -Xutf8 manage.py dumpdata users.Profile --indent 2 > users/fixtures/ProfileData.json && python -Xutf8 manage.py dumpdata users.Address --indent 2 > users/fixtures/AddressData.json && python -Xutf8 manage.py dumpdata users.TalmzaLevel --indent 2 > users/fixtures/TalmzaLevelData.json && python -Xutf8 manage.py dumpdata users.SchoolLevel --indent 2 > users/fixtures/SchoolLevelData.json",
+      "windows": {
+        "command": ".\\env\\Scripts\\activate; python -Xutf8 manage.py dumpdata auth.User --indent 2 > users/fixtures/UserData.json && python -Xutf8 manage.py dumpdata users.Profile --indent 2 > users/fixtures/ProfileData.json && python -Xutf8 manage.py dumpdata users.Address --indent 2 > users/fixtures/AddressData.json && python -Xutf8 manage.py dumpdata users.TalmzaLevel --indent 2 > users/fixtures/TalmzaLevelData.json && python -Xutf8 manage.py dumpdata users.SchoolLevel --indent 2 > users/fixtures/SchoolLevelData.json"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
     }
   ]
 }
