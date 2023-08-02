@@ -7,7 +7,6 @@ import datetime
 class ProfileForm(ModelForm):
   class Meta:
     model = models.Profile
-    fields = '__all__'
     fields = ['name', 'birthdate',
               'talmza_level', 'current_talmza_level_year',
               'school_level', 'current_school_level_year',
