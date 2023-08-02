@@ -7,7 +7,7 @@
   "explorer.confirmDragAndDrop": false,
   "[python]": {
     "editor.detectIndentation": false,
-    "editor.defaultFormatter": "ms-python.python"
+    "editor.defaultFormatter": "ms-python.autopep8"
   },
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.cursorSmoothCaretAnimation": "on",
@@ -57,5 +57,6 @@
       "savePath": "/frontend/css",
       "savePathReplacementPairs": null
     }
-  ]
+  ],
+  "terminal.integrated.defaultProfile.windows": "PowerShell"
 }

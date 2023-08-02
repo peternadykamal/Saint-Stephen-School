@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from dotenv import load_dotenv
 from pathlib import Path
 import os
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'landing.apps.LandingConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +87,6 @@ WSGI_APPLICATION = 'Saint_Stephen_School.wsgi.application'
 #     }
 # }
 
-from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
@@ -109,7 +110,6 @@ DATABASES = {
         }
     }
 }
-
 
 
 # Password validation

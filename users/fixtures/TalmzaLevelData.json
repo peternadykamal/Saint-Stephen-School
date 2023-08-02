@@ -1,0 +1,68 @@
+[
+{
+  "model": "users.talmzalevel",
+  "pk": "32e4d997-c061-4018-8a06-02e2cf0aef57",
+  "fields": {
+    "level_name": "╪º┘é┘ä ┘à┘å ╪¬┘à┘ç┘è╪»┘è",
+    "level_number": 0,
+    "number_of_years": 1,
+    "next_level": "d2be3f99-4708-4d55-bee7-49c24094c125",
+    "prevues_level": null
+  }
+},
+{
+  "model": "users.talmzalevel",
+  "pk": "362754ed-35c2-41e8-8cfc-adc7b1178191",
+  "fields": {
+    "level_name": "╪º┘ä╪▒╪º╪¿╪╣",
+    "level_number": 5,
+    "number_of_years": 2,
+    "next_level": null,
+    "prevues_level": "ba6c0d1e-e63d-4d27-a689-c55e65611bd6"
+  }
+},
+{
+  "model": "users.talmzalevel",
+  "pk": "6b3aa176-2544-403e-8c05-a51fd36a4351",
+  "fields": {
+    "level_name": "╪º┘ä╪½╪º┘å┘è",
+    "level_number": 3,
+    "number_of_years": 2,
+    "next_level": "ba6c0d1e-e63d-4d27-a689-c55e65611bd6",
+    "prevues_level": "74f581f3-cca0-4506-beb3-95a8c938203a"
+  }
+},
+{
+  "model": "users.talmzalevel",
+  "pk": "74f581f3-cca0-4506-beb3-95a8c938203a",
+  "fields": {
+    "level_name": "╪º┘ä╪ú┘ê┘ä",
+    "level_number": 2,
+    "number_of_years": 2,
+    "next_level": "6b3aa176-2544-403e-8c05-a51fd36a4351",
+    "prevues_level": "d2be3f99-4708-4d55-bee7-49c24094c125"
+  }
+},
+{
+  "model": "users.talmzalevel",
+  "pk": "ba6c0d1e-e63d-4d27-a689-c55e65611bd6",
+  "fields": {
+    "level_name": "╪º┘ä╪½╪º┘ä╪½",
+    "level_number": 4,
+    "number_of_years": 2,
+    "next_level": "362754ed-35c2-41e8-8cfc-adc7b1178191",
+    "prevues_level": "6b3aa176-2544-403e-8c05-a51fd36a4351"
+  }
+},
+{
+  "model": "users.talmzalevel",
+  "pk": "d2be3f99-4708-4d55-bee7-49c24094c125",
+  "fields": {
+    "level_name": "╪¬┘à┘ç┘è╪»┘è",
+    "level_number": 1,
+    "number_of_years": 2,
+    "next_level": "74f581f3-cca0-4506-beb3-95a8c938203a",
+    "prevues_level": "32e4d997-c061-4018-8a06-02e2cf0aef57"
+  }
+}
+]

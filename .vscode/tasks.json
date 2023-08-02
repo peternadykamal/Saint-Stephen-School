@@ -4,10 +4,13 @@
     {
       "label": "install requirements",
       "type": "shell",
-      "command": "cmd /c if not exist .\\env\\Scripts\\activate (python -m venv env && .\\env\\Scripts\\activate) else .\\env\\Scripts\\activate && pip install -r requirements.txt",
+      "command": "if (-Not (Test-Path .\\env\\Scripts\\activate)) { python -m venv env; .\\env\\Scripts\\activate; pip install -r requirements.txt } else { .\\env\\Scripts\\activate; pip install -r requirements.txt }",
+      "windows": {
+        "command": "if (-Not (Test-Path .\\env\\Scripts\\activate)) { python -m venv env; .\\env\\Scripts\\activate; pip install -r requirements.txt } else { .\\env\\Scripts\\activate; pip install -r requirements.txt }"
+      },
       "group": "none",
       "presentation": {
-        "reveal": "silent",
+        "reveal": "always",
         "panel": "shared"
       },
       "runOptions": {
@@ -17,7 +20,10 @@
     {
       "label": "Run server",
       "type": "shell",
-      "command": "cmd /c if exist .\\env\\Scripts\\activate ( .\\env\\Scripts\\activate && python manage.py runserver )",
+      "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py runserver }",
+      "windows": {
+        "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py runserver }"
+      },
       "group": "none",
       "presentation": {
         "reveal": "always",
@@ -31,10 +37,29 @@
     {
       "label": "migrations",
       "type": "shell",
-      "command": "cmd /c if exist .\\env\\Scripts\\activate ( .\\env\\Scripts\\activate && python manage.py makemigrations && python manage.py migrate )",
+      "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py makemigrations; python manage.py migrate }",
+      "windows": {
+        "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py makemigrations; python manage.py migrate }"
+      },
       "group": "none",
       "presentation": {
-        "reveal": "silent",
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "dumpdata",
+      "type": "shell",
+      "command": ".\\env\\Scripts\\activate; python -Xutf8 manage.py dumpdata auth.User --indent 2 > users/fixtures/UserData.json && python -Xutf8 manage.py dumpdata users.Profile --indent 2 > users/fixtures/ProfileData.json && python -Xutf8 manage.py dumpdata users.Address --indent 2 > users/fixtures/AddressData.json && python -Xutf8 manage.py dumpdata users.TalmzaLevel --indent 2 > users/fixtures/TalmzaLevelData.json && python -Xutf8 manage.py dumpdata users.SchoolLevel --indent 2 > users/fixtures/SchoolLevelData.json",
+      "windows": {
+        "command": ".\\env\\Scripts\\activate; python -Xutf8 manage.py dumpdata auth.User --indent 2 > users/fixtures/UserData.json && python -Xutf8 manage.py dumpdata users.Profile --indent 2 > users/fixtures/ProfileData.json && python -Xutf8 manage.py dumpdata users.Address --indent 2 > users/fixtures/AddressData.json && python -Xutf8 manage.py dumpdata users.TalmzaLevel --indent 2 > users/fixtures/TalmzaLevelData.json && python -Xutf8 manage.py dumpdata users.SchoolLevel --indent 2 > users/fixtures/SchoolLevelData.json"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
         "panel": "new"
       }
     },
