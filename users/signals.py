@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 import users.models as models
 
 import datetime
+import os
 
 
 # We make this signal to trigger any time user added make for it a profile
@@ -21,9 +22,9 @@ def userUsernameUpdated(sender, instance, created, **kwargs):
     user.username = str(year % 2000) + f"{id:05d}"
     user.save()
 
-    profile, _ = models.Profile.objects.get_or_create(
-        user=user
-    )
+    # profile, _ = models.Profile.objects.get_or_create(
+    #     user=user
+    # )
 
 
 # if for some reason an admin decides to delete a profile but they forget to delete the user?
@@ -33,5 +34,11 @@ def userUsernameUpdated(sender, instance, created, **kwargs):
 # Here we remove created argument because if we deleting user we insure it is exist
 def deleteProfile(sender, instance, **kwargs):
   # Get the user in the profile that we will delete it
+
+  image_path = instance.profile_image.path
+
+  # Delete the file from the filesystem
+  os.remove(image_path)
+
   user = instance.user
   user.delete()
