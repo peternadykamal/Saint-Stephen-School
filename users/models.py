@@ -8,12 +8,14 @@ import uuid
 
 from dotenv import load_dotenv
 import os
+import secrets
+import string
 
 
 class Profile(models.Model):
   GENDER_CHOICES = (
-      ('M', "مذكر"),
-      ('F', "مؤنث")
+      ('M', "ذكر"),
+      ('F', "أنثي")
   )
   DEACONESS_CHOICES = (
       ('غير', "غير مرشوم"),
@@ -22,17 +24,17 @@ class Profile(models.Model):
   )
 
   user = models.OneToOneField(
-      User, on_delete=models.CASCADE)
-  # user = models.OneToOneField(
-  #   User, on_delete=models.CASCADE, null=True, blank=False)
+      User, on_delete=models.CASCADE, null=True, blank=False)
   name = models.CharField(max_length=200, unique=True)
   birthdate = models.DateField(null=True, blank=False)
   talmza_level = models.ForeignKey(
-      "TalmzaLevel", on_delete=models.SET_NULL, null=True, blank=True)
-  current_talmza_level_year = models.IntegerField(default=1)
+      "TalmzaLevel", on_delete=models.SET_NULL, null=True, blank=False)
+  current_talmza_level_year = models.IntegerField(
+      default=1, null=True, blank=False)
   school_level = models.ForeignKey(
-      "SchoolLevel", on_delete=models.SET_NULL, null=True, blank=True)
-  current_school_level_year = models.IntegerField(default=1)
+      "SchoolLevel", on_delete=models.SET_NULL, null=True, blank=False)
+  current_school_level_year = models.IntegerField(
+      default=1, null=True, blank=True)
   address = models.OneToOneField(
       "Address", on_delete=models.SET_NULL, null=True, blank=True)
   job = models.CharField(max_length=200, null=True, blank=True)
@@ -125,6 +127,15 @@ class Profile(models.Model):
     else:
       return False
 
+  def generatePassword(length=6):
+    alphabet = string.digits  # + string.ascii_letters + string.punctuation
+    password = ''.join(secrets.choice(alphabet) for _ in range(length))
+    return password
+
+  def getProfileName(request, context):
+    profile = Profile.objects.get(user__id=request.user.id)
+    context['profileName'] = profile.name
+
 
 class Address(models.Model):
   building = models.CharField(max_length=50, null=True, blank=True)
@@ -161,6 +172,28 @@ class Address(models.Model):
 
     return ', '.join(details)
 
+  def getAddressFromRequset(request):
+    building = request.POST.get("building")
+    street = request.POST.get("street")
+    branches_from = request.POST.get("branches_from")
+    floor = request.POST.get("floor")
+    apartment_number = request.POST.get("apartment_number")
+    residential_complexes = request.POST.get("residential_complexes")
+    district = request.POST.get("district")
+    additional_details = request.POST.get("additional_details")
+
+    address = Address.objects.create(
+        building=building,
+        street=street,
+        branches_from=branches_from,
+        floor=floor,
+        apartment_number=apartment_number,
+        residential_complexes=residential_complexes,
+        district=district,
+        additional_details=additional_details
+    )
+    return address
+
 
 class TalmzaLevel(models.Model):
   level_name = models.CharField(max_length=50)
@@ -178,7 +211,7 @@ class TalmzaLevel(models.Model):
     ordering = ['level_number']
 
   def __str__(self):
-    return str(" المستوي " + self.level_name)
+    return str(self.level_name)
 
 
 class SchoolLevel(models.Model):
@@ -197,7 +230,7 @@ class SchoolLevel(models.Model):
     ordering = ['level_number']
 
   def __str__(self):
-    return str(" الصف " + self.level_name)
+    return str(self.level_name)
 
 
 class ExpensesProfileForm(models.Model):
