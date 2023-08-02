@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <script src="./bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="./js/script.js" defer></script>
+    <title>مدرسة الشهيد استيفانوس</title>
+  </head>
+  <body class="bg-champagne">
+    <header
+      class="container-fluid bg-bgcolor border-bottom border-3 border-browndarkest"
+    >
+      <div class="container">
+        <div class="row align-items-center py-3">
+          <div class="col col-md-6 d-flex">
+            <img
+              src="./images/logo.png"
+              alt="Logo"
+              class="img-fluid"
+              width="150"
+            />
+            <span class="ml-2 reemkufi-regular h1 text-textcolor"
+              >مدرسة<br />الشَّهِيد اِسْتِفَانُوس</span
+            >
+          </div>
+          <div class="col-md-6 text-center">
+            <div class="row">
+              <a
+                class="col border-end border-3 border-browndarkest d-flex align-items-center justify-content-end almarai-bold fs-4 text-browndarkest underline-on-hover"
+                href="#"
+              >
+                استمارة التقديم
+              </a>
+              <div class="col-4">
+                <div class="text-center mb-3">
+                  <span class="almarai-light h5">مرحبًا ,[اسم المستخدم]!</span>
+                </div>
+                <button class="btn btn-brown rounded-0 px-3 py-2 shadow">
+                  <span class="almarai-light">تسجيل الخروج</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid">
+      <div class="container my-5">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-9">
+            <div class="card bg-white shadow rounded-4 p-4">
+              <div
+                class="card-title border-bottom border-2 border-browndarkest pb-2"
+              >
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="almarai-bold h4">استمارة التسجيل السنوية</div>
+                    <div class="lateef-regular fs-5">
+                      يرجى تعبئة الاستمارة التالية للتسجيل السنوي للطلاب الجدد
+                      والقدامى في مدرستنا.<br class="d-md-block d-none" />
+                      صحة بيانات هذه الاستمارة تسهل عليك وعلينا الكثير أثناء
+                      خدمتك، وتساعدنا على أن نكون متصلين بك دائمًا، فبرجاء
+                      كتابتها بوضوح.
+                    </div>
+                  </div>
+                  <div class="col-md-3 d-flex justify-content-end">
+                    <div
+                      class="profile-container rounded-4 border border-2 border-browndarkest d-md-flex justify-content-center align-items-center d-none"
+                    >
+                      <img
+                        id="imagePreview"
+                        src="./images/defualt profile.png"
+                        alt="Image Preview"
+                        style="max-width: 200px; max-height: 200px"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body p-0 p-md-3">
+                <form>
+                  <div class="mb-1">
+                    <div class="almarai-light fs-4">البيانات الشخصية:</div>
+                  </div>
+                  <div class="row px-2">
+                    <div class="mb-3 col-md-8 px-1">
+                      <label
+                        for="fullname"
+                        class="form-label lateef-regular fs-4 mb-0"
+                        >الاسم رباعي</label
+                      >
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="first_name"
+                          required
+                        />
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="middle_name"
+                          required
+                        />
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="last_name"
+                          required
+                        />
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="family_name"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="mb-3">
+                        <label
+                          for="registration_number"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >بحث برقم التسجيل</label
+                        >
+                        <div class="input-group">
+                          <button
+                            class="btn btn-outline-champagne border border-2 border-textcoloralt"
+                            type="button"
+                            id="button-addon1"
+                          >
+                            <i class="bi bi-search text-textcoloralt"></i>
+                          </button>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="registration_number"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row px-2">
+                    <div class="col-md-3 px-1">
+                      <div class="mb-3">
+                        <label class="form-label lateef-regular fs-4 mb-0"
+                          >النوع</label
+                        >
+                        <div
+                          class="border border-2 border-textcoloralt rounded-3 p-2"
+                        >
+                          <div class="form-check form-check-inline">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="gender"
+                              id="male"
+                              checked
+                              required
+                            />
+                            <label
+                              class="form-check-label almarai-light"
+                              for="male"
+                              >ذكر</label
+                            >
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="gender"
+                              id="female"
+                              required
+                            />
+                            <label
+                              class="form-check-label almarai-light"
+                              for="female"
+                              >أنثى</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                      <div class="mb-3">
+                        <label
+                          for="birthdate"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >تاريخ الميلاد</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="birthdate"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                      <div class="mb-3">
+                        <label
+                          for="academic_level"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >المرحلة الدراسية</label
+                        >
+                        <select
+                          class="form-select form-control border border-2 border-textcoloralt p-2"
+                          id="academic_level"
+                          required
+                        >
+                          <option value="غير ملتحق">غير ملتحق</option>
+                          <option value="حضانة">حضانة</option>
+                          <option value="ابتدائي">ابتدائي</option>
+                          <option value="اعدادي">اعدادي</option>
+                          <option value="ثانوي">ثانوي</option>
+                          <option value="جامعة">جامعة</option>
+                          <option value="خريج">خريج</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-2 px-1">
+                      <div class="mb-3">
+                        <label
+                          for="academic_year"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >السنة الدراسية</label
+                        >
+                        <select
+                          class="form-select form-control border border-2 border-textcoloralt p-2"
+                          id="academic_year"
+                          required
+                        >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-1 d-none">
+                      <div class="mb-3">
+                        <label
+                          for="job"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >الوظيفة</label
+                        >
+                        <input type="text" class="form-control" id="job" />
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ----------------------------------------------------------------------- -->
+                  <div class="mb-1">
+                    <div class="almarai-light fs-4">معلومات التواصل:</div>
+                  </div>
+                  <div class="row px-2">
+                    <div class="col-md-3 px-1">
+                      <div class="mb-3">
+                        <label
+                          for="mobile_attendee"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >موبايل الملتحق</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="mobile_attendee"
+                          pattern="[0-9]+"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                      <div class="mb-3">
+                        <label
+                          for="mobile_mother"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >موبايل الأم</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="mobile_mother"
+                          pattern="[0-9]+"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                      <div class="mb-3">
+                        <label
+                          for="mobile_father"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >موبايل الأب</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="mobile_father"
+                          pattern="[0-9]+"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                      <div class="mb-3">
+                        <label
+                          for="mobile_whatsapp"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >موبايل المتابعة على الواتساب</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="mobile_whatsapp"
+                          pattern="[0-9]+"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label
+                      for="address"
+                      class="form-label lateef-regular fs-4 mb-0"
+                      >العنوان</label
+                    >
+                    <div class="row row-cols-1 row-cols-md-3 g-2">
+                      <div class="col-md-4 px-1">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="building"
+                            placeholder="عمارة"
+                          />
+                          <label for="building" class="form-label almarai-light"
+                            >عمارة</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-4 px-1">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="street"
+                            placeholder="شارع"
+                          />
+                          <label for="street" class="form-label almarai-light"
+                            >شارع</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-4 px-1">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="intersection"
+                            placeholder="متفرع من"
+                          />
+                          <label
+                            for="intersection"
+                            class="form-label almarai-light"
+                            >متفرع من</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-2 px-1">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="floor"
+                            placeholder="دور"
+                          />
+                          <label for="floor" class="form-label almarai-light"
+                            >دور</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-2 px-1">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="apartment"
+                            placeholder="شقة"
+                          />
+                          <label
+                            for="apartment"
+                            class="form-label almarai-light"
+                            >شقة</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-8 px-1">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="building_type"
+                            placeholder="عمارات او مساكن"
+                          />
+                          <label
+                            for="building_type"
+                            class="form-label almarai-light"
+                            >عمارات او مساكن</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-6 px-1">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="area"
+                            placeholder="المنطقة او الحي"
+                          />
+                          <label for="area" class="form-label almarai-light"
+                            >المنطقة او الحي</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-6 px-1">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="other_details"
+                            placeholder="بيانات أخرى (أقرب مكان)"
+                          />
+                          <label
+                            for="other_details"
+                            class="form-label almarai-light"
+                            >بيانات أخرى (أقرب مكان)</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- ----------------------------------------------------------------------- -->
+                  <div class="row ps-md-3">
+                    <div class="col-md-6 ps-md-1 pe-md-5">
+                      <div class="mb-1">
+                        <div class="almarai-light fs-4">بيانات اخري:</div>
+                      </div>
+                      <div class="row">
+                        <div class="mb-3 col-md-6 px-md-1">
+                          <label
+                            for="father_name"
+                            class="form-label lateef-regular fs-4 mb-0"
+                            >أب الاعتراف</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="father_name"
+                          />
+                        </div>
+                        <div class="mb-3 col-md-6 px-md-1">
+                          <label
+                            for="ordination"
+                            class="form-label lateef-regular fs-4 mb-0"
+                            >بيانات خاصة بالرسامة</label
+                          >
+                          <select
+                            class="form-select border border-2 border-textcoloralt p-2"
+                            id="ordination"
+                            required
+                          >
+                            <option value="not_consecrated">غير مرشوم</option>
+                            <option value="augustus">أغنسطس</option>
+                            <option value="absaltus">أبسالتس</option>
+                          </select>
+                        </div>
+                        <div class="mb-3 px-md-1">
+                          <label
+                            for="church"
+                            class="form-label lateef-regular fs-4 mb-0"
+                            >كنيسته</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="church"
+                            value="كنيسة السيدة العذراء مريم والشهيد مارجرجس بغبريال"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!-- ----------------------------------------------------------------------- -->
+                    <div class="col-md-6 ps-md-2">
+                      <div class="mb-1">
+                        <div class="almarai-light fs-4">معلومات التلمذة:</div>
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          for="discipleship_level"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >مستوى الدراسة في التلمذة</label
+                        >
+                        <select
+                          class="form-select form-control border border-2 border-textcoloralt p-2"
+                          id="discipleship_level"
+                          required
+                        >
+                          <option value="مستوي الاول">مستوي الاول</option>
+                          <option value="مستوي التاني">مستوي التاني</option>
+                          <option value="مستوي التالت">مستوي التالت</option>
+                          <option value="مستوي الرابع">مستوي الرابع</option>
+                          <option value="مستوي الخامس">مستوي الخامس</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          for="discipleship_year"
+                          class="form-label lateef-regular fs-4 mb-0"
+                          >سنة الدراسية في التلمذة</label
+                        >
+                        <select
+                          class="form-select form-control border border-2 border-textcoloralt p-2"
+                          id="discipleship_year"
+                          required
+                        >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3 form-group">
+                    <label
+                      for="imageInput"
+                      class="form-label position-static lateef-regular fs-4 mb-0"
+                      >صورة الملف الشخصي</label
+                    >
+                    <input
+                      class="form-control form-control-file"
+                      type="file"
+                      id="imageInput"
+                      accept="image/*"
+                      dir="ltr"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn btn-browndarkest rounded-0 px-3 py-2 almarai-light"
+                  >
+                    إكمال التسجيل
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="mt-auto bg-browndark pt-4">
+      <div class="container text-center">
+        <div class="h1 reemkufi-regular text-textcolor mb-0">
+          مدرسة الشَّهِيد اِسْتِفَانُوس
+        </div>
+        <div class="almarai-light text-textcolor">
+          بكنيسة السيدة العذراء مريم والشهيد مارجرجس بغبريال
+        </div>
+        <div class="row justify-content-center mt-4">
+          <div class="col-2">
+            <div class="text-start mb-3 fs-4" dir="ltr">
+              <div class="text-muted text-decoration-none d-inline-block">
+                <span class="fs-5 fw-light text-bgcolor">03 5033626</span>
+                <i class="bi bi-telephone text-bgcolor"></i>
+              </div>
+              <a
+                class="text-muted text-decoration-none d-inline-block"
+                href="https://goo.gl/maps/CBc8CB8wvpcrB6d58"
+              >
+                <span class="fs-5 text-bgcolor almarai-light"
+                  >موقع المدرسة</span
+                >
+                <i class="bi bi-geo-alt text-bgcolor"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="text-end mb-3 fs-4" dir="ltr">
+              <a
+                class="text-muted text-decoration-none d-inline-block"
+                href="https://www.facebook.com/tlmazetastefanous?mibextid=ZbWKwL"
+              >
+                <i class="bi bi-facebook text-bgcolor"></i>
+                <span class="fs-5 fw-bold text-bgcolor">Facebook</span>
+              </a>
+              <a
+                class="text-muted text-decoration-none d-inline-block"
+                href="#"
+              >
+                <i class="bi bi-envelope-fill text-bgcolor"></i>
+                <span class="fs-5 fw-bold text-bgcolor">Email</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        dir="ltr"
+        class="container-fluid d-flex justify-content-center bg-browndarker text-bgcolor"
+        lang="en"
+      >
+        &copy; 2023. by Peter Nady &amp; Kamal Nady
+      </div>
+    </footer>
+  </body>
+</html>

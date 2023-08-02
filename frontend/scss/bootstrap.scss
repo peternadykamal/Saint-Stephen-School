@@ -1,0 +1,188 @@
+// import arabic fonts
+@import "./fonts.scss";
+// import bootsrap icons
+@import "./bootstrap-icons.scss";
+
+$greenalert: #187416;
+$redalert: #c51605;
+$textcolor: #171215;
+$textcoloralt: #4e4b44;
+$bgcolor: #f7f7f0;
+$browndarker: #44403b;
+$browndark: #887f77;
+$browndarkest: #201a1e;
+$brown: #d0b49f;
+$champagne: #e5d4c9;
+$pewter: #e2e6e7;
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.church-image {
+  position: relative;
+  max-width: 50%;
+  margin: 0 auto;
+  z-index: 0;
+  transform: translate(20%, 30%);
+}
+
+.brown-square {
+  display: flexbox;
+  position: absolute;
+  width: 20%;
+  height: 0;
+  padding-bottom: 20%;
+  bottom: -14%;
+  right: -6%;
+  z-index: -1;
+}
+
+.text-card {
+  display: flexbox;
+  position: absolute;
+  width: 78%;
+  top: -14.5%;
+  left: -58%;
+  z-index: 0;
+}
+
+.hero-container {
+  // height: 85.5vh;
+  height: 550px;
+}
+
+.underline-on-hover:hover {
+  text-decoration: underline;
+}
+.underline-on-hover {
+  text-decoration: none;
+}
+
+.form-group {
+  background-color: inherit;
+}
+
+.form-group > label {
+  bottom: 38px;
+  left: 15px;
+  position: relative;
+  background-color: inherit;
+  padding: 0px 5px 0px 5px;
+  font-size: 1.1em;
+  transition: 0.2s;
+  pointer-events: none;
+  background-color: inherit;
+}
+
+.form-group > input.form-control,
+.form-group > textarea.form-control {
+  border: 2px solid $textcoloralt;
+  background-color: inherit;
+  padding: 10px;
+  border-radius: 8px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-group.active > label,
+.form-control:focus ~ label,
+.form-control:valid ~ label {
+  bottom: 60px;
+  font-size: medium;
+  padding-bottom: 3px;
+}
+
+.profile-container {
+  width: 130px;
+  height: 130px;
+  overflow: hidden;
+}
+
+.profile-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+// import functions and variables
+@import "../bootstrap/scss/functions";
+@import "../bootstrap/scss/variables";
+@import "../bootstrap/scss/mixins";
+
+$custom-theme-colors: (
+  "greenalert": $greenalert,
+  "redalert": $redalert,
+  "textcolor": $textcolor,
+  "textcoloralt": $textcoloralt,
+  "bgcolor": $bgcolor,
+  "browndarker": $browndarker,
+  "browndark": $browndark,
+  "browndarkest": $browndarkest,
+  "brown": $brown,
+  "champagne": $champagne,
+  "pewter": $pewter,
+);
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  border: 2px solid $textcoloralt;
+  background-color: inherit;
+  padding: 8px;
+  border-radius: 8px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  box-shadow: none;
+  outline: 0 none;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border: 3px solid $textcoloralt;
+  box-shadow: none;
+  outline: 0 none;
+}
+
+.form-select:focus {
+  border: 3px solid $textcoloralt;
+  box-shadow: none !important;
+  outline: 0 none;
+}
+
+@import "../bootstrap/scss/bootstrap.scss";
+// @import "../bootstrap/dist/css/bootstrap.rtl";

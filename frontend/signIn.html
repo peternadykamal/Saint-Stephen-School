@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+    <link href="./css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <script src="./bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="./js/script.js" defer></script>
+  </head>
+
+  <body class="bg-champagne text-textcolor almarai-regular">
+    <div
+      class="container d-flex align-items-center justify-content-center"
+      style="height: 100vh"
+    >
+      <div class="card p-4 shadow bg-bgcolor">
+        <div class="text-start">
+          <div class="d-flex">
+            <img
+              src="./images/logo.png"
+              alt="Logo"
+              class="img-fluid"
+              width="150"
+            />
+            <span class="ml-2 reemkufi-regular h1 text-textcolor"
+              >مدرسة<br />الشَّهِيد اِسْتِفَانُوس</span
+            >
+          </div>
+        </div>
+        <div class="card-body">
+          <form class="bg-bgcolor">
+            <div class="form-group">
+              <input type="text" class="form-control" id="usr" required />
+              <label for="usr">رقم المستخدم</label>
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                required
+              />
+              <label for="password">كلمة المرور</label>
+            </div>
+            <div class="d-grid justify-content-center">
+              <button
+                type="submit"
+                class="btn btn-browndarkest rounded-0 py-2 px-4"
+              >
+                <span class="almarai-light fs-5">تسجيل الدخول</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
