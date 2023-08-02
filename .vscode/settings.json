@@ -49,5 +49,13 @@
   "workbench.productIconTheme": "fluent-icons",
   "python.analysis.autoImportCompletions": true,
   "python.formatting.autopep8Args": ["--indent-size=2"],
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": "/frontend/css",
+      "savePathReplacementPairs": null
+    }
+  ]
 }

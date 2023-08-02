@@ -37,6 +37,16 @@
         "reveal": "silent",
         "panel": "new"
       }
+    },
+    {
+      "label": "Run frontend rtlcss converter",
+      "type": "shell",
+      "command": "cd ./frontend; npm run watch",
+      "group": "none",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "new"
+      }
     }
   ]
 }
