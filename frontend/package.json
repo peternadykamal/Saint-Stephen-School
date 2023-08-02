@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rtl": " rtlcss .\\css\\bootstrap.min.css .\\css\\bootstrap.rtl.min.css",
+    "watch": "run-when-changed --watch \".\\css\\bootstrap.min.css\" --exec \"npm run rtl\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rtlcss": "^4.1.0"
+  },
+  "devDependencies": {
+    "run-when-changed": "^2.1.0"
+  }
+}
