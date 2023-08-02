@@ -8,14 +8,14 @@ class ProfileForm(ModelForm):
   class Meta:
     model = models.Profile
     fields = '__all__'
-    # fields = ['name', 'birthdate',
-    #           'talmza_level', 'current_talmza_level_year',
-    #           'school_level', 'current_school_level_year',
-    #           'job', 'gender', 'phone_number',
-    #           'father_phone_number', 'mother_phone_number',
-    #           'mobile_follow_up_on_WhatsApp', 'confession_father',
-    #           'church', 'deaconess', 'profile_image'
-    #           ]
+    fields = ['name', 'birthdate',
+              'talmza_level', 'current_talmza_level_year',
+              'school_level', 'current_school_level_year',
+              'job', 'gender', 'phone_number',
+              'father_phone_number', 'mother_phone_number',
+              'mobile_follow_up_on_WhatsApp', 'confession_father',
+              'church', 'deaconess', 'profile_image'
+              ]
 
   def __init__(self, *args, **kwargs):
     super(ProfileForm, self).__init__(*args, **kwargs)
@@ -63,7 +63,7 @@ class ProfileForm(ModelForm):
       num_words = len(name.split())
       if num_words != 4:
         raise ValidationError(
-            "يجب أن يتكون الاسم من أربع كلمات بالضبط.")
+            "يجب أن يتكون الاسم من أربع اسماء.")
       profile = models.Profile.objects.filter(name__iexact=name)
       if profile:
         raise ValidationError("الملف الشخصي بهذا الاسم موجود بالفعل.")
@@ -110,8 +110,10 @@ class ProfileForm(ModelForm):
           f"أدخل بيانات صحيحة.")
 
     if phone_number and (len(phone_number) != 11 or not phone_number.startswith(('010', '011', '012', '015'))):
+      # raise ValidationError(
+      #     f"{field_name} يجب أن يتكون من 11 رقمًا بالضبط وأن يبدأ بـ '010' أو '011' أو '012' أو '015'.")
       raise ValidationError(
-          f"{field_name} يجب أن يتكون من 11 رقمًا بالضبط وأن يبدأ بـ '010' أو '011' أو '012' أو '015'.")
+          f"أدخل بيانات صحيحة.")
     return phone_number
 
   def clean_phone_number(self):
