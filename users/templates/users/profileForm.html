@@ -1,0 +1,309 @@
+{% extends 'header&footer.html' %}
+{% load static %}
+
+{% block bodyClass %}bg-champagne{% endblock bodyClass %}
+
+{% block scripts %}
+<script src="{% static 'js' %}/profileFormScript.js" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-9">
+        <div class="card bg-white shadow rounded-4 p-4">
+          <div class="card-title border-bottom border-2 border-browndarkest pb-2">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="almarai-bold h4">استمارة التسجيل السنوية</div>
+                <div class="lateef-regular fs-5">
+                  يرجى تعبئة الاستمارة التالية للتسجيل السنوي للطلاب الجدد
+                  والقدامى في مدرستنا.<br class="d-md-block d-none" />
+                  صحة بيانات هذه الاستمارة تسهل عليك وعلينا الكثير أثناء
+                  خدمتك، وتساعدنا على أن نكون متصلين بك دائمًا، فبرجاء
+                  كتابتها بوضوح.
+                </div>
+              </div>
+              <div class="col-md-3 d-flex justify-content-end">
+                <div
+                  class="profile-container rounded-4 border border-2 border-browndarkest d-md-flex justify-content-center align-items-center d-none">
+                  <img id="imagePreview" src=" {% static 'files' %}/{{profileForm.profile_image.value}}"
+                    alt="Image Preview" style="max-width: 200px; max-height: 200px" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-0 p-md-3">
+            <form method="POST" action="{% url 'profile-form' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="mb-1">
+                <div class="almarai-light fs-4">البيانات الشخصية:</div>
+              </div>
+              <div class="row px-2">
+                <div class="mb-3 col-md-8 px-1">
+                  <label for="name" class="form-label lateef-regular fs-4 mb-0">الاسم رباعي</label>
+                  <input type="hidden" name="name" value="" id="hiddenNameInput">
+                  <div class="input-group" id="fullnameInput">
+                    <input type="text" class="form-control" id="name" />
+                    <input type="text" class="form-control" id="middle_name" />
+                    <input type="text" class="form-control" id="last_name" />
+                    <input type="text" class="form-control" id="family_name" />
+                  </div>
+                  <div class="invalid-feedback d-block almarai-regular text-redalert">{{profileForm.name.errors.0}}
+                  </div>
+                </div>
+                <div class="col-md-4 px-1">
+                  <div class="mb-3">
+                    <label for="registration_number" class="form-label lateef-regular fs-4 mb-0">بحث برقم
+                      التسجيل</label>
+                    <div class="input-group">
+                      <button class="btn btn-outline-champagne border border-2 border-textcoloralt" type="button"
+                        id="button-addon1">
+                        <i class="bi bi-search text-textcoloralt"></i>
+                      </button>
+                      <input type="text" class="form-control" id="registration_number" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row px-2">
+                <div class="col-md-3 px-1">
+                  <div class="mb-3">
+                    <label class="form-label lateef-regular fs-4 mb-0">النوع</label>
+                    <div class="border border-2 border-textcoloralt rounded-3 p-2">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" value="M" type="radio" name="gender" id="male" checked
+                          required />
+                        <label class="form-check-label almarai-light" for="male">ذكر</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" value="F" type="radio" name="gender" id="female" required />
+                        <label class="form-check-label almarai-light" for="female">أنثى</label>
+                      </div>
+                    </div>
+                    <div class="invalid-feedback d-block almarai-regular text-redalert">{{profileForm.gender.errors.0}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 px-1">
+                  <div class="mb-3">
+                    <label for="birthdate" class="form-label lateef-regular fs-4 mb-0">تاريخ الميلاد</label>
+                    <input type="date" class="form-control" name="birthdate" id="birthdate" required />
+                    <div class="invalid-feedback d-block almarai-regular text-redalert">
+                      {{profileForm.birthdate.errors.0}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 px-1">
+                  <div class="mb-3">
+                    <label for="school_level" class="form-label lateef-regular fs-4 mb-0">المرحلة الدراسية</label>
+                    <select class="form-select form-control border border-2 border-textcoloralt p-2" name="school_level"
+                      id="school_level" required>
+                      {% for option in profileForm.school_level.field.choices %}
+                      {% if option.0 %}
+                      <option value="{{ option.0 }}">{{ option.1 }}</option>
+                      {% endif %}
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-2 px-1 d-none" id="school_level_year_container">
+                  <div class="mb-3">
+                    <label for="current_school_level_year" class="form-label lateef-regular fs-4 mb-0">السنة
+                      الدراسية</label>
+                    <select class="form-select form-control border border-2 border-textcoloralt p-2"
+                      name="current_school_level_year" id="current_school_level_year">
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3 px-1 d-none" id="job_container">
+                  <div class="mb-3">
+                    <label for="job" class="form-label lateef-regular fs-4 mb-0">الوظيفة</label>
+                    <input type="text" class="form-control" name="job" id="job" />
+                  </div>
+                </div>
+              </div>
+              <!-- ----------------------------------------------------------------------- -->
+              <div class="mb-1">
+                <div class="almarai-light fs-4">معلومات التواصل:</div>
+              </div>
+              <div class="row px-2">
+                <div class="col-md-3 px-1">
+                  <div class="mb-3">
+                    <label for="phone_number" class="form-label lateef-regular fs-4 mb-0">موبايل الملتحق</label>
+                    <input type="text" class="form-control" name="phone_number" id="phone_number" />
+                    <div class="invalid-feedback d-block almarai-regular text-redalert">
+                      {{profileForm.phone_number.errors.0}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 px-1">
+                  <div class="mb-3">
+                    <label for="mother_phone_number" class="form-label lateef-regular fs-4 mb-0">موبايل الأم</label>
+                    <input type="text" class="form-control" name="mother_phone_number" id="mother_phone_number" />
+                    <div class="invalid-feedback d-block almarai-regular text-redalert">
+                      {{profileForm.mother_phone_number.errors.0}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 px-1">
+                  <div class="mb-3">
+                    <label for="father_phone_number" class="form-label lateef-regular fs-4 mb-0">موبايل الأب</label>
+                    <input type="text" class="form-control" name="father_phone_number" id="father_phone_number" />
+                    <div class="invalid-feedback d-block almarai-regular text-redalert">
+                      {{profileForm.father_phone_number.errors.0}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 px-1">
+                  <div class="mb-3">
+                    <label for="mobile_follow_up_on_WhatsApp" class="form-label lateef-regular fs-4 mb-0">موبايل
+                      المتابعة على
+                      الواتساب</label>
+                    <input type="text" class="form-control" name="mobile_follow_up_on_WhatsApp"
+                      id="mobile_follow_up_on_WhatsApp" />
+                    <div class="invalid-feedback d-block almarai-regular text-redalert">
+                      {{profileForm.mobile_follow_up_on_WhatsApp.errors.0}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="address" class="form-label lateef-regular fs-4 mb-0">العنوان</label>
+                <div class="row row-cols-1 row-cols-md-3 g-2">
+                  <div class="col-md-4 px-1">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="building" id="building" placeholder="عمارة" />
+                      <label for="building" class="form-label almarai-light">عمارة</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 px-1">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="street" id="street" placeholder="شارع" />
+                      <label for="street" class="form-label almarai-light">شارع</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 px-1">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="branches_from" id="branches_from"
+                        placeholder="متفرع من" />
+                      <label for="branches_from" class="form-label almarai-light">متفرع من</label>
+                    </div>
+                  </div>
+                  <div class="col-md-2 px-1">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="floor" id="floor" placeholder="دور" />
+                      <label for="floor" class="form-label almarai-light">دور</label>
+                    </div>
+                  </div>
+                  <div class="col-md-2 px-1">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="apartment_number" id="apartment_number"
+                        placeholder="شقة" />
+                      <label for="apartment_number" class="form-label almarai-light">شقة</label>
+                    </div>
+                  </div>
+                  <div class="col-md-8 px-1">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="residential_complexes" id="residential_complexes"
+                        placeholder="عمارات او مساكن" />
+                      <label for="residential_complexes" class="form-label almarai-light">عمارات او مساكن</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 px-1">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="district" id="district"
+                        placeholder="المنطقة او الحي" />
+                      <label for="district" class="form-label almarai-light">المنطقة او الحي</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 px-1">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="additional_details" id="additional_details"
+                        placeholder="بيانات أخرى (أقرب مكان)" />
+                      <label for="additional_details" class="form-label almarai-light">بيانات أخرى (أقرب مكان)</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ----------------------------------------------------------------------- -->
+              <div class="row ps-md-3">
+                <div class="col-md-6 ps-md-1 pe-md-5">
+                  <div class="mb-1">
+                    <div class="almarai-light fs-4">بيانات اخري:</div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-3 col-md-6 px-md-1">
+                      <label for="confession_father" class="form-label lateef-regular fs-4 mb-0">أب الاعتراف</label>
+                      <input type="text" class="form-control" name="confession_father" id="confession_father" />
+                    </div>
+                    <div class="mb-3 col-md-6 px-md-1">
+                      <label for="deaconess" class="form-label lateef-regular fs-4 mb-0">بيانات خاصة بالرسامة</label>
+                      <select class="form-select border border-2 border-textcoloralt p-2" name="deaconess"
+                        id="deaconess" required>
+                        {% for option in profileForm.deaconess.field.choices %}
+                        {% if option.0 %}
+                        <option value="{{ option.0 }}">{{ option.1 }}</option>
+                        {% endif %}
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="mb-3 px-md-1">
+                      <label for="church" class="form-label lateef-regular fs-4 mb-0">كنيسته</label>
+                      <input type="text" class="form-control" name="church" id="church"
+                        value="كنيسة السيدة العذراء مريم والشهيد مارجرجس بغبريال" />
+                    </div>
+                  </div>
+                </div>
+                <!-- ----------------------------------------------------------------------- -->
+                <div class="col-md-6 ps-md-2">
+                  <div class="mb-1">
+                    <div class="almarai-light fs-4">معلومات التلمذة:</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="talmza_level" class="form-label lateef-regular fs-4 mb-0">مستوى الدراسة في
+                      التلمذة</label>
+                    <select class="form-select form-control border border-2 border-textcoloralt p-2" name="talmza_level"
+                      id="talmza_level" required>
+                      {% for option in profileForm.talmza_level.field.choices %}
+                      {% if option.0 %}
+                      <option value="{{ option.0 }}">{{ option.1 }}</option>
+                      {% endif %}
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="current_talmza_level_year" class="form-label lateef-regular fs-4 mb-0">سنة الدراسية في
+                      التلمذة</label>
+                    <select class="form-select form-control border border-2 border-textcoloralt p-2"
+                      name="current_talmza_level_year" id="current_talmza_level_year" required>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3 form-group">
+                <label for="profile_image" class="form-label position-static lateef-regular fs-4 mb-0">صورة الملف
+                  الشخصي</label>
+                <input class="form-control form-control-file" type="file" name="profile_image" id="profile_image"
+                  accept="image/*" dir="ltr" />
+              </div>
+
+              <button type="submit" class="btn btn-browndarkest rounded-0 px-3 py-2 almarai-light">
+                إكمال التسجيل
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
