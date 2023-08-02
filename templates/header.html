@@ -1,1 +1,52 @@
-<h3>header</h3>
+{% load static %}
+
+{% if request.user.is_authenticated %}
+<header class="container-fluid bg-bgcolor border-bottom border-3 border-browndarkest">
+  <div class="container">
+    <div class="row align-items-center py-3">
+      <a class="col col-md-6 d-flex text-decoration-none" href="{% url 'landing' %}">
+        <img src="{% static 'files/images' %}/logo.png" alt="Logo" class="img-fluid" width="150" />
+        <span class="ml-2 reemkufi-regular h1 text-textcolor">مدرسة<br />الشَّهِيد اِسْتِفَانُوس</span>
+      </a>
+      <div class="col-md-6 text-center">
+        <div class="row justify-content-end">
+
+          {% if not pageName == 'profile-form' %}
+          <a class="col border-end border-3 border-browndarkest d-flex align-items-center justify-content-end almarai-bold fs-4 text-browndarkest underline-on-hover"
+            href="{% url 'profile-form' %}">
+            استمارة التقديم
+          </a>
+          {% endif %}
+          <div class="col-4 ">
+            <div class="text-center mb-3">
+              <span class="almarai-light h5">مرحبًا ,{{profileName|truncatechars:15}}!</span>
+            </div>
+            <a class="btn btn-brown rounded-0 px-3 py-2 shadow" href="{% url 'log-out' %}">
+              <span class="almarai-light">تسجيل الخروج</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% else %}
+<header class="container-fluid bg-bgcolor border-bottom border-3 border-browndarkest">
+  <div class="container">
+    <div class="row align-items-center py-3">
+      <!-- Logo and Text (Left Side) -->
+      <a class="col-8 col-md-6 d-flex text-decoration-none" href="{% url 'landing' %}">
+        <img src="{% static 'files/images' %}/logo.png" alt="Logo" class="img-fluid" width="150" />
+        <span class="ml-2 reemkufi-regular h1 text-textcolor">مدرسة<br />الشَّهِيد اِسْتِفَانُوس</span>
+      </a>
+
+      <!-- Login Button (Right Side) -->
+      <div class="col-4 col-md-6 text-md-end">
+        <a class="btn btn-browndarkest rounded-0 px-3 py-3" href="{% url 'sign-in' %}">
+          <span class="almarai-light h4">تسجيل الدخول</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+{% endif %}
