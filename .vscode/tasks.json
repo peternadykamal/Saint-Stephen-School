@@ -15,14 +15,15 @@
       },
       "runOptions": {
         "runOn": "folderOpen"
-      }
+      },
+      "problemMatcher": []
     },
     {
-      "label": "Run server",
+      "label": "Run django liveserver",
       "type": "shell",
-      "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py runserver }",
+      "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py livereload }",
       "windows": {
-        "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py runserver }"
+        "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py livereload }"
       },
       "group": "none",
       "presentation": {
@@ -32,7 +33,26 @@
       "runOptions": {
         "runOn": "folderOpen"
       },
-      "dependsOn": "install requirements"
+      "dependsOn": "install requirements",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run server",
+      "type": "shell",
+      "command": "if (Test-Path .\\env\\Scripts\\activate) {timeout 1; .\\env\\Scripts\\activate; python manage.py runserver }",
+      "windows": {
+        "command": "if (Test-Path .\\env\\Scripts\\activate) {timeout 1; .\\env\\Scripts\\activate; python manage.py runserver }"
+      },
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "dependsOn": "install requirements",
+      "problemMatcher": []
     },
     {
       "label": "migrations",
