@@ -178,3 +178,12 @@ class ProfileTestCase(TestCase):
     self.assertEqual(updated_profile4.current_school_level_year, 1)
     self.assertEqual(updated_profile4.school_level.id,
                      self.profile4.school_level.id)
+
+  def test_generate_password(self):
+    generatedPassword1 = Profile.generatePassword()
+    generatedPassword2 = Profile.generatePassword()
+
+    assert len(generatedPassword1) == 6
+    assert len(generatedPassword2) == 6
+
+    assert generatedPassword1 != generatedPassword2
