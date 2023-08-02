@@ -17,7 +17,7 @@
     "father_phone_number": null,
     "mother_phone_number": null,
     "mobile_follow_up_on_WhatsApp": null,
-    "confessionFather": null,
+    "confession_father": null,
     "church": "┘â┘å┘è╪│╪⌐ ╪º┘ä╪│┘è╪»╪⌐ ╪º┘ä╪╣╪░╪▒╪º╪í ┘à╪▒┘è┘à ┘ê ╪º┘ä╪┤┘ç┘è╪» ┘à╪º╪▒╪¼╪▒╪¼╪│ ╪¿╪║╪¿╪▒┘è╪º┘ä",
     "deaconess": "",
     "profile_image": "images/profiles/user-default.png"
@@ -41,7 +41,7 @@
     "father_phone_number": "01234567890",
     "mother_phone_number": "01234567890",
     "mobile_follow_up_on_WhatsApp": "01234567890",
-    "confessionFather": "╪º╪¿┘ê┘å╪º ╪¿┘ê┘ä╪º",
+    "confession_father": "╪º╪¿┘ê┘å╪º ╪¿┘ê┘ä╪º",
     "church": "┘â┘å┘è╪│╪⌐ ╪º┘ä╪│┘è╪»╪⌐ ╪º┘ä╪╣╪░╪▒╪º╪í ┘à╪▒┘è┘à ┘ê ╪º┘ä╪┤┘ç┘è╪» ┘à╪º╪▒╪¼╪▒╪¼╪│ ╪¿╪║╪¿╪▒┘è╪º┘ä",
     "deaconess": "╪ú╪║╪│",
     "profile_image": "images/profiles/user-default.png"
@@ -65,7 +65,7 @@
     "father_phone_number": "01234567890",
     "mother_phone_number": "01234567890",
     "mobile_follow_up_on_WhatsApp": "01234567890",
-    "confessionFather": "╪º╪¿┘ê┘å╪º ╪¿┘ê┘ä╪º",
+    "confession_father": "╪º╪¿┘ê┘å╪º ╪¿┘ê┘ä╪º",
     "church": "┘â┘å┘è╪│╪⌐ ╪º┘ä╪│┘è╪»╪⌐ ╪º┘ä╪╣╪░╪▒╪º╪í ┘à╪▒┘è┘à ┘ê ╪º┘ä╪┤┘ç┘è╪» ┘à╪º╪▒╪¼╪▒╪¼╪│ ╪¿╪║╪¿╪▒┘è╪º┘ä",
     "deaconess": "╪Ñ╪¿╪│",
     "profile_image": "images/profiles/user-default.png"
@@ -89,7 +89,7 @@
     "father_phone_number": "01234567890",
     "mother_phone_number": "01234567890",
     "mobile_follow_up_on_WhatsApp": "01234567890",
-    "confessionFather": "╪º╪¿┘ê┘å╪º ╪▒┘ê┘è╪│",
+    "confession_father": "╪º╪¿┘ê┘å╪º ╪▒┘ê┘è╪│",
     "church": "┘â┘å┘è╪│╪⌐ ╪º┘ä╪│┘è╪»╪⌐ ╪º┘ä╪╣╪░╪▒╪º╪í ┘à╪▒┘è┘à ┘ê ╪º┘ä╪┤┘ç┘è╪» ┘à╪º╪▒╪¼╪▒╪¼╪│ ╪¿╪║╪¿╪▒┘è╪º┘ä",
     "deaconess": "╪║┘è╪▒",
     "profile_image": "images/profiles/user-default.png"
@@ -113,7 +113,7 @@
     "father_phone_number": null,
     "mother_phone_number": null,
     "mobile_follow_up_on_WhatsApp": null,
-    "confessionFather": null,
+    "confession_father": null,
     "church": "┘â┘å┘è╪│╪⌐ ╪º┘ä╪│┘è╪»╪⌐ ╪º┘ä╪╣╪░╪▒╪º╪í ┘à╪▒┘è┘à ┘ê ╪º┘ä╪┤┘ç┘è╪» ┘à╪º╪▒╪¼╪▒╪¼╪│ ╪¿╪║╪¿╪▒┘è╪º┘ä",
     "deaconess": "",
     "profile_image": "images/profiles/user-default.png"
@@ -137,7 +137,7 @@
     "father_phone_number": "01234567890",
     "mother_phone_number": "01234567890",
     "mobile_follow_up_on_WhatsApp": "01234567890",
-    "confessionFather": "╪º╪¿┘ê┘å╪º ┘â╪º╪▒╪º╪│",
+    "confession_father": "╪º╪¿┘ê┘å╪º ┘â╪º╪▒╪º╪│",
     "church": "┘â┘å┘è╪│╪⌐ ╪º┘ä╪│┘è╪»╪⌐ ╪º┘ä╪╣╪░╪▒╪º╪í ┘à╪▒┘è┘à ┘ê ╪º┘ä╪┤┘ç┘è╪» ┘à╪º╪▒╪¼╪▒╪¼╪│ ╪¿╪║╪¿╪▒┘è╪º┘ä",
     "deaconess": "╪║┘è╪▒",
     "profile_image": "images/profiles/user-default.png"
