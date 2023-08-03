@@ -29,10 +29,13 @@ def profileForm(request):
       hashedPassord = make_password(generatedPassword)
       user = User.objects.create(username="", password=hashedPassord)
 
+      # TODO still want to test it
       if profile.address:
-        profile.address.delete()
+        profile.address = models.Address.getAddressFromRequset(
+            request, profile.address)
+      else:
+        profile.address = models.Address.getAddressFromRequset(request)
 
-      profile.address = models.Address.getAddressFromRequset(request)
       profile.user = user
 
       profile.save()

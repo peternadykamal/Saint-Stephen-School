@@ -171,12 +171,7 @@ class Address(models.Model):
 
     return ', '.join(details)
 
-  def getAddressFromRequset(request):
-    def check_if_any_not_none(*args):
-      for arg in args:
-        if arg != "":
-          return True
-      return False
+  def getAddressFromRequset(request, oldAddress=None):
 
     building = request.POST.get("building")
     street = request.POST.get("street")
@@ -187,13 +182,19 @@ class Address(models.Model):
     district = request.POST.get("district")
     additional_details = request.POST.get("additional_details")
 
-    willCreateIt = result = check_if_any_not_none(
-        building, street, branches_from, floor,
-        apartment_number, residential_complexes,
-        district, additional_details
-    )
-    print(willCreateIt)
-    if willCreateIt:
+    if oldAddress:
+      oldAddress.building = building
+      oldAddress.street = street
+      oldAddress.branches_from = branches_from
+      oldAddress.floor = floor
+      oldAddress.apartment_number = apartment_number
+      oldAddress.residential_complexes = residential_complexes
+      oldAddress.district = district
+      oldAddress.additional_details = additional_details
+
+      oldAddress.save()
+      return oldAddress
+    else:
       address = Address.objects.create(
           building=building,
           street=street,
@@ -205,7 +206,6 @@ class Address(models.Model):
           additional_details=additional_details
       )
       return address
-    return None
 
 
 class TalmzaLevel(models.Model):
