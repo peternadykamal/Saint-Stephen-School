@@ -13,6 +13,7 @@
     "kevinrose.vsc-python-indent",
     "gruntfuggly.todo-tree",
     "usernamehw.errorlens",
-    "glenn2223.live-sass"
+    "glenn2223.live-sass",
+    "stackbreak.comment-divider"
   ]
 }

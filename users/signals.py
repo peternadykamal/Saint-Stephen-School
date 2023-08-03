@@ -42,6 +42,6 @@ def deleteProfile(sender, instance, **kwargs):
     os.remove(image_path)
   if instance.address:
     instance.address.delete()
-
+  # TODO delete his all expenses for all years
   user = instance.user
   user.delete()

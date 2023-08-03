@@ -1,3 +1,4 @@
+from math import exp
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -12,6 +13,7 @@ from django.contrib.auth.models import User
 from . import models
 from .forms import ProfileForm
 
+import datetime
 from datetime import timedelta, date
 from pathlib import Path
 import json
@@ -19,37 +21,94 @@ import json
 
 @ login_required(login_url='sign-in')
 def profileForm(request):
+  context = {}
   profileForm = ProfileForm()
+
+  contentType = request.META.get('CONTENT_TYPE')
   if request.method == 'POST':
-    profileForm = ProfileForm(request.POST, request.FILES)
-    if profileForm.is_valid():
-      profile = profileForm.save(commit=False)
+    year = datetime.date.today().year
+    if contentType == 'multipart/form-data':
+      profileForm = ProfileForm(request.POST, request.FILES)
+      if profileForm.is_valid():
+        profile = profileForm.save(commit=False)
 
-      generatedPassword = models.Profile.generatePassword()
-      hashedPassord = make_password(generatedPassword)
-      user = User.objects.create(username="", password=hashedPassord)
+        # TODO still want to test it
+        if profile.address:
+          profile.address = models.Address.getAddressFromRequset(
+              request, profile.address)
+        else:
+          profile.address = models.Address.getAddressFromRequset(request)
 
-      # TODO still want to test it
-      if profile.address:
-        profile.address = models.Address.getAddressFromRequset(
-            request, profile.address)
-      else:
-        profile.address = models.Address.getAddressFromRequset(request)
+        amount_of_money_payed = request.POST.get('amount_of_money_payed')
 
-      profile.user = user
+        if models.ExpensesProfileForm.validateAmountPayed(amount_of_money_payed):
 
-      profile.save()
-      # return HttpResponse("استمارة تمت بنجاح!")
-    # else:
-      # return HttpResponse("حدث خطأ أثناء التسجيل.")
+          if not profile.user:
+            generatedPassword = models.Profile.generatePassword()
+            hashedPassord = make_password(generatedPassword)
+            user = User.objects.create(username="", password=hashedPassord)
+            profile.user = user
+            context["showModal"] = True
+            context["profilePassword"] = generatedPassword
+            context["profileId"] = user.username
+
+          profile.save()
+
+          try:
+            expenses = models.ExpensesProfileForm.objects.get(
+                year=str(year), created_for=profile)
+          except:
+            expenses = None
+
+          if expenses:
+            if amount_of_money_payed >= expenses.amount_of_money_payed:
+              expenses.amount_of_money_payed = amount_of_money_payed
+              expenses.save()
+              context["expensesPayedReadOnly"] = True
+              context["expensesPayed"] = expenses.amount_of_money_payed
+
+              # TODO log line
+            else:
+              context["showModal"] = True
+              context["expensesError"] = "المبلغ المدخل اقل من المسجل في الموقع."
+          else:
+            newExpenses = models.ExpensesProfileForm.objects.create(
+                year=str(year),
+                amount_of_money_payed=amount_of_money_payed,
+                created_for=profile
+            )
+            context["expensesPayedReadOnly"] = True
+            context["expensesPayed"] = newExpenses.amount_of_money_payed
+            # TODO log line
+        else:
+          context["showModal"] = True
+          context["expensesError"] = "أدخل المصاريف بشكل صحيح."
+    elif contentType == 'application/json':
+      data = json.loads(request.body)
+      profileIdSearch = data.get('profileIdSearch')
+      # print(profileIdSearch)
+      try:
+        profile = models.Profile.objects.get(user__username=profileIdSearch)
+        profileForm = ProfileForm(instance=profile)
+        oldExpenses = models.ExpensesProfileForm.objects.get(
+            created_for__id=profile.id, year=year)
+        print(profile)
+        context["expensesPayed"] = oldExpenses.amount_of_money_payed
+      except:
+        context["errorProfileNotFound"] = "رقم التسجيل غير صحيح"
 
   path = Path(request.path)
 
-  context = {'profileForm': profileForm,
-             'pageName': path.name,
-             }
+  context['expenses'] = models.ExpensesProfileForm.getExpenses()
+  context['profileForm'] = profileForm
+  context['pageName'] = path.name
+
   models.Profile.getProfileName(request, context)
-  return render(request, 'users/profileForm.html', context)
+  rendered_html = render(request, 'users/profileForm.html', context)
+  if contentType == 'application/json':
+    return HttpResponse(rendered_html.content, content_type='text/html')
+  else:
+    return rendered_html
 
 
 def signIn(request):

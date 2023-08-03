@@ -5,9 +5,21 @@
 
 {% block scripts %}
 <script src="{% static 'js' %}/profileFormScript.js" defer></script>
+
+{% if showModal %}
+<script src="{% static 'js' %}/showFormModalScript.js" defer></script>
+{% endif %}
+
 {% endblock scripts %}
 
 {% block content %}
+
+
+{% for field in profileForm %}
+{{field.label}}
+{{field}}
+{% endfor %}
+
 
 
 <div class="container-fluid">
@@ -37,14 +49,14 @@
             </div>
           </div>
           <div class="card-body p-0 p-md-3">
-            <form method="POST" action="{% url 'profile-form' %}" enctype="multipart/form-data">
+            <form id="mainForm" method="POST" action="{% url 'profile-form' %}" enctype="multipart/form-data">
               {% csrf_token %}
               <div class="mb-1">
                 <div class="almarai-light fs-4">البيانات الشخصية:</div>
               </div>
               <div class="row px-2">
                 <div class="mb-3 col-md-8 px-1">
-                  <label for="name" class="form-label lateef-regular fs-4 mb-0">الاسم رباعي</label>
+                  <label for="name" class="form-label lateef-regular fs-4 mb-0">{{profileForm.name.label}}</label>
                   <input type="hidden" name="name" value="" id="hiddenNameInput">
                   <div class="input-group" id="fullnameInput">
                     <input type="text" class="form-control" id="name" />
@@ -61,7 +73,7 @@
                       التسجيل</label>
                     <div class="input-group">
                       <button class="btn btn-outline-champagne border border-2 border-textcoloralt" type="button"
-                        id="button-addon1">
+                        id="searchButton">
                         <i class="bi bi-search text-textcoloralt"></i>
                       </button>
                       <input type="text" class="form-control" id="registration_number" />
@@ -72,7 +84,7 @@
               <div class="row px-2">
                 <div class="col-md-3 px-1">
                   <div class="mb-3">
-                    <label class="form-label lateef-regular fs-4 mb-0">النوع</label>
+                    <label class="form-label lateef-regular fs-4 mb-0">{{profileForm.gender.label}}</label>
                     <div class="border border-2 border-textcoloralt rounded-3 p-2">
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" value="M" type="radio" name="gender" id="male" checked
@@ -90,7 +102,8 @@
                 </div>
                 <div class="col-md-3 px-1">
                   <div class="mb-3">
-                    <label for="birthdate" class="form-label lateef-regular fs-4 mb-0">تاريخ الميلاد</label>
+                    <label for="birthdate"
+                      class="form-label lateef-regular fs-4 mb-0">{{profileForm.birthdate.label}}</label>
                     <input type="date" class="form-control" name="birthdate" id="birthdate" required />
                     <div class="invalid-feedback d-block almarai-regular text-redalert">
                       {{profileForm.birthdate.errors.0}}
@@ -99,7 +112,8 @@
                 </div>
                 <div class="col-md-3 px-1">
                   <div class="mb-3">
-                    <label for="school_level" class="form-label lateef-regular fs-4 mb-0">المرحلة الدراسية</label>
+                    <label for="school_level"
+                      class="form-label lateef-regular fs-4 mb-0">{{profileForm.school_level.label}}</label>
                     <select class="form-select form-control border border-2 border-textcoloralt p-2" name="school_level"
                       id="school_level" required>
                       {% for option in profileForm.school_level.field.choices %}
@@ -112,8 +126,8 @@
                 </div>
                 <div class="col-md-2 px-1 d-none" id="school_level_year_container">
                   <div class="mb-3">
-                    <label for="current_school_level_year" class="form-label lateef-regular fs-4 mb-0">السنة
-                      الدراسية</label>
+                    <label for="current_school_level_year"
+                      class="form-label lateef-regular fs-4 mb-0">{{profileForm.current_school_level_year.label}}</label>
                     <select class="form-select form-control border border-2 border-textcoloralt p-2"
                       name="current_school_level_year" id="current_school_level_year">
                     </select>
@@ -121,7 +135,7 @@
                 </div>
                 <div class="col-md-3 px-1 d-none" id="job_container">
                   <div class="mb-3">
-                    <label for="job" class="form-label lateef-regular fs-4 mb-0">الوظيفة</label>
+                    <label for="job" class="form-label lateef-regular fs-4 mb-0">{{profileForm.job.label}}</label>
                     <input type="text" class="form-control" name="job" id="job" />
                   </div>
                 </div>
@@ -133,7 +147,8 @@
               <div class="row px-2">
                 <div class="col-md-3 px-1">
                   <div class="mb-3">
-                    <label for="phone_number" class="form-label lateef-regular fs-4 mb-0">موبايل الملتحق</label>
+                    <label for="phone_number"
+                      class="form-label lateef-regular fs-4 mb-0">{{profileForm.phone_number.label}}</label>
                     <input type="text" class="form-control" name="phone_number" id="phone_number" />
                     <div class="invalid-feedback d-block almarai-regular text-redalert">
                       {{profileForm.phone_number.errors.0}}
@@ -142,7 +157,8 @@
                 </div>
                 <div class="col-md-3 px-1">
                   <div class="mb-3">
-                    <label for="mother_phone_number" class="form-label lateef-regular fs-4 mb-0">موبايل الأم</label>
+                    <label for="mother_phone_number"
+                      class="form-label lateef-regular fs-4 mb-0">{{profileForm.mother_phone_number.label}}</label>
                     <input type="text" class="form-control" name="mother_phone_number" id="mother_phone_number" />
                     <div class="invalid-feedback d-block almarai-regular text-redalert">
                       {{profileForm.mother_phone_number.errors.0}}
@@ -151,7 +167,8 @@
                 </div>
                 <div class="col-md-3 px-1">
                   <div class="mb-3">
-                    <label for="father_phone_number" class="form-label lateef-regular fs-4 mb-0">موبايل الأب</label>
+                    <label for="father_phone_number"
+                      class="form-label lateef-regular fs-4 mb-0">{{profileForm.father_phone_number.label}}</label>
                     <input type="text" class="form-control" name="father_phone_number" id="father_phone_number" />
                     <div class="invalid-feedback d-block almarai-regular text-redalert">
                       {{profileForm.father_phone_number.errors.0}}
@@ -160,9 +177,8 @@
                 </div>
                 <div class="col-md-3 px-1">
                   <div class="mb-3">
-                    <label for="mobile_follow_up_on_WhatsApp" class="form-label lateef-regular fs-4 mb-0">موبايل
-                      المتابعة على
-                      الواتساب</label>
+                    <label for="mobile_follow_up_on_WhatsApp"
+                      class="form-label lateef-regular fs-4 mb-0">{{profileForm.mobile_follow_up_on_WhatsApp.label}}</label>
                     <input type="text" class="form-control" name="mobile_follow_up_on_WhatsApp"
                       id="mobile_follow_up_on_WhatsApp" />
                     <div class="invalid-feedback d-block almarai-regular text-redalert">
@@ -239,11 +255,13 @@
                   </div>
                   <div class="row">
                     <div class="mb-3 col-md-6 px-md-1">
-                      <label for="confession_father" class="form-label lateef-regular fs-4 mb-0">أب الاعتراف</label>
+                      <label for="confession_father"
+                        class="form-label lateef-regular fs-4 mb-0">{{profileForm.confession_father.label}}</label>
                       <input type="text" class="form-control" name="confession_father" id="confession_father" />
                     </div>
                     <div class="mb-3 col-md-6 px-md-1">
-                      <label for="deaconess" class="form-label lateef-regular fs-4 mb-0">بيانات خاصة بالرسامة</label>
+                      <label for="deaconess"
+                        class="form-label lateef-regular fs-4 mb-0">{{profileForm.deaconess.label}}</label>
                       <select class="form-select border border-2 border-textcoloralt p-2" name="deaconess"
                         id="deaconess" required>
                         {% for option in profileForm.deaconess.field.choices %}
@@ -254,7 +272,8 @@
                       </select>
                     </div>
                     <div class="mb-3 px-md-1">
-                      <label for="church" class="form-label lateef-regular fs-4 mb-0">كنيسته</label>
+                      <label for="church"
+                        class="form-label lateef-regular fs-4 mb-0">{{profileForm.church.label}}</label>
                       <input type="text" class="form-control" name="church" id="church"
                         value="كنيسة السيدة العذراء مريم والشهيد مارجرجس بغبريال" />
                     </div>
@@ -266,8 +285,8 @@
                     <div class="almarai-light fs-4">معلومات التلمذة:</div>
                   </div>
                   <div class="mb-3">
-                    <label for="talmza_level" class="form-label lateef-regular fs-4 mb-0">مستوى الدراسة في
-                      التلمذة</label>
+                    <label for="talmza_level"
+                      class="form-label lateef-regular fs-4 mb-0">{{profileForm.talmza_level.label}}</label>
                     <select class="form-select form-control border border-2 border-textcoloralt p-2" name="talmza_level"
                       id="talmza_level" required>
                       {% for option in profileForm.talmza_level.field.choices %}
@@ -278,8 +297,8 @@
                     </select>
                   </div>
                   <div class="mb-3">
-                    <label for="current_talmza_level_year" class="form-label lateef-regular fs-4 mb-0">سنة الدراسية في
-                      التلمذة</label>
+                    <label for="current_talmza_level_year" class="form-label lateef-regular fs-4 mb-0">سنة
+                      {{profileForm.current_talmza_level_year.label}}</label>
                     <select class="form-select form-control border border-2 border-textcoloralt p-2"
                       name="current_talmza_level_year" id="current_talmza_level_year" required>
                       <option value="1">1</option>
@@ -290,15 +309,16 @@
               </div>
 
               <div class="mb-3 form-group">
-                <label for="profile_image" class="form-label position-static lateef-regular fs-4 mb-0">صورة الملف
-                  الشخصي</label>
+                <label for="profile_image"
+                  class="form-label position-static lateef-regular fs-4 mb-0">{{profileForm.profile_image.label}}</label>
                 <input class="form-control form-control-file" type="file" name="profile_image" id="profile_image"
                   accept="image/*" dir="ltr" />
               </div>
-
-              <button type="submit" class="btn btn-browndarkest rounded-0 px-3 py-2 almarai-light">
+              <input type="hidden" name="amount_of_money_payed" id="amount_of_money_payed" required />
+              <a class="btn btn-browndarkest rounded-0 px-3 py-2 almarai-light" data-bs-toggle="modal"
+                data-bs-target="#confirmationModal">
                 إكمال التسجيل
-              </button>
+              </a>
             </form>
           </div>
         </div>
@@ -306,4 +326,7 @@
     </div>
   </div>
 </div>
+
+{% include 'users/profileFormModal.html' %}
+
 {% endblock content %}
