@@ -19,41 +19,28 @@ class ProfileForm(ModelForm):
   def __init__(self, *args, **kwargs):
     super(ProfileForm, self).__init__(*args, **kwargs)
 
+    field_labels = {
+        'name': "الأسم رباعي",
+        'birthdate': "تاريخ الميلاد",
+        'talmza_level': "مستوى الدراسة في التلمذة",
+        'current_talmza_level_year': "سنة الدراسية في التلمذة",
+        'school_level': "المرحلة الدراسية",
+        'current_school_level_year': "السنة الدراسية",
+        'job': "الوظيفة",
+        'gender': "النوع",
+        'phone_number': "موبايل الملتحق",
+        'mobile_follow_up_on_WhatsApp': "موبايل المتابعة علي الواتساب",
+        'father_phone_number': "موبايل الأب",
+        'mother_phone_number': "موبايل الأم",
+        'confession_father': "أب الاعتراف",
+        'church': "كنيسته",
+        'deaconess': "بيانات خاصة بالرسامة",
+        'profile_image': "صورة الملف الشخصي"
+    }
+
     for name, field in self.fields.items():
       field.widget.attrs.update({'class': 'form-control'})
-      match name:
-        case 'name':
-          field.label = "الأسم رباعي"
-        case 'birthdate':
-          field.label = "تاريخ الميلاد"
-        case 'talmza_level':
-          field.label = "مستوي"
-        case 'current_talmza_level_year':
-          field.label = "سنة المستوي"
-        case 'school_level':
-          field.label = "المرحلة الدراسية"
-        case 'current_school_level_year':
-          field.label = "سنة الدراسية"
-        case 'job':
-          field.label = "الوظيفة"
-        case 'gender':
-          field.label = "النوع"
-        case 'phone_number':
-          field.label = "موبايل الملتحق"
-        case 'mobile_follow_up_on_WhatsApp':
-          field.label = "موبايل المتابعة علي الواتساب"
-        case 'father_phone_number':
-          field.label = "موبايل الأب"
-        case 'mother_phone_number':
-          field.label = "موبايل الأم"
-        case 'confession_father':
-          field.label = "أب الاعتراف"
-        case 'church':
-          field.label = "كنيسته"
-        case 'deaconess':
-          field.label = "الرسامة"
-        case 'profile_image':
-          field.label = "الصورة الشخصية"
+      field.label = field_labels[name]
 
   def clean_name(self):
     name = self.cleaned_data.get('name')
