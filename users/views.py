@@ -103,14 +103,13 @@ def getSchoolLevelYears(request):
       show = ""
       years = []
 
-      match schoolLevel.level_number:
-        case 0:
-          show = "Null"
-        case 5 | 6:
-          show = "textField"
-        case _:
-          show = "dropBox"
-          years = list(range(1, levelYears + 1))
+      if schoolLevel.level_number == 0:
+        show = "Null"
+      elif schoolLevel.level_number in [5, 6]:
+        show = "textField"
+      else:
+        show = "dropBox"
+        years = list(range(1, levelYears + 1))
 
       data = {
           'getSchoolLevelYears': years,
