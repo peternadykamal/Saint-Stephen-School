@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <script src="./bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="./js/formModalScript.js" defer></script>
+    <title>مدرسة الشهيد استيفانوس</title>
+  </head>
+  <body class="bg-champagne">
+    <header
+      class="container-fluid bg-bgcolor border-bottom border-3 border-browndarkest"
+    >
+      <div class="container">
+        <div class="row align-items-center py-3">
+          <div class="col col-md-6 d-flex">
+            <img
+              src="./images/logo.png"
+              alt="Logo"
+              class="img-fluid"
+              width="150"
+            />
+            <span class="ml-2 reemkufi-regular h1 text-textcolor"
+              >مدرسة<br />الشَّهِيد اِسْتِفَانُوس</span
+            >
+          </div>
+          <div class="col-md-6 text-center">
+            <div class="row">
+              <a
+                class="col border-end border-3 border-browndarkest d-flex align-items-center justify-content-end almarai-bold fs-4 text-browndarkest underline-on-hover"
+                href="#"
+              >
+                استمارة التقديم
+              </a>
+              <div class="col-4">
+                <div class="text-center mb-3">
+                  <span class="almarai-light h5">مرحبًا ,[اسم المستخدم]!</span>
+                </div>
+                <button class="btn btn-brown rounded-0 px-3 py-2 shadow">
+                  <span class="almarai-light">تسجيل الخروج</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <form id="mainForm" action="{% url 'your_backend_url' %}" method="post">
+        <!-- Add your form inputs here -->
+        <input type="text" name="input1" required />
+        <input type="text" name="input2" required />
+        <!-- Add other form inputs as needed -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#confirmationModal"
+        >
+          Open Modal
+        </button>
+      </form>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade almarai-regular"
+      data-bs-keyboard="false"
+      data-bs-backdrop="static"
+      id="confirmationModal"
+      tabindex="-1"
+      aria-labelledby="modalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
+        <div class="modal-content bg-bgcolor p-2">
+          <div class="modal-header border-0 d-block pb-1">
+            <h3 class="modal-title almarai-bold" id="modalLabel">
+              تأكيد التسجيل
+            </h3>
+            <h6>
+              تم استكمال تسجيل المعلومات بنجاح. يُرجى التحقق من المبلغ المطلوب
+              لاستكمال التسجيل.
+            </h6>
+          </div>
+          <div class="modal-body flex-md-grow-1 flex-grow-0">
+            <div class="mb-1">المبلغ المطلوب: [عرض المبلغ المطلوب للتسجيل]</div>
+            <input
+              type="number"
+              class="col-7 border-textcoloralt text-browndarkest"
+              value="10"
+              name="expenses"
+              step="5"
+              min="0"
+              max="50"
+              required
+              readonly
+            />
+            <div
+              class="invalid-feedback d-block almarai-regular text-redalert fs-5"
+            >
+              رقم التسجيل الخاص بك هو: [رقم التسجيل]
+            </div>
+            <div
+              class="invalid-feedback d-block almarai-regular text-redalert fs-5"
+            >
+              كلمة المرور الخاص بك هو: [كلمة المرور]
+            </div>
+          </div>
+          <div
+            class="modal-footer border-0 m-md-0 m-4 mt-0 d-flex justify-content-around"
+          >
+            <button
+              type="button"
+              class="col-md col-12 btn btn-browndarkest rounded-0 p-3 almarai-light d-none"
+              id="modalSubmitButton"
+            >
+              استكمال التسجيل
+            </button>
+            <button
+              type="button"
+              class="col-md col-12 btn btn-pewter rounded-0 p-3 almarai-light d-flex align-items-center justify-content-center"
+              id="newFormButton"
+            >
+              <i class="bi bi-chevron-right fs-3 d-flex"></i>
+              <div>تعبئة استمارة جديدة</div>
+            </button>
+            <button
+              type="button"
+              class="col-md col-12 btn btn-brown rounded-0 p-3 almarai-light d-none"
+              data-bs-dismiss="modal"
+            >
+              للعودة وتعديل البيانات
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="mt-auto bg-browndark pt-4">
+      <div class="container text-center">
+        <div class="h1 reemkufi-regular text-textcolor mb-0">
+          مدرسة الشَّهِيد اِسْتِفَانُوس
+        </div>
+        <div class="almarai-light text-textcolor">
+          بكنيسة السيدة العذراء مريم والشهيد مارجرجس بغبريال
+        </div>
+        <div class="row justify-content-center mt-4">
+          <div class="col-2">
+            <div class="text-start mb-3 fs-4" dir="ltr">
+              <div class="text-muted text-decoration-none d-inline-block">
+                <span class="fs-5 fw-light text-bgcolor">03 5033626</span>
+                <i class="bi bi-telephone text-bgcolor"></i>
+              </div>
+              <a
+                class="text-muted text-decoration-none d-inline-block"
+                href="https://goo.gl/maps/CBc8CB8wvpcrB6d58"
+              >
+                <span class="fs-5 text-bgcolor almarai-light"
+                  >موقع المدرسة</span
+                >
+                <i class="bi bi-geo-alt text-bgcolor"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="text-end mb-3 fs-4" dir="ltr">
+              <a
+                class="text-muted text-decoration-none d-inline-block"
+                href="https://www.facebook.com/tlmazetastefanous?mibextid=ZbWKwL"
+              >
+                <i class="bi bi-facebook text-bgcolor"></i>
+                <span class="fs-5 fw-bold text-bgcolor">Facebook</span>
+              </a>
+              <a
+                class="text-muted text-decoration-none d-inline-block"
+                href="#"
+              >
+                <i class="bi bi-envelope-fill text-bgcolor"></i>
+                <span class="fs-5 fw-bold text-bgcolor">Email</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        dir="ltr"
+        class="container-fluid d-flex justify-content-center bg-browndarker text-bgcolor"
+        lang="en"
+      >
+        &copy; 2023. by Peter Nady &amp; Kamal Nady
+      </div>
+    </footer>
+  </body>
+</html>
