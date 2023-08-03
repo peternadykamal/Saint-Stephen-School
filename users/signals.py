@@ -37,8 +37,11 @@ def deleteProfile(sender, instance, **kwargs):
 
   image_path = instance.profile_image.path
 
-  # Delete the file from the filesystem
-  os.remove(image_path)
+  # Delete the file from the filesystem if not the default
+  if not models.Profile.DEFAULT_PROFILE_PATH.replace('/', '\\') in image_path:
+    os.remove(image_path)
+  if instance.address:
+    instance.address.delete()
 
   user = instance.user
   user.delete()
