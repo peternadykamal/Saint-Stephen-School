@@ -161,7 +161,7 @@ async function handleTalmzaLevelChange() {
 
   try {
     const response = await fetch(url, {
-      method: "POST", // or 'GET' depending on your server-side implementation
+      method: "POST",
       body: JSON.stringify({ talmza_level_id: selectedTalmzaLevel }),
       headers: {
         "Content-Type": "application/json",
@@ -176,3 +176,59 @@ async function handleTalmzaLevelChange() {
   }
 }
 talmzaLevelDropdown.addEventListener("change", handleTalmzaLevelChange);
+// --------------------------------------------------------------
+// modal script
+const mainForm = document.getElementById("mainForm");
+document
+  .getElementById("modalSubmitButton")
+  .addEventListener("click", function () {
+    const modalInputExpenses =
+      document.querySelector('[name="expenses"]').value;
+    document.querySelector("#amount_of_money_payed").value = modalInputExpenses;
+    mainForm.submit();
+  });
+/* -------------------------------------------------------------------------- */
+// search bar
+const searchButton = document.getElementById("searchButton");
+const registrationInput = document.getElementById("registration_number");
+
+async function searchByUserId(id) {
+  const url = mainForm.action;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify({ profileIdSearch: id }),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCSRFToken(),
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    // Assuming the backend returns the rendered HTML as a response,
+    // you can use response.text() to get the HTML content as text
+    const htmlContent = await response.text();
+    console.log(htmlContent);
+    // Replace the entire page content with the new HTML
+    document.documentElement.innerHTML = htmlContent;
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+function handleSearch() {
+  const inputValue = registrationInput.value.trim();
+  if (inputValue !== "") {
+    searchByUserId(inputValue);
+  }
+}
+registrationInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    handleSearch();
+  }
+});
+
+searchButton.addEventListener("click", handleSearch);
