@@ -111,6 +111,19 @@ body {
   height: 100%;
 }
 
+.modal-open .container-fluid,
+.modal-open .container {
+  filter: blur(5px) grayscale(90%);
+  -webkit-filter: blur(5px) grayscale(90%);
+  -moz-filter: blur(5px) grayscale(90%);
+  -o-filter: blur(5px) grayscale(90%);
+  -ms-filter: blur(5px) grayscale(90%);
+  transition: filter 0.5s ease-out;
+  -webkit-transition: -webkit-filter 0.5s ease-out;
+}
+
+/* -------------------------------------------------------------------------- */
+
 // import functions and variables
 @import "../bootstrap/scss/functions";
 @import "../bootstrap/scss/variables";

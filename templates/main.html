@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="{% static 'files/images/church favicon' %}/favicon.ico"
+      type="image/x-icon"
+    />
+    <link href="{% static 'css' %}/bootstrap.rtl.min.css" rel="stylesheet" />
+    <script src="{% static 'js' %}/bootstrap.bundle.min.js" defer></script>
+    {% block scripts %}
+    <!-- where the all child will be the main -->
+    {% endblock scripts %}
+    <title>مدرسة الشهيد استيفانوس</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="{% static 'css' %}/bootstrap.rtl.min.css" rel="stylesheet" />
-  <script src="{% static 'js' %}/bootstrap.bundle.min.js" defer></script>
-  {% block scripts %}
-  <!-- where the all child will be the main -->
-  {% endblock scripts %}
-  <title>مدرسة الشهيد استيفانوس</title>
-</head>
-
-<body class="{% block bodyClass %}{% endblock bodyClass %}">
-
-  {% block header %}
-  <!-- where the all child will be the main -->
-  {% endblock header %}
-
-  {% block content %}
-  <!-- where the all child will be the main -->
-  {% endblock content %}
-
-  {% block footer %}
-  <!-- where the all child will be the main -->
-  {% endblock footer %}
-</body>
-
+  <body class="{% block bodyClass %}{% endblock bodyClass %}">
+    {% block header %}
+    <!-- where the all child will be the main -->
+    {% endblock header %} {% block content %}
+    <!-- where the all child will be the main -->
+    {% endblock content %} {% block footer %}
+    <!-- where the all child will be the main -->
+    {% endblock footer %}
+  </body>
 </html>
