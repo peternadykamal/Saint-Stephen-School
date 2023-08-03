@@ -1,6 +1,3 @@
-from argparse import Action
-from ast import mod, pattern
-from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -22,6 +19,8 @@ class Profile(models.Model):
       ('أغس', "أغنسطس"),
       ('إبس', "إبسالطس")
   )
+
+  DEFAULT_PROFILE_PATH = 'images/profiles/user-default.png'
 
   user = models.OneToOneField(
       User, on_delete=models.CASCADE, null=True, blank=False)
@@ -49,7 +48,7 @@ class Profile(models.Model):
       max_length=200, default="كنيسة السيدة العذراء مريم و الشهيد مارجرجس بغبريال")
   deaconess = models.CharField(max_length=10, choices=DEACONESS_CHOICES)
   profile_image = models.ImageField(
-      null=True, blank=True, upload_to='images/profiles', default='images/profiles/user-default.png')
+      null=True, blank=True, upload_to='images/profiles', default=DEFAULT_PROFILE_PATH)
 
   id = models.UUIDField(default=uuid.uuid4, unique=True,
                         primary_key=True, editable=False)
@@ -173,6 +172,12 @@ class Address(models.Model):
     return ', '.join(details)
 
   def getAddressFromRequset(request):
+    def check_if_any_not_none(*args):
+      for arg in args:
+        if arg != "":
+          return True
+      return False
+
     building = request.POST.get("building")
     street = request.POST.get("street")
     branches_from = request.POST.get("branches_from")
@@ -182,17 +187,25 @@ class Address(models.Model):
     district = request.POST.get("district")
     additional_details = request.POST.get("additional_details")
 
-    address = Address.objects.create(
-        building=building,
-        street=street,
-        branches_from=branches_from,
-        floor=floor,
-        apartment_number=apartment_number,
-        residential_complexes=residential_complexes,
-        district=district,
-        additional_details=additional_details
+    willCreateIt = result = check_if_any_not_none(
+        building, street, branches_from, floor,
+        apartment_number, residential_complexes,
+        district, additional_details
     )
-    return address
+    print(willCreateIt)
+    if willCreateIt:
+      address = Address.objects.create(
+          building=building,
+          street=street,
+          branches_from=branches_from,
+          floor=floor,
+          apartment_number=apartment_number,
+          residential_complexes=residential_complexes,
+          district=district,
+          additional_details=additional_details
+      )
+      return address
+    return None
 
 
 class TalmzaLevel(models.Model):
