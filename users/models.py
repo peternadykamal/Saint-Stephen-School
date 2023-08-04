@@ -37,7 +37,8 @@ class Profile(models.Model):
   address = models.OneToOneField(
       "Address", on_delete=models.SET_NULL, null=True, blank=True)
   job = models.CharField(max_length=200, null=True, blank=True)
-  gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+  gender = models.CharField(
+      max_length=1, choices=GENDER_CHOICES, default=GENDER_CHOICES[0])
   phone_number = models.CharField(max_length=11, null=True, blank=True)
   father_phone_number = models.CharField(max_length=11, null=True, blank=True)
   mother_phone_number = models.CharField(max_length=11, null=True, blank=True)
@@ -207,6 +208,17 @@ class Address(models.Model):
           additional_details=additional_details
       )
       return address
+
+  def getAddressAttributesInContext(self, context):
+
+    context['building'] = self.building
+    context['street'] = self.street
+    context['branches_from'] = self.branches_from
+    context['floor'] = self.floor
+    context['apartment_number'] = self.apartment_number
+    context['residential_complexes'] = self.residential_complexes
+    context['district'] = self.district
+    context['additional_details'] = self.additional_details
 
 
 class TalmzaLevel(models.Model):
