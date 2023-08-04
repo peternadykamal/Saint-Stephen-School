@@ -1,3 +1,4 @@
+/* -------------------------------------------------------------------------- */
 function getApiUrl(path) {
   const protocol = window.location.protocol;
   const hostname = window.location.hostname;
@@ -95,6 +96,8 @@ fullNameInputs.forEach((input, index) => {
   );
 });
 // --------------------------------------------------------------
+const schoolLevelDropdown = document.getElementById("school_level");
+
 function populateDropdown(data, querySelectorValue) {
   const dropdown = document.querySelector(querySelectorValue);
   dropdown.innerHTML = "";
@@ -106,7 +109,20 @@ function populateDropdown(data, querySelectorValue) {
     dropdown.appendChild(option);
   });
 }
-
+// this function assume that the select element have an attribute called selected that contain
+// the value that should be selected
+function setSelectedLevel(querySelectorValue) {
+  const element = document.querySelector(querySelectorValue);
+  const selectedValue = element.getAttribute("selected");
+  console.log(selectedValue);
+  const optionToSelect = document.querySelector(
+    `${querySelectorValue} option[value="${selectedValue}"]`
+  );
+  if (optionToSelect) {
+    optionToSelect.selected = true;
+  }
+  console.log();
+}
 function elementVisibility(isVisible, querySelectorValue) {
   element = document.querySelector(querySelectorValue);
   if (!isVisible) {
@@ -115,8 +131,6 @@ function elementVisibility(isVisible, querySelectorValue) {
     element.classList.remove("d-none");
   }
 }
-
-const schoolLevelDropdown = document.getElementById("school_level");
 async function handleSchoolLevelChange() {
   const selectedSchoolLevel = schoolLevelDropdown.value;
   const url = getApiUrl("/u/get_school_level_years/");
@@ -148,13 +162,16 @@ async function handleSchoolLevelChange() {
     }
 
     populateDropdown(data.getSchoolLevelYears, "#current_school_level_year");
+    setSelectedLevel("#current_school_level_year");
   } catch (error) {
     console.error("Error:", error);
   }
 }
+
 schoolLevelDropdown.addEventListener("change", handleSchoolLevelChange);
 // --------------------------------------------------------------
 const talmzaLevelDropdown = document.getElementById("talmza_level");
+
 async function handleTalmzaLevelChange() {
   const selectedTalmzaLevel = talmzaLevelDropdown.value;
   const url = getApiUrl("/u/get_talmza_level_years/");
@@ -171,14 +188,17 @@ async function handleTalmzaLevelChange() {
 
     const data = await response.json();
     populateDropdown(data, "#current_talmza_level_year");
+    setSelectedLevel("#current_talmza_level_year");
   } catch (error) {
     console.error("Error:", error);
   }
 }
+
 talmzaLevelDropdown.addEventListener("change", handleTalmzaLevelChange);
 // --------------------------------------------------------------
 // modal script
 const mainForm = document.getElementById("mainForm");
+
 document
   .getElementById("modalSubmitButton")
   .addEventListener("click", function () {
@@ -192,32 +212,18 @@ document
 const searchButton = document.getElementById("searchButton");
 const registrationInput = document.getElementById("registration_number");
 
-async function searchByUserId(id) {
-  const url = mainForm.action;
-
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify({ profileIdSearch: id }),
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": getCSRFToken(),
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-
-    // Assuming the backend returns the rendered HTML as a response,
-    // you can use response.text() to get the HTML content as text
-    const htmlContent = await response.text();
-    console.log(htmlContent);
-    // Replace the entire page content with the new HTML
-    document.documentElement.innerHTML = htmlContent;
-  } catch (error) {
-    console.error("Error:", error);
-  }
+function openLinkWithGETParameter(path, parameterName, parameterValue) {
+  if (path[path.length - 1] === "/") path = path.substr(0, path.length - 1);
+  const link =
+    getApiUrl(path) +
+    "?" +
+    parameterName +
+    "=" +
+    encodeURIComponent(parameterValue);
+  window.location.href = link;
+}
+function searchByUserId(id) {
+  openLinkWithGETParameter(window.location.pathname, "id", id);
 }
 function handleSearch() {
   const inputValue = registrationInput.value.trim();
@@ -225,10 +231,83 @@ function handleSearch() {
     searchByUserId(inputValue);
   }
 }
+
 registrationInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     handleSearch();
   }
 });
-
 searchButton.addEventListener("click", handleSearch);
+/* -------------------------------------------------------------------------- */
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("mainForm");
+  const formElements = form.elements;
+
+  // Get the search input element
+  const searchInput = document.getElementById("registration_number");
+
+  // Store the initial values of all form elements when the page loads
+  const initialValues = {};
+  for (let i = 0; i < formElements.length; i++) {
+    const element = formElements[i];
+    if (element.type !== "submit") {
+      if (element.type === "radio" && !element.checked) {
+        // For radio buttons, store the initial value of the checked option
+        initialValues[element.name] = form.querySelector(
+          `input[name="${element.name}"]:checked`
+        ).value;
+      } else if (element.type === "select-one") {
+        // For select options, store the initial value of the selected option
+        initialValues[element.name] = element.value;
+      } else {
+        initialValues[element.id] = element.value;
+      }
+    }
+  }
+
+  // Add change event listeners to all form elements
+  form.addEventListener("change", function (event) {
+    const element = event.target;
+
+    // Check if the value of any form element has changed from its initial value
+    let hasValueChanged = false;
+    for (let i = 0; i < formElements.length; i++) {
+      const currentElement = formElements[i];
+      if (currentElement.type !== "submit") {
+        if (currentElement.type === "radio") {
+          // For radio buttons, check if the checked option value has changed
+          if (
+            currentElement.name === element.name &&
+            currentElement.value !== initialValues[element.name] &&
+            currentElement.checked
+          ) {
+            hasValueChanged = true;
+            break;
+          }
+        } else if (currentElement.type === "select-one") {
+          // For select options, check if the selected option value has changed
+          if (
+            currentElement.name === element.name &&
+            currentElement.value !== initialValues[element.name]
+          ) {
+            hasValueChanged = true;
+            break;
+          }
+        } else if (currentElement.value !== initialValues[currentElement.id]) {
+          hasValueChanged = true;
+          break;
+        }
+      }
+    }
+
+    // Disable the search input if any other form element value has changed
+    searchInput.disabled = hasValueChanged;
+  });
+});
+
+/* -------------------------------------------------------------------------- */
+function main() {
+  handleSchoolLevelChange();
+  handleTalmzaLevelChange();
+}
+main();

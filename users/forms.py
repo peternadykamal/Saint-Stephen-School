@@ -50,9 +50,9 @@ class ProfileForm(ModelForm):
       if num_words != 4:
         raise ValidationError(
             "يجب أن يتكون الاسم من أربع اسماء.")
-      profile = models.Profile.objects.filter(name__iexact=name)
-      if profile:
-        raise ValidationError("الملف الشخصي بهذا الاسم موجود بالفعل.")
+      # profile = models.Profile.objects.filter(name__iexact=name)
+      # if profile:
+      #   raise ValidationError("الملف الشخصي بهذا الاسم موجود بالفعل.")
     return name
 
   def clean_birthdate(self):
