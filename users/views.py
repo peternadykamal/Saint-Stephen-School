@@ -121,7 +121,7 @@ currentYear = datetime.date.today().year
 
 @ login_required(login_url='sign-in')
 def profileForm(request):
-  if (request.method == 'GET' or (request.method == 'POST' and request.POST.get('registration_number'))):
+  if ((request.method == 'GET' and request.GET.get('id')) or (request.method == 'POST' and request.POST.get('registration_number'))):
     return updateProfileForm(request)
   else:
     return newProfileForm(request)
