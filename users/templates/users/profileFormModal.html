@@ -15,8 +15,9 @@
       </div>
       <div class="modal-body flex-md-grow-1 flex-grow-0">
         <div class="mb-1">المبلغ المطلوب: {{expenses}}</div>
+        <div class="mb-1">{{expensesPayedMessage}}</div>
 
-        {% if expensesPayed %}
+        {% if expensesPayed or expensesPayed == 0 %}
 
         {% if expensesPayedReadOnly %}
         <input type="number" class="col-7 border-textcoloralt text-browndarkest" value="{{expensesPayed}}"

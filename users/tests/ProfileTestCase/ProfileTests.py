@@ -2,14 +2,18 @@ from django.test import TestCase
 # Replace "your_app" with the actual name of your app
 from users.models import Profile, TalmzaLevel
 
+import os
+
 
 class ProfileTestCase(TestCase):
+  basePath = os.path.dirname(__file__) + '/fixtures'
   # List the fixture file paths here
-  fixtures = ['users/fixtures/ProfileData.json',
-              'users/fixtures/UserData.json',
-              'users/fixtures/AddressData.json',
-              'users/fixtures/TalmzaLevelData.json',
-              'users/fixtures/SchoolLevelData.json',
+  fixtures = [f'{basePath}/ProfileData.json',
+              f'{basePath}/UserData.json',
+              f'{basePath}/AddressData.json',
+              f'{basePath}/TalmzaLevelData.json',
+              f'{basePath}/SchoolLevelData.json',
+              f'{basePath}/UserPermissionTagData.json',
               ]
 
   def setUp(self):
@@ -65,7 +69,7 @@ class ProfileTestCase(TestCase):
     self.profile4TalmzaLevel = self.profile4.talmza_level
 
     # Call the levelUpTalmza method on the Profile object
-    # talmza level تمهيدي year 1 will be year 2 in Prevues level
+    # talmza level تمهيدي year 1 will be year 2 in previous level
     updated1 = self.profile1.levelDownTalmza()
     # talmza level تمهيدي year 2 will be year 1 in same level
     updated2 = self.profile2.levelDownTalmza()
@@ -89,7 +93,7 @@ class ProfileTestCase(TestCase):
     # Check if the current_talmza_level_year was updated correctly
     self.assertEqual(updated_profile1.current_talmza_level_year, 2)
     self.assertEqual(updated_profile1.talmza_level.id,
-                     self.profile1TalmzaLevel.prevues_level.id)
+                     self.profile1TalmzaLevel.previous_level.id)
 
     self.assertEqual(updated_profile2.current_talmza_level_year, 1)
     self.assertEqual(updated_profile2.talmza_level.id,
@@ -145,7 +149,7 @@ class ProfileTestCase(TestCase):
     self.profile4SchoolLevel = self.profile4.school_level
 
     # Call the levelUpSchool method on the Profile object
-    # school level الابتدائي year 1 will be year 2 in Prevues level
+    # school level الابتدائي year 1 will be year 2 in previous level
     updated1 = self.profile1.levelDownSchool()
     # school level الابتدائي year 2 will be year 1 in same level
     updated2 = self.profile2.levelDownSchool()
@@ -169,7 +173,7 @@ class ProfileTestCase(TestCase):
     # Check if the current_school_level_year was updated correctly
     self.assertEqual(updated_profile1.current_school_level_year, 2)
     self.assertEqual(updated_profile1.school_level.id,
-                     self.profile1SchoolLevel.prevues_level.id)
+                     self.profile1SchoolLevel.previous_level.id)
 
     self.assertEqual(updated_profile2.current_school_level_year, 5)
     self.assertEqual(updated_profile2.school_level.id,
