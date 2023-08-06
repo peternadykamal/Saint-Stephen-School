@@ -1,6 +1,34 @@
 [
 {
   "model": "users.address",
+  "pk": "009a3ab0-6225-4a8a-b1b3-c78ef44b59ea",
+  "fields": {
+    "building": null,
+    "street": null,
+    "branches_from": null,
+    "floor": null,
+    "apartment_number": null,
+    "residential_complexes": null,
+    "district": null,
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
+  "pk": "12c7edb3-d8c3-45b7-95b5-d3ee5d9a9e17",
+  "fields": {
+    "building": "┘ä┘ê╪¬╪│",
+    "street": "╪¼┘à┘è┘ä╪⌐ ╪º╪¿┘ê ╪¡╪▒┘è╪»",
+    "branches_from": "┘è╪º┘é┘ê╪¬ ╪º┘ä╪¡┘à┘ê┘è",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": "",
+    "district": "╪º┘ä╪│┘è┘ê┘ü",
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
   "pk": "2e3f9832-b2f1-4c5c-ab9b-f5659b34ae75",
   "fields": {
     "building": "┘ä┘ê╪¬╪│",
@@ -15,6 +43,34 @@
 },
 {
   "model": "users.address",
+  "pk": "6b0ef658-4ed5-4112-80f3-5518a8f7696a",
+  "fields": {
+    "building": "",
+    "street": "",
+    "branches_from": "",
+    "floor": "",
+    "apartment_number": "",
+    "residential_complexes": "",
+    "district": "",
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
+  "pk": "70af8ad7-ae18-4fe0-9c7b-ac0393df8f17",
+  "fields": {
+    "building": "",
+    "street": "",
+    "branches_from": "",
+    "floor": "",
+    "apartment_number": "",
+    "residential_complexes": "",
+    "district": "",
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
   "pk": "72e74c5f-e753-4852-8ad8-7fd2d76783dd",
   "fields": {
     "building": "┘ä┘ê╪¬╪│",
@@ -25,6 +81,48 @@
     "residential_complexes": null,
     "district": "╪º┘ä╪│┘è┘ê┘ü",
     "additional_details": "╪¿╪¼┘ê╪º╪▒ ┘à╪º╪▒┘â╪¬ ┘à╪╡╪¿╪º╪¡"
+  }
+},
+{
+  "model": "users.address",
+  "pk": "78aa31dc-39a6-439d-86c4-de949b463f13",
+  "fields": {
+    "building": "",
+    "street": "",
+    "branches_from": "",
+    "floor": "",
+    "apartment_number": "",
+    "residential_complexes": "",
+    "district": "",
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
+  "pk": "89edfa08-8b16-4298-a620-6bd42dda3549",
+  "fields": {
+    "building": "",
+    "street": "",
+    "branches_from": "",
+    "floor": "",
+    "apartment_number": "",
+    "residential_complexes": "",
+    "district": "",
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
+  "pk": "b89df091-29ff-400d-84b0-3034d7e14933",
+  "fields": {
+    "building": "",
+    "street": "",
+    "branches_from": "",
+    "floor": "",
+    "apartment_number": "",
+    "residential_complexes": "",
+    "district": "",
+    "additional_details": ""
   }
 },
 {
@@ -44,6 +142,48 @@
 {
   "model": "users.address",
   "pk": "c76010b9-a1bd-4239-9140-7c1115789b85",
+  "fields": {
+    "building": "┘ä┘ê╪¬╪│",
+    "street": "╪¼┘à┘è┘ä╪⌐ ╪º╪¿┘ê ╪¡╪▒┘è╪»",
+    "branches_from": "┘è┘é┘ê╪¬ ╪º┘ä╪¡┘à┘ê┘è",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": null,
+    "district": "╪º┘ä╪│┘è┘ê┘ü",
+    "additional_details": "╪¿╪¼┘ê╪º╪▒ ┘à╪º╪▒┘â╪¬ ┘à╪╡╪¿╪º╪¡"
+  }
+},
+{
+  "model": "users.address",
+  "pk": "ca7e12b6-e41f-4682-b537-f82fb3647df1",
+  "fields": {
+    "building": "",
+    "street": "",
+    "branches_from": "",
+    "floor": "",
+    "apartment_number": "",
+    "residential_complexes": "",
+    "district": "",
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
+  "pk": "d2ddba10-4276-47fe-a391-a39a5ff08b35",
+  "fields": {
+    "building": "",
+    "street": "",
+    "branches_from": "",
+    "floor": "",
+    "apartment_number": "",
+    "residential_complexes": "",
+    "district": "",
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
+  "pk": "ee026d8d-40b2-419c-8d4e-ff08049b7c9d",
   "fields": {
     "building": "┘ä┘ê╪¬╪│",
     "street": "╪¼┘à┘è┘ä╪⌐ ╪º╪¿┘ê ╪¡╪▒┘è╪»",

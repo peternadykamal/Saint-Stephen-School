@@ -69,22 +69,6 @@
       "problemMatcher": []
     },
     {
-      "label": "dumpdata",
-      "type": "shell",
-      "command": ".\\env\\Scripts\\activate; python -Xutf8 manage.py dumpdata auth.User --indent 2 > users/fixtures/UserData.json && python -Xutf8 manage.py dumpdata users.Profile --indent 2 > users/fixtures/ProfileData.json && python -Xutf8 manage.py dumpdata users.Address --indent 2 > users/fixtures/AddressData.json && python -Xutf8 manage.py dumpdata users.TalmzaLevel --indent 2 > users/fixtures/TalmzaLevelData.json && python -Xutf8 manage.py dumpdata users.SchoolLevel --indent 2 > users/fixtures/SchoolLevelData.json",
-      "windows": {
-        "command": ".\\env\\Scripts\\activate; python -Xutf8 manage.py dumpdata auth.User --indent 2 > users/fixtures/UserData.json && python -Xutf8 manage.py dumpdata users.Profile --indent 2 > users/fixtures/ProfileData.json && python -Xutf8 manage.py dumpdata users.Address --indent 2 > users/fixtures/AddressData.json && python -Xutf8 manage.py dumpdata users.TalmzaLevel --indent 2 > users/fixtures/TalmzaLevelData.json && python -Xutf8 manage.py dumpdata users.SchoolLevel --indent 2 > users/fixtures/SchoolLevelData.json"
-      },
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "new"
-      }
-    },
-    {
       "label": "Run frontend rtlcss converter",
       "type": "shell",
       "command": "cd ./frontend; npm run watch",
@@ -94,6 +78,39 @@
         "panel": "new"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "Generate Fixtures for users",
+      "type": "shell",
+      "command": "${workspaceFolder}\\users\\tests\\dumpData.bat",
+      "args": ["${input:parameter}"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "run tests",
+      "type": "shell",
+      "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py test ${input:parameter}.tests }",
+      "windows": {
+        "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py test ${input:parameter}.tests }"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "parameter",
+      "description": "parameter",
+      "type": "promptString"
     }
   ]
 }
