@@ -20,15 +20,16 @@
       </div>
       <div class="modal-body flex-md-grow-1 flex-grow-0">
         <div class="mb-1">المبلغ المطلوب: {{expenses}}</div>
+        <div class="mb-1">{{expensesPayedMessage}}</div>
 
-        {% if expensesPayed %} {% if expensesPayedReadOnly %}
+        {% if expensesPayed or expensesPayed == 0 %}
         <input
           type="number"
           class="col-7 border-textcoloralt text-browndarkest"
           value="{{expensesPayed}}"
           name="expenses"
           step="5"
-          min="5"
+          min="1"
           max="{{expenses}}"
           required
           readonly

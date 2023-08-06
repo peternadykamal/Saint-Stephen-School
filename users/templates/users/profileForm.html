@@ -69,9 +69,13 @@
                         id="searchButton">
                         <i class="bi bi-search text-textcoloralt"></i>
                       </button>
-                      <input type="text" class="form-control" name="registration_number" id="registration_number"
-                        value="{{registration_number|default_if_none:''}}" />
+                      <input type="text" class="form-control" id="registration_number"
+                        value="{{userId|default_if_none:''}}" />
                     </div>
+                    <div class="invalid-feedback d-block almarai-regular text-redalert">
+                      {{errorProfileNotFound}}
+                    </div>
+                    <input type="hidden" name="userId" value="{{userId|default_if_none:''}}" />
                   </div>
                 </div>
               </div>
