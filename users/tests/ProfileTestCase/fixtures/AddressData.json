@@ -1,0 +1,100 @@
+[
+{
+  "model": "users.address",
+  "pk": "009a3ab0-6225-4a8a-b1b3-c78ef44b59ea",
+  "fields": {
+    "building": null,
+    "street": null,
+    "branches_from": null,
+    "floor": null,
+    "apartment_number": null,
+    "residential_complexes": null,
+    "district": null,
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
+  "pk": "2e3f9832-b2f1-4c5c-ab9b-f5659b34ae75",
+  "fields": {
+    "building": "لوتس",
+    "street": "جميلة ابو حريد",
+    "branches_from": "يقوت الحموي",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": null,
+    "district": "السيوف",
+    "additional_details": "بجوار ماركت مصباح"
+  }
+},
+{
+  "model": "users.address",
+  "pk": "70af8ad7-ae18-4fe0-9c7b-ac0393df8f17",
+  "fields": {
+    "building": "",
+    "street": "",
+    "branches_from": "",
+    "floor": "",
+    "apartment_number": "",
+    "residential_complexes": "",
+    "district": "",
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
+  "pk": "72e74c5f-e753-4852-8ad8-7fd2d76783dd",
+  "fields": {
+    "building": "لوتس",
+    "street": "جميلة ابو حريد",
+    "branches_from": "يقوت الحموي",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": null,
+    "district": "السيوف",
+    "additional_details": "بجوار ماركت مصباح"
+  }
+},
+{
+  "model": "users.address",
+  "pk": "b8e42c89-a886-4ec6-9f96-095c6c29f573",
+  "fields": {
+    "building": "لوتس",
+    "street": "جميلة ابو حريد",
+    "branches_from": "يقوت الحموي",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": null,
+    "district": "السيوف",
+    "additional_details": "بجوار ماركت مصباح"
+  }
+},
+{
+  "model": "users.address",
+  "pk": "c76010b9-a1bd-4239-9140-7c1115789b85",
+  "fields": {
+    "building": "لوتس",
+    "street": "جميلة ابو حريد",
+    "branches_from": "يقوت الحموي",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": null,
+    "district": "السيوف",
+    "additional_details": "بجوار ماركت مصباح"
+  }
+},
+{
+  "model": "users.address",
+  "pk": "ee026d8d-40b2-419c-8d4e-ff08049b7c9d",
+  "fields": {
+    "building": "لوتس",
+    "street": "جميلة ابو حريد",
+    "branches_from": "يقوت الحموي",
+    "floor": "7",
+    "apartment_number": "704",
+    "residential_complexes": null,
+    "district": "السيوف",
+    "additional_details": "بجوار ماركت مصباح"
+  }
+}
+]
