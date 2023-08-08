@@ -5,9 +5,7 @@
   <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
     <div class="modal-content bg-bgcolor p-2">
       <div class="modal-header border-0 d-block pb-1">
-        <h3 class="modal-title almarai-bold" id="modalLabel">
-          تأكيد التسجيل
-        </h3>
+        <h3 class="modal-title almarai-bold" id="modalLabel">تأكيد التسجيل</h3>
         <h6>
           تم استكمال تسجيل المعلومات بنجاح. يُرجى التحقق من المبلغ المطلوب
           لاستكمال التسجيل.
@@ -21,14 +19,14 @@
 
         {% if expensesPayedReadOnly %}
         <input type="number" class="col-7 border-textcoloralt text-browndarkest" value="{{expensesPayed}}"
-          name="expenses" step="5" min="1" max="{{expenses}}" required readonly />
+          name="expenses" step="5" min="5" max="{{expenses}}" required readonly />
         {% else %}
         <input type="number" class="col-7 border-textcoloralt text-browndarkest" value="{{expensesPayed}}"
-          name="expenses" step="5" min="1" max="{{expenses}}" required />
+          name="expenses" step="5" min="5" max="{{expenses}}" required />
         {% endif %}
         {% else %}
         <input type="number" class="col-7 border-textcoloralt text-browndarkest" value="5" name="expenses" step="5"
-          min="1" max="{{expenses}}" required />
+          min="5" max="{{expenses}}" required />
 
         {% endif %}
 
@@ -40,18 +38,11 @@
         </div>
 
         <div class="invalid-feedback d-block almarai-regular text-redalert fs-5">
-
-          {% if profileId %}
-          رقم التسجيل الخاص بك هو: {{profileId}}
-          {% endif %}
-
+          {% if profileId %} رقم التسجيل الخاص بك هو: {{profileId}} {% endif %}
         </div>
         <div class="invalid-feedback d-block almarai-regular text-redalert fs-5">
-
-          {% if profilePassword %}
-          كلمة المرور الخاص بك هو: {{profilePassword}}
+          {% if profilePassword %} كلمة المرور الخاص بك هو: {{profilePassword}}
           {% endif %}
-
         </div>
       </div>
       <div class="modal-footer border-0 m-md-0 m-4 mt-0 d-flex justify-content-around">
@@ -63,7 +54,7 @@
           <div>تعبئة استمارة جديدة</div>
         </a>
         {% else %}
-        <button type="button" class="col-md col-12 btn btn-browndarkest rounded-0 p-3 almarai-light "
+        <button type="button" class="col-md col-12 btn btn-browndarkest rounded-0 p-3 almarai-light"
           id="modalSubmitButton">
           استكمال التسجيل
         </button>
