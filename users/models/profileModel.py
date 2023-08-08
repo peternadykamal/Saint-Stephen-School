@@ -30,9 +30,9 @@ class Profile(models.Model):
   name = models.CharField(max_length=200, unique=True)
   birthdate = models.DateField(null=True, blank=False)
   talmza_level = models.ForeignKey(
-      TalmzaLevel, on_delete=models.SET_NULL, null=True, blank=False)
+      TalmzaLevel, on_delete=models.SET_NULL, null=True, blank=True)
   current_talmza_level_year = models.IntegerField(
-      default=1, null=True, blank=False)
+      default=1, null=True, blank=True)
   school_level = models.ForeignKey(
       SchoolLevel, on_delete=models.SET_NULL, null=True, blank=False)
   current_school_level_year = models.IntegerField(
@@ -54,15 +54,14 @@ class Profile(models.Model):
   profile_image = models.ImageField(
       null=True, blank=True, upload_to='images/profiles', default=DEFAULT_PROFILE_PATH)
   user_permission_tags = models.ManyToManyField(
-      UserPermissionTag, null=True, blank=True)
-  # TODO default signal
+      UserPermissionTag, blank=True)
 
   id = models.UUIDField(default=uuid.uuid4, unique=True,
                         primary_key=True, editable=False)
 
   def __str__(self):
-    return str(self.name + " " + self.user.username)
-    # return str(self.name)
+    # return str(self.name + " " + self.user.username)
+    return str(self.name)
 
   def levelUpTalmza(self):
     maxYear = self.talmza_level.number_of_years

@@ -1,4 +1,6 @@
+from email.policy import default
 from os import name
+import profile
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.contrib.auth.models import User
@@ -26,9 +28,9 @@ def userUsernameUpdated(sender, instance, created, **kwargs):
     #     user=user
     # )
 
-
 # if for some reason an admin decides to delete a profile but they forget to delete the user?
 # In this case, the user would stay.
+
 
 @receiver(post_delete, sender=models.Profile)
 # Here we remove created argument because if we deleting user we insure it is exist

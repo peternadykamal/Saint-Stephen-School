@@ -1,4 +1,3 @@
-from math import exp
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -43,11 +42,12 @@ def newProfileForm(request):
       amount_of_money_payed = getAmountOfMoneyPayed(request)
       profile = profileForm.save(commit=False)
 
-      profile.address = models.Address.getAddressFromRequset(request)
-
       if models.ExpensesProfileForm.validateAmountPayed(amount_of_money_payed):
+        profile.address = models.Address.getAddressFromRequset(request)
         profile.user = createNewUser(context)
+
         profile.save()
+        addDefaultTagToNewProfile(profile)
 
         createNewExpenses(amount_of_money_payed, profile, context)
       else:
@@ -177,3 +177,8 @@ def createNewUser(context):
   context["profilePassword"] = generatedPassword
   context["profileId"] = user.username
   return user
+
+
+def addDefaultTagToNewProfile(profile):
+  defaultTag = models.UserPermissionTag.objects.get(is_buttom=True)
+  profile.user_permission_tags.add(defaultTag)
