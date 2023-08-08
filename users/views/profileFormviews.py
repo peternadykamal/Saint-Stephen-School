@@ -28,9 +28,46 @@ def profileForm(request):
     return newProfileForm(request)
 
 
+def putBirthdateFieldInContext(profile, context):
+  birthdate = None
+  if profile:
+    birthdate = profile.birthdate
+
+  context["birthdate"] = birthdate
+
+
+def putTalmzaFieldInContext(profile, context):
+  talmzaLevels = models.TalmzaLevel.objects.filter()
+
+  talmzaChoices = []
+
+  for level in talmzaLevels:
+    isSelected = False
+    if profile:
+      isSelected = profile.talmza_level.id == level.id
+    talmzaChoices.append((level.id, level.level_name, isSelected))
+
+  context["talmzaChoices"] = talmzaChoices
+
+
+def putSchoolFieldInContext(profile, context):
+  schoolLevels = models.SchoolLevel.objects.filter()
+
+  schoolChoices = []
+
+  for level in schoolLevels:
+    isSelected = False
+    if profile:
+      isSelected = profile.school_level.id == level.id
+    schoolChoices.append((level.id, level.level_name, isSelected))
+
+  context["schoolChoices"] = schoolChoices
+
+
 @ login_required(login_url='sign-in')
 def newProfileForm(request):
   context = {}
+  profile = None
   profileForm = ProfileForm()
 
   if request.method == 'POST':
@@ -61,12 +98,16 @@ def newProfileForm(request):
   context['pageName'] = path.name
 
   models.Profile.getProfileName(request, context)
+  putSchoolFieldInContext(profile, context)
+  putTalmzaFieldInContext(profile, context)
+  putBirthdateFieldInContext(profile, context)
   return render(request, 'users/profileForm.html', context)
 
 
 @ login_required(login_url='sign-in')
 def updateProfileForm(request):
   context = {}
+  profile = None
   profileForm = ProfileForm()
 
   if request.method == 'GET':
@@ -85,9 +126,8 @@ def updateProfileForm(request):
       amount_of_money_payed = getAmountOfMoneyPayed(request)
       profile = profileForm.save(commit=False)
 
-      updateProfileAddress(profile, request)
-
       if models.ExpensesProfileForm.validateAmountPayed(amount_of_money_payed):
+        updateProfileAddress(profile, request)
         profile.save()
         try:
           expenses = models.ExpensesProfileForm.objects.get(
@@ -122,6 +162,9 @@ def updateProfileForm(request):
   context['pageName'] = path.name
 
   models.Profile.getProfileName(request, context)
+  putSchoolFieldInContext(profile, context)
+  putTalmzaFieldInContext(profile, context)
+  putBirthdateFieldInContext(profile, context)
   return render(request, 'users/profileForm.html', context)
 
 
