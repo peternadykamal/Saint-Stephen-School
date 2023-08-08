@@ -61,7 +61,7 @@
                   </div>
                 </div>
                 <div class="col-md-4 px-1">
-                  {% if profileName == "كاميل فايز" or profileName == "كمال نادي كمال" %}
+                  {% if profileName == "كاميل فايز" or profileName == "كمال نادي كمال سيدهم" %}
                   <div class="mb-3">
                     {% else %}
                     <div class="mb-3" hidden>
@@ -117,7 +117,7 @@
                       <label for="birthdate"
                         class="form-label lateef-regular fs-4 mb-0">{{profileForm.birthdate.label}}</label>
                       <input type="date" class="form-control" name="birthdate" id="birthdate"
-                        value="{{profileForm.birthdate.value|date:'Y-m-d'|default_if_none:''}}" required />
+                        value="{{birthdate|default_if_none:''|date:'Y-m-d'}}" required />
 
                       <div class="invalid-feedback d-block almarai-regular text-redalert">
                         {{profileForm.birthdate.errors.0}}
@@ -130,10 +130,10 @@
                         class="form-label lateef-regular fs-4 mb-0">{{profileForm.school_level.label}}</label>
                       <select class="form-select form-control border border-2 border-textcoloralt p-2"
                         name="school_level" id="school_level" required>
-                        {% for option in profileForm.school_level.field.choices %}
+                        {% for option in schoolChoices %}
                         {% if option.0 %}
 
-                        {% if option.0 == profileForm.school_level.value|default_if_none:'' %}
+                        {% if option.2 %}
                         <option value="{{ option.0 }}" selected>{{ option.1 }}</option>
                         {% else %}
                         <option value="{{ option.0 }}">{{ option.1 }}</option>
@@ -315,7 +315,7 @@
                     </div>
                   </div>
                   <!-- ----------------------------------------------------------------------- -->
-                  {% if profileName == "كاميل فايز" or profileName == "كمال نادي كمال" %}
+                  {% if profileName == "كاميل فايز" or profileName == "كمال نادي كمال سيدهم" %}
                   <div class="col-md-6 ps-md-2">
                     {% else %}
                     <div class="col-md-6 ps-md-2" hidden>
@@ -329,9 +329,9 @@
                           class="form-label lateef-regular fs-4 mb-0">{{profileForm.talmza_level.label}}</label>
                         <select class="form-select form-control border border-2 border-textcoloralt p-2"
                           name="talmza_level" id="talmza_level" required>
-                          {% for option in profileForm.talmza_level.field.choices %}
+                          {% for option in talmzaChoices %}
                           {% if option.0 %}
-                          {% if option.0 == profileForm.talmza_level.value|default_if_none:'' %}
+                          {% if option.2 %}
                           <option value="{{ option.0 }}" selected>{{ option.1 }}</option>
                           {% else %}
                           <option value="{{ option.0 }}">{{ option.1 }}</option>
