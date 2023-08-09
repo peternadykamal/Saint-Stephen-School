@@ -58,5 +58,9 @@
       "savePathReplacementPairs": null
     }
   ],
-  "terminal.integrated.defaultProfile.windows": "PowerShell"
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "todo-tree.filtering.excludeGlobs": [
+    "**/frontend/bootstrap",
+    "**/bootstrap.*"
+  ]
 }
