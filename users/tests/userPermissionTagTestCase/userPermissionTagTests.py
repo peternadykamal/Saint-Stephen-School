@@ -13,7 +13,6 @@ class UserPermissionTagTestCase(TestCase):
               f'{basePath}/AddressData.json',
               f'{basePath}/TalmzaLevelData.json',
               f'{basePath}/SchoolLevelData.json',
-              f'{basePath}/UserPermissionTagData.json',
               ]
 
   def test_inserting_new_tag(self):
