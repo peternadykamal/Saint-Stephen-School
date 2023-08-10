@@ -191,3 +191,15 @@ class ProfileTestCase(TestCase):
     assert len(generatedPassword2) == 6
 
     assert generatedPassword1 != generatedPassword2
+
+  def test_get_get_highest_permission_tag(self):
+    tag, index = self.profile1.getHighestPermissionTag()
+    self.assertIsNotNone(tag)
+    self.assertEqual(tag.tag_name, 'admin')
+    self.assertEqual(index, 4)
+
+  def test_get_get_lowest_permission_tag(self):
+    tag, index = self.profile1.getLowestPermissionTag()
+    self.assertIsNotNone(tag)
+    self.assertEqual(tag.tag_name, 'tag4')
+    self.assertEqual(index, 1)

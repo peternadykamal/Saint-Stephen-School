@@ -1,3 +1,4 @@
+from operator import is_
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -141,3 +142,45 @@ class Profile(models.Model):
   def getProfileName(request, context):
     profile = Profile.objects.get(user__id=request.user.id)
     context['profileName'] = profile.name
+
+  def getHighestPermissionTag(self):
+    try:
+      lowestTag = UserPermissionTag.objects.get(is_buttom=True)
+      currentTag = lowestTag
+      profileTagsId = [item.id for item in self.user_permission_tags.all()]
+
+      i = 0
+      while (currentTag != None):
+        if currentTag.id in profileTagsId:
+          if (len(profileTagsId) == 1):
+            return self.user_permission_tags.get(id=currentTag.id), i
+          else:
+            profileTagsId.remove(currentTag.id)
+
+        currentTag = currentTag.parent
+        i += 1
+
+      return None, -1
+    except:
+      return None, -1
+
+  def getLowestPermissionTag(self):
+    try:
+      highestTag = UserPermissionTag.objects.get(is_top=True)
+      currentTag = highestTag
+      profileTagsId = [item.id for item in self.user_permission_tags.all()]
+
+      i = UserPermissionTag.objects.all().count() - 1
+      while (currentTag != None):
+        if currentTag.id in profileTagsId:
+          if (len(profileTagsId) == 1):
+            return self.user_permission_tags.get(id=currentTag.id), i
+          else:
+            profileTagsId.remove(currentTag.id)
+
+        currentTag = currentTag.child
+        i -= 1
+
+      return None, -1
+    except:
+      return None, -1
