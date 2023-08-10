@@ -1,6 +1,5 @@
-from email.policy import default
-from os import name
-import profile
+from Saint_Stephen_School import settings
+
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.contrib.auth.models import User
@@ -8,7 +7,10 @@ import users.models as models
 
 import datetime
 import os
+import csv
 
+from .utils import cropImage, is_image_path_present, deleteProfileImage
+import users.tests.quickTest
 
 # We make this signal to trigger any time user added make for it a profile
 
@@ -41,9 +43,31 @@ def deleteProfile(sender, instance, **kwargs):
 
   # Delete the file from the filesystem if not the default
   if not models.Profile.DEFAULT_PROFILE_PATH.replace('/', '\\') in image_path:
-    os.remove(image_path)
+    deleteProfileImage(image_path)
   if instance.address:
     instance.address.delete()
   # TODO delete his all expenses for all years
   user = instance.user
   user.delete()
+
+
+@receiver(post_save, sender=models.Profile)
+def saveProfile(sender, instance, **kwargs):
+  image_path = instance.profile_image.path
+
+  destination_path = settings.ORIGINAL_PROFILE_PICTURES_FOLDER
+  # this csv file will contain images that get cropped manually not using the autocropper
+  csv_path = settings.MANUALLY_CROPPED_PATHES_CSV
+
+  non_cropped_image_path = os.path.join(
+      destination_path, os.path.basename(image_path))
+  cropped_image_path = image_path
+
+  if not models.Profile.DEFAULT_PROFILE_PATH.replace('/', '\\') in image_path:
+    try:
+      cropImage(image_path, destination_path)
+    except Exception as e:
+      if not is_image_path_present(csv_path, image_path):
+        with open(csv_path, "a", newline="") as csvfile:
+          csv_writer = csv.writer(csvfile)
+          csv_writer.writerow([cropped_image_path, non_cropped_image_path])

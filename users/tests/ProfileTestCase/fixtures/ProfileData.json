@@ -82,6 +82,33 @@
 },
 {
   "model": "users.profile",
+  "pk": "af111cdd-e220-4798-89f7-7ca2b27129f1",
+  "fields": {
+    "user": 105,
+    "name": "bjbk jikhukjiopjio opopjop kol;'jkiol",
+    "birthdate": "2015-02-10",
+    "talmza_level": "74f581f3-cca0-4506-beb3-95a8c938203a",
+    "current_talmza_level_year": 2,
+    "school_level": "af153d90-953b-48e6-b8d8-ffa6e2a32320",
+    "current_school_level_year": 3,
+    "address": "0f3f0b10-4296-416a-84d8-43475da48dd8",
+    "job": null,
+    "gender": "M",
+    "phone_number": "01222906083",
+    "father_phone_number": null,
+    "mother_phone_number": null,
+    "mobile_follow_up_on_WhatsApp": null,
+    "confession_father": "ابونا كاراس",
+    "church": "كنيسة السيدة العذراء مريم و الشهيد مارجرجس بغبريال",
+    "deaconess": "أغس",
+    "profile_image": "images/profiles/user-default.png",
+    "user_permission_tags": [
+      "a907ef5f-4c11-41bc-9648-355f7d23111d"
+    ]
+  }
+},
+{
+  "model": "users.profile",
   "pk": "b27d3b20-9f9c-4b81-bc38-de70d4996bbb",
   "fields": {
     "user": 9,
@@ -157,7 +184,8 @@
     "deaconess": "غير",
     "profile_image": "images/profiles/user-default.png",
     "user_permission_tags": [
-      "a907ef5f-4c11-41bc-9648-355f7d23111d"
+      "72433fa4-c462-4c57-bbc9-83a0ec7ed2f9",
+      "fb109f48-aea3-495a-a9e7-6cd671dfceb8"
     ]
   }
 },
@@ -184,7 +212,8 @@
     "deaconess": "غير",
     "profile_image": "images/profiles/user-default.png",
     "user_permission_tags": [
-      "a907ef5f-4c11-41bc-9648-355f7d23111d"
+      "a907ef5f-4c11-41bc-9648-355f7d23111d",
+      "fb109f48-aea3-495a-a9e7-6cd671dfceb8"
     ]
   }
 }
