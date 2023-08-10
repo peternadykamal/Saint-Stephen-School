@@ -3,8 +3,7 @@ from django.contrib.auth.models import User
 
 import uuid
 
-from dotenv import load_dotenv
-import os
+from utils.get_env_value import get_env_value
 import secrets
 import string
 
@@ -273,8 +272,7 @@ class ExpensesProfileForm(models.Model):
 
   # total number of Expenses (not as a proprty in the table but an constant stored in a spearte table or as .env file in backend)
   def getExpenses() -> int:
-    load_dotenv()
-    return int(os.getenv("EXPENSES_PROFILE_FORM"))
+    return int(get_env_value("EXPENSES_PROFILE_FORM"))
 
   # -------------------------------- validation -------------------------------- #
   def validateAmountPayed(amount):
