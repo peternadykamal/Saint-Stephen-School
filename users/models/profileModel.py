@@ -184,3 +184,12 @@ class Profile(models.Model):
       return None, -1
     except:
       return None, -1
+
+  # TODO test  case this method
+  def getAllPermissions(self):
+    permissions = set()
+    tags = self.user_permission_tags.all()
+    for tag in tags:
+      for permission in tag.permissions.all():
+        permissions.add(permission)
+    return permissions

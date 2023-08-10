@@ -64,7 +64,7 @@ def putSchoolFieldInContext(profile, context):
   context["schoolChoices"] = schoolChoices
 
 
-@ login_required(login_url='sign-in')
+@login_required(login_url='sign-in')
 def newProfileForm(request):
   context = {}
   profile = None
