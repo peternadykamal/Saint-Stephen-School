@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from dotenv import load_dotenv
+from utils.get_env_value import get_env_value
+from utils.get_current_git_branch import get_current_git_branch
 from pathlib import Path
 import os
 
@@ -25,7 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j76sdd(dc+wa=(d8prvwk311l@4g=dvgzs$d-9(f08asj5!x!)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if get_current_git_branch() == 'main':
+  DEBUG = False
+else:
+  DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -90,14 +94,17 @@ WSGI_APPLICATION = 'Saint_Stephen_School.wsgi.application'
 # }
 
 
-# Load environment variables from .env file
-load_dotenv()
-
 # Retrieve the values from environment variables
-db_host = os.getenv("DB_HOST")
-db_user = os.getenv("DB_USER")
-db_password = os.getenv("DB_PASSWORD")
-db_name = os.getenv("DB_NAME")
+if DEBUG == True:
+  db_host = get_env_value("DB_HOST_DEV")
+  db_user = get_env_value("DB_USER_DEV")
+  db_password = get_env_value("DB_PASSWORD_DEV")
+  db_name = get_env_value("DB_NAME_DEV")
+else:
+  db_host = get_env_value("DB_HOST_PROD")
+  db_user = get_env_value("DB_USER_PROD")
+  db_password = get_env_value("DB_PASSWORD_PROD")
+  db_name = get_env_value("DB_NAME_PROD")
 
 DATABASES = {
     'default': {
@@ -157,6 +164,10 @@ STATICFILES_DIRS = [
 
 # This tell django where to uplod user generated content
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/files')
+ORIGINAL_PROFILE_PICTURES_FOLDER = os.path.join(
+    MEDIA_ROOT, 'images', 'profiles', 'original')
+MANUALLY_CROPPED_PATHES_CSV = os.path.join(
+    MEDIA_ROOT, 'images', 'profiles', 'error_images.csv')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

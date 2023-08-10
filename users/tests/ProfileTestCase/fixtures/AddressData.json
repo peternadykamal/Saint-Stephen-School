@@ -15,6 +15,20 @@
 },
 {
   "model": "users.address",
+  "pk": "0f3f0b10-4296-416a-84d8-43475da48dd8",
+  "fields": {
+    "building": "yuilgkjygyuk",
+    "street": "عبدالفتاح كريم",
+    "branches_from": "",
+    "floor": "4",
+    "apartment_number": "",
+    "residential_complexes": "  ghfghfyh",
+    "district": "",
+    "additional_details": ""
+  }
+},
+{
+  "model": "users.address",
   "pk": "14b820c2-84fc-4454-acf8-133a642aa031",
   "fields": {
     "building": null,
