@@ -9,12 +9,12 @@
   </head>
   <body class="bg-champagne">
     <header
-      class="container-fluid bg-bgcolor border-bottom border-3 border-browndarkest"
+      class="container-fluid bg-bgcolor border-bottom border-2 border-browndark d-md-block d-none"
     >
       <div class="container">
-        <div class="row align-items-center py-3">
+        <div class="row align-items-center pt-3 pb-1">
           <!-- Logo and Text (Left Side) -->
-          <div class="col-8 col-md-6 d-flex">
+          <a class="col-8 col-md-6 d-flex text-decoration-none" href="#">
             <img
               src="./images/logo.png"
               alt="Logo"
@@ -24,14 +24,215 @@
             <span class="ml-2 reemkufi-regular h1 text-textcolor"
               >مدرسة<br />الشَّهِيد اِسْتِفَانُوس</span
             >
-          </div>
+          </a>
 
           <!-- Login Button (Right Side) -->
-          <div class="col-4 col-md-6 text-md-end">
-            <button class="btn btn-browndarkest rounded-0 px-3 py-3">
-              <span class="almarai-light h4">تسجيل الدخول</span>
-            </button>
+          <div class="col-md-6 text-center">
+            <div class="row justify-content-end">
+              <div class="col-4">
+                <button class="btn btn-browndarkest rounded-0 px-3 py-3 d-none">
+                  <span class="almarai-light h4">تسجيل الدخول</span>
+                </button>
+                <div class="text-center mb-3">
+                  <span class="almarai-light h5">مرحبًا ,[اسم المستخدم]!</span>
+                </div>
+                <a
+                  class="btn btn-brown rounded-0 px-3 py-2 shadow"
+                  href="{% url 'log-out' %}"
+                >
+                  <span class="almarai-light">تسجيل الخروج</span>
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+    </header>
+    <nav
+      class="container-fluid border-bottom border-3 border-browndarkest sticky-top bg-bgcolor-glass shadow-sm d-md-block d-none"
+    >
+      <div class="container">
+        <div class="row align-items-center py-2" dir="ltr">
+          <div
+            class="col-9 d-flex justify-content-start align-items-center mx-auto"
+          >
+            <a
+              href="#"
+              class="btn btn-pewter rounded-0 shadow-sm mx-4 px-4 py-1"
+              ><span class="almarai-bold text-textcolor">link 1</span></a
+            >
+            <a
+              href="#"
+              class="btn btn-pewter rounded-0 shadow-sm mx-4 px-4 py-1"
+              ><span class="almarai-bold text-textcolor">link 2</span></a
+            >
+            <a
+              href="#"
+              class="btn btn-pewter rounded-0 shadow-sm mx-4 px-4 py-1"
+              ><span class="almarai-bold text-textcolor"
+                >استمارة التقديم</span
+              ></a
+            >
+            <div class="dropdown">
+              <button
+                class="dropdown-toggle btn btn-pewter rounded-0 shadow-sm mx-4 px-4 py-1"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span class="almarai-bold text-textcolor">Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <header
+      class="container-fluid bg-bgcolor border-bottom border-3 border-browndarkest d-md-none"
+    >
+      <div class="row align-items-center">
+        <a
+          class="col-1 d-block"
+          data-bs-toggle="offcanvas"
+          href="#navOffcanvas"
+          role="button"
+          aria-controls="navOffcanvas"
+        >
+          <i class="bi bi-list fs-1 text-textcolor"></i>
+        </a>
+
+        <a class="col-6 col-md-6 text-decoration-none ms-2" href="#">
+          <span
+            class="ml-2 reemkufi-regular text-textcolor position-relative"
+            style="z-index: 0"
+          >
+            <img
+              src="./images/opened hands.png"
+              alt="opened hands"
+              class="position-absolute open-hands"
+              style="z-index: -1"
+              width="50"
+            />
+            مدرسةالشَّهِيد اِسْتِفَانُوس
+          </span>
+        </a>
+        <button
+          class="col-4 btn btn-browndarkest rounded-0 py-1 px-1 my-1 ms-auto me-2 d-none"
+        >
+          <span class="almarai-light">تسجيل الدخول</span>
+        </button>
+        <div class="col-4 py-1 px-1 my-1 ms-auto me-2 text-center">
+          <span class="almarai-light small">مرحبًا ,[اسم المستخدم]!</span>
+        </div>
+      </div>
+      <div
+        class="offcanvas offcanvas-start bg-bgcolor"
+        data-bs-scroll="true"
+        tabindex="-1"
+        id="navOffcanvas"
+        aria-labelledby="navOffcanvasLabel"
+      >
+        <div
+          class="offcanvas-header py-2 border-bottom border-2 border-textcoloralt"
+        >
+          <a href="#">
+            <img
+              src="./images/logo.png"
+              alt="Logo"
+              class="img-fluid offcanvas-title"
+              width="80"
+              id="navOffcanvasLabel"
+            />
+          </a>
+          <button
+            type="button"
+            class="btn-close text-textcoloralt fs-4"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body px-0 almarai-regular">
+          <div class="accordion accordion-flush" id="accordionExample">
+            <a
+              class="accordion-item p-1 d-block rounded-0 text-decoration-none almarai-bold text-textcolor"
+              href="#"
+            >
+              <div class="accordion-header collapsed px-3 py-2">link 1</div>
+            </a>
+            <a
+              class="accordion-item p-1 d-block rounded-0 text-decoration-none almarai-bold text-textcolor"
+              href="#"
+            >
+              <div class="accordion-header collapsed px-3 py-2">link 2</div>
+            </a>
+            <a
+              class="accordion-item p-1 d-block rounded-0 text-decoration-none almarai-bold text-textcolor"
+              href="#"
+            >
+              <div class="accordion-header collapsed px-3 py-2">
+                استمارة التقديم
+              </div>
+            </a>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button
+                  class="accordion-button collapsed almarai-bold text-textcolor"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="false"
+                  aria-controls="collapseOne"
+                >
+                  Dropdown
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body p-0">
+                  <ul class="m-0 list-unstyled">
+                    <li class="my-1 fs-5 ms-4">
+                      <a
+                        class="text-decoration-none almarai-light text-textcolor"
+                        href="#"
+                        >لينك</a
+                      >
+                    </li>
+                    <li class="my-1 fs-5 ms-4">
+                      <a
+                        class="text-decoration-none almarai-light text-textcolor"
+                        href="#"
+                        >لينك</a
+                      >
+                    </li>
+                    <li class="my-1 fs-5 ms-4">
+                      <a
+                        class="text-decoration-none almarai-light text-textcolor"
+                        href="#"
+                        >لينك</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="offcanvas-footer px-3 py-2">
+          <button class="btn btn-brown rounded-0 w-100 py-3">
+            <span class="almarai-regular h5">تسجيل الخروج</span>
+          </button>
         </div>
       </div>
     </header>
@@ -43,7 +244,7 @@
             class="border border-2 border-browndarkest brown-square rounded-2"
           ></div>
           <div
-            class="bg-bgcolor shadow text-card rounded-2 pe-5 p-4 text-textcolor"
+            class="bg-bgcolor shadow text-card rounded-2 pe-md-5 p-md-4 p-3 text-textcolor"
           >
             <span class="almarai-bold h3"
               >مرحبًا بكم في مدرسة الشهيد استيفانوس بكنيسة السيدة العذراء مريم
@@ -81,7 +282,7 @@
             />
           </div>
           <div
-            class="col-12 col-sm-6 border border-2 border-textcoloralt rounded-4 p-4 pe-5 text-start lateef-regular h5"
+            class="col-12 col-sm-6 border border-2 border-textcoloralt rounded-4 p-md-4 pe-md-5 p-3 text-start lateef-regular h5"
           >
             <div>
               اسم "استفانوس" مأخوذ من اللغة اليونانية ويعني "تاج" أو "إكليل من
@@ -124,14 +325,14 @@
           بكنيسة السيدة العذراء مريم والشهيد مارجرجس بغبريال
         </div>
         <div class="row justify-content-center mt-4">
-          <div class="col-2">
+          <div class="col-xl-2 col-md-3 col">
             <div class="text-start mb-3 fs-4" dir="ltr">
-              <div class="text-muted text-decoration-none d-inline-block">
+              <div class="text-muted text-decoration-none d-block mb-md-0 mb-3">
                 <span class="fs-5 fw-light text-bgcolor">03 5033626</span>
                 <i class="bi bi-telephone text-bgcolor"></i>
               </div>
               <a
-                class="text-muted text-decoration-none d-inline-block"
+                class="text-muted text-decoration-none d-block mb-md-0 mb-3"
                 href="https://goo.gl/maps/CBc8CB8wvpcrB6d58"
               >
                 <span class="fs-5 text-bgcolor almarai-light"
@@ -141,17 +342,17 @@
               </a>
             </div>
           </div>
-          <div class="col-2">
+          <div class="col-xl-2 col-md-3 col">
             <div class="text-end mb-3 fs-4" dir="ltr">
               <a
-                class="text-muted text-decoration-none d-inline-block"
+                class="text-muted text-decoration-none d-block mb-md-0 mb-3"
                 href="https://www.facebook.com/tlmazetastefanous?mibextid=ZbWKwL"
               >
                 <i class="bi bi-facebook text-bgcolor"></i>
                 <span class="fs-5 fw-bold text-bgcolor">Facebook</span>
               </a>
               <a
-                class="text-muted text-decoration-none d-inline-block"
+                class="text-muted text-decoration-none d-block mb-md-0 mb-3"
                 href="#"
               >
                 <i class="bi bi-envelope-fill text-bgcolor"></i>
