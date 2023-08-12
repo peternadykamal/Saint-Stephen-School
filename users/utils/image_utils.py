@@ -1,4 +1,4 @@
-from Saint_Stephen_School import settings
+from django.conf import settings
 
 from PIL import Image
 from autocrop import Cropper

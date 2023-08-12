@@ -31,7 +31,7 @@ if get_current_git_branch() == 'main':
 else:
   DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -76,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 'Saint_Stephen_School.context_processors.navigation_config',
             ],
         },
@@ -165,7 +167,10 @@ STATICFILES_DIRS = [
 ]
 
 # This tell django where to uplod user generated content
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/files')
+STATIC_ROOT = os.path.join(BASE_DIR, 'deployedStaticFiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
+# python manage.py collectstatic
+
 ORIGINAL_PROFILE_PICTURES_FOLDER = os.path.join(
     MEDIA_ROOT, 'images', 'profiles', 'original')
 MANUALLY_CROPPED_PATHES_CSV = os.path.join(
