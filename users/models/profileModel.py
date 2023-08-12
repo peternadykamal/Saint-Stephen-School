@@ -24,7 +24,7 @@ class Profile(models.Model):
       ('إبس', "إبسالطس")
   )
 
-  DEFAULT_PROFILE_PATH = 'images/profiles/user-default.png'
+  DEFAULT_PROFILE_PATH = 'images/user-default.png'
 
   user = models.OneToOneField(
       User, on_delete=models.CASCADE, null=True, blank=False)
