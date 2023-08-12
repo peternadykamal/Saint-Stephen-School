@@ -31,8 +31,10 @@ if get_current_git_branch() == 'main':
 else:
   DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',
+                 'saint-stephen-school.peternady.social']
+CSRF_TRUSTED_ORIGINS = [
+    'https://saint-stephen-school.peternady.social', 'https://127.0.0.1']
 
 # Application definition
 
