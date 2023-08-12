@@ -5,3 +5,5 @@ __pycache__/
 **/node_modules/
 deployedStaticFiles/**
 files/images/profiles
+my.cnf
+backup/talmza.sql
