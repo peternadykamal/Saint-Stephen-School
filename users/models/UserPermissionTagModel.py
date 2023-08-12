@@ -207,3 +207,10 @@ class UserPermissionTag(models.Model):
       child = UserPermissionTag._lock_tag_if_exits(tag.child.id)
       if child:
         UserPermissionTag.swap_tags(tag, child)
+
+  # TODO test case this method
+  def has_permission(self, required_permission):
+    # make sure this permission is in the database
+    if not Permission.objects.filter(codename=required_permission).exists():
+      return False
+    return required_permission in [item.codename for item in self.permissions.all()]

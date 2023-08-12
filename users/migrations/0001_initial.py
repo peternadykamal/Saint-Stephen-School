@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
               ('deaconess', models.CharField(choices=[
                ('غير', 'غير مرشوم'), ('أغس', 'أغنسطس'), ('إبس', 'إبسالطس')], max_length=10)),
               ('profile_image', models.ImageField(
-                  blank=True, default='images/profiles/user-default.png', null=True, upload_to='images/profiles')),
+                  blank=True, default='images/user-default.png', null=True, upload_to='images/profiles')),
               ('id', models.UUIDField(default=uuid.uuid4, editable=False,
                primary_key=True, serialize=False, unique=True)),
               ('address', models.OneToOneField(blank=True, null=True,

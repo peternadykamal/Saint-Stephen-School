@@ -104,6 +104,18 @@
         "panel": "dedicated"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "deploy and runserver",
+      "type": "shell",
+      "command": "${workspaceFolder}\\utils\\batScripts\\deploy.bat",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "dependsOn": "install requirements",
+      "problemMatcher": []
     }
   ],
   "inputs": [

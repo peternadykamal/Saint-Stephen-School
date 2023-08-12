@@ -34,8 +34,8 @@
               <div class="col-md-3 d-flex justify-content-end">
                 <div
                   class="profile-container rounded-4 border border-2 border-browndarkest d-md-flex justify-content-center align-items-center d-none">
-                  <img id="imagePreview" src=" {% static 'files' %}/{{profileForm.profile_image.value}}"
-                    alt="Image Preview" style="max-width: 200px; max-height: 200px" />
+                  <img id="imagePreview" src="{{ MEDIA_URL }}{{profileForm.profile_image.value}}" alt="Image Preview"
+                    style="max-width: 200px; max-height: 200px" />
                 </div>
               </div>
             </div>

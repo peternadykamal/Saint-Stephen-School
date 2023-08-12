@@ -24,7 +24,7 @@ class Profile(models.Model):
       ('إبس', "إبسالطس")
   )
 
-  DEFAULT_PROFILE_PATH = 'images/profiles/user-default.png'
+  DEFAULT_PROFILE_PATH = 'images/user-default.png'
 
   user = models.OneToOneField(
       User, on_delete=models.CASCADE, null=True, blank=False)
@@ -184,3 +184,12 @@ class Profile(models.Model):
       return None, -1
     except:
       return None, -1
+
+  # TODO test  case this method
+  def getAllPermissions(self):
+    permissions = set()
+    tags = self.user_permission_tags.all()
+    for tag in tags:
+      for permission in tag.permissions.all():
+        permissions.add(permission)
+    return permissions

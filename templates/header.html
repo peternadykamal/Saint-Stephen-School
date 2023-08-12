@@ -1,52 +1,141 @@
-{% load static %}
-
-{% if request.user.is_authenticated %}
+{% load static %} {% if request.user_agent.is_mobile %}
 <header class="container-fluid bg-bgcolor border-bottom border-3 border-browndarkest">
+  <div class="row align-items-center">
+    <a class="col-1 d-block" data-bs-toggle="offcanvas" href="#navOffcanvas" role="button" aria-controls="navOffcanvas">
+      <i class="bi bi-list fs-1 text-textcolor"></i>
+    </a>
+
+    <a class="col-6 col-md-6 text-decoration-none ms-2" href="{% url 'landing' %}">
+      <span class="ml-2 reemkufi-regular text-textcolor position-relative" style="z-index: 0">
+        <img src="{% static 'images' %}/opened hands.png" alt="opened hands" class="position-absolute open-hands"
+          style="z-index: -1" width="50" />
+        مدرسةالشَّهِيد اِسْتِفَانُوس
+      </span>
+    </a>
+    {% if request.user.is_authenticated %}
+    <div class="col-4 py-1 px-1 my-1 ms-auto me-2 text-center">
+      <span class="almarai-light small">مرحبًا ,{{profileName|truncatechars:15}}!</span>
+    </div>
+    {% else %}
+    <a class="col-4 btn btn-browndarkest rounded-0 py-1 px-1 my-1 ms-auto me-2" href="{% url 'sign-in' %}">
+      <span class="almarai-light">تسجيل الدخول</span>
+    </a>
+    {% endif %}
+  </div>
+  <div class="offcanvas offcanvas-start bg-bgcolor" data-bs-scroll="true" tabindex="-1" id="navOffcanvas"
+    aria-labelledby="navOffcanvasLabel">
+    <div class="offcanvas-header py-2 border-bottom border-2 border-textcoloralt">
+      <a href="{% url 'landing' %}">
+        <img src="{% static 'images' %}/logo.png" alt="Logo" class="img-fluid offcanvas-title" width="80"
+          id="navOffcanvasLabel" />
+      </a>
+      <button type="button" class="btn-close text-textcoloralt fs-4" data-bs-dismiss="offcanvas"
+        aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body px-0 almarai-regular">
+      <div class="accordion accordion-flush" id="accordionExample">
+        {% for item in nav_items %} {% if item.type == 'link' %}
+        <a class="accordion-item p-1 d-block rounded-0 text-decoration-none almarai-bold text-textcolor"
+          href="{% url item.url %}">
+          <div class="accordion-header collapsed px-3 py-2">
+            {{ item.label }}
+          </div>
+        </a>
+        {% elif item.type == 'dropdown' %}
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed almarai-bold text-textcolor" type="button"
+              data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false"
+              aria-controls="collapse{{ forloop.counter }}">
+              {{ item.label }}
+            </button>
+          </h2>
+          <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body p-0">
+              <ul class="m-0 list-unstyled">
+                {% for subitem in item.items %} {% if subitem.type == 'link'%}
+                <li class="my-1 fs-5 ms-4">
+                  <a class="text-decoration-none almarai-light text-textcolor" href="{% url subitem.url %}">{{
+                    subitem.label }}</a>
+                </li>
+                {% endif %} {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+    </div>
+    {% if request.user.is_authenticated %}
+    <div class="offcanvas-footer px-3 py-2">
+      <a class="btn btn-brown rounded-0 w-100 py-3" href='{% url ' log-out' %}'>
+        <span class="almarai-regular h5">تسجيل الخروج</span>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</header>
+{% else %}
+<header class="container-fluid bg-bgcolor border-bottom border-2 border-browndark">
   <div class="container">
-    <div class="row align-items-center py-3">
-      <a class="col col-md-6 d-flex text-decoration-none" href="{% url 'landing' %}">
-        <img src="{% static 'files/images' %}/logo.png" alt="Logo" class="img-fluid" width="150" />
+    <div class="row align-items-center pt-3 pb-1">
+      <!-- Logo and Text (Left Side) -->
+      <a class="col-8 col-md-6 d-flex text-decoration-none" href="{% url 'landing' %}">
+        <img src="{% static 'images' %}/logo.png" alt="Logo" class="img-fluid" width="150" />
         <span class="ml-2 reemkufi-regular h1 text-textcolor">مدرسة<br />الشَّهِيد اِسْتِفَانُوس</span>
       </a>
+
+      <!-- Login Button (Right Side) -->
       <div class="col-md-6 text-center">
         <div class="row justify-content-end">
-
-          {% if not pageName == 'profile-form' %}
-          <a class="col border-end border-3 border-browndarkest d-flex align-items-center justify-content-end almarai-bold fs-4 text-browndarkest underline-on-hover"
-            href="{% url 'profile-form' %}">
-            استمارة التقديم
-          </a>
-          {% endif %}
-          <div class="col-4 ">
+          <div class="col-4">
+            {% if request.user.is_authenticated %}
             <div class="text-center mb-3">
               <span class="almarai-light h5">مرحبًا ,{{profileName|truncatechars:15}}!</span>
             </div>
             <a class="btn btn-brown rounded-0 px-3 py-2 shadow" href="{% url 'log-out' %}">
               <span class="almarai-light">تسجيل الخروج</span>
             </a>
+            {% else %}
+            <a class="btn btn-browndarkest rounded-0 px-3 py-3" href="{% url 'sign-in' %}">
+              <span class="almarai-light h4">تسجيل الدخول</span>
+            </a>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
   </div>
 </header>
-{% else %}
-<header class="container-fluid bg-bgcolor border-bottom border-3 border-browndarkest">
+<nav class="container-fluid border-bottom border-3 border-browndarkest sticky-top bg-bgcolor-glass shadow-sm">
   <div class="container">
-    <div class="row align-items-center py-3">
-      <!-- Logo and Text (Left Side) -->
-      <a class="col-8 col-md-6 d-flex text-decoration-none" href="{% url 'landing' %}">
-        <img src="{% static 'files/images' %}/logo.png" alt="Logo" class="img-fluid" width="150" />
-        <span class="ml-2 reemkufi-regular h1 text-textcolor">مدرسة<br />الشَّهِيد اِسْتِفَانُوس</span>
-      </a>
-
-      <!-- Login Button (Right Side) -->
-      <div class="col-4 col-md-6 text-md-end">
-        <a class="btn btn-browndarkest rounded-0 px-3 py-3" href="{% url 'sign-in' %}">
-          <span class="almarai-light h4">تسجيل الدخول</span>
-        </a>
+    <div class="row align-items-center py-2" dir="ltr">
+      <div class="col-lg-9 d-flex justify-content-start align-items-center mx-auto" style="overflow-y: auto">
+        {% for item in nav_items %} {% if item.type == 'link' %}
+        <a href="{% url item.url %}" class="btn btn-pewter rounded-0 shadow-sm mx-4 px-4 py-1"><span
+            class="almarai-bold text-textcolor">{{ item.label }}</span></a>
+        {% elif item.type == 'dropdown' %}
+        <div class="dropdown position-static">
+          <button class="dropdown-toggle btn btn-pewter rounded-0 shadow-sm mx-4 px-4 py-1" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="almarai-bold text-textcolor">{{ item.label }}</span>
+          </button>
+          <ul class="dropdown-menu">
+            {% for subitem in item.items %} {% if subitem.type == 'link'%}
+            <li>
+              <a class="dropdown-item" href="{% url subitem.url %}">{{ subitem.label }}</a>
+            </li>
+            {% elif subitem.type == 'divider' %}
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            {% endif %} {% endfor %}
+          </ul>
+        </div>
+        {% endif %} {% endfor %}
       </div>
     </div>
   </div>
-</header>
+</nav>
 {% endif %}
