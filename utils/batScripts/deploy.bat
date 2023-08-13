@@ -24,6 +24,9 @@ rem Run collectstatic
 python manage.py collectstatic --noinput
 
 rem Run the server with the dynamic IP
-python manage.py runserver %targetAdress%:8000
+@REM python manage.py runserver %targetAdress%:8000
+
+gunicorn -c gunicorn_config.py Saint_Stephen_School.wsgi:application --bind %targetAdress%:8000
+
 
 endlocal
