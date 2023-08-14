@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import socket
 from utils.get_env_value import get_env_value
 from utils.get_current_git_branch import get_current_git_branch
 from pathlib import Path
@@ -111,6 +112,13 @@ else:
   db_user = get_env_value("DB_USER_PROD")
   db_password = get_env_value("DB_PASSWORD_PROD")
   db_name = get_env_value("DB_NAME_PROD")
+
+# if the host is peter-nady, then use the local database
+# if socket.gethostname() == 'peter-nady':
+db_host = "peter-nady"
+db_user = get_env_value("DB_USER_DEV")
+db_password = get_env_value("DB_PASSWORD_DEV")
+db_name = get_env_value("DB_NAME_DEV")
 
 DATABASES = {
     'default': {
