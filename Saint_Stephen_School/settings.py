@@ -31,9 +31,11 @@ if get_current_git_branch() == 'main':
   DEBUG = False
 else:
   DEBUG = True
+  
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1',
-                 'saint-stephen-school.peternady.social']
+                 'saint-stephen-school.peternady.social','192.168.1.100']
 CSRF_TRUSTED_ORIGINS = [
     'https://saint-stephen-school.peternady.social', 'https://127.0.0.1']
 
@@ -115,7 +117,8 @@ else:
 
 # if the host is peter-nady, then use the local database
 # if socket.gethostname() == 'peter-nady':
-db_host = "peter-nady"
+# db_host = "peter-nady"
+db_host = "192.168.1.6"
 db_user = get_env_value("DB_USER_DEV")
 db_password = get_env_value("DB_PASSWORD_DEV")
 db_name = get_env_value("DB_NAME_DEV")
@@ -170,7 +173,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = '/files/'
+MEDIA_URL = 'files/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')

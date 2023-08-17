@@ -193,3 +193,10 @@ class Profile(models.Model):
       for permission in tag.permissions.all():
         permissions.add(permission)
     return permissions
+
+  # TODO test  case this method
+  def getProfileByUserName(user):
+    try:
+      return Profile.objects.get(user__username=user.username)
+    except:
+      return None
