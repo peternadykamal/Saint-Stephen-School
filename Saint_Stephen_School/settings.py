@@ -15,6 +15,7 @@ from utils.get_env_value import get_env_value
 from utils.get_current_git_branch import get_current_git_branch
 from pathlib import Path
 import os
+from utils.get_local_ipaddress import get_ip_address
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,13 +32,13 @@ if get_current_git_branch() == 'main':
   DEBUG = False
 else:
   DEBUG = True
-  
+
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1',
-                 'saint-stephen-school.peternady.social','192.168.1.100']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', get_ip_address(),
+                 'saint-stephen-school.peternady.social',]
 CSRF_TRUSTED_ORIGINS = [
-    'https://saint-stephen-school.peternady.social', 'https://127.0.0.1']
+    'https://saint-stephen-school.peternady.social', 'http://127.0.0.1', f'http://{get_ip_address()}']
 
 # Application definition
 
@@ -116,12 +117,11 @@ else:
   db_name = get_env_value("DB_NAME_PROD")
 
 # if the host is peter-nady, then use the local database
-# if socket.gethostname() == 'peter-nady':
-# db_host = "peter-nady"
-db_host = "192.168.1.6"
-db_user = get_env_value("DB_USER_DEV")
-db_password = get_env_value("DB_PASSWORD_DEV")
-db_name = get_env_value("DB_NAME_DEV")
+if socket.gethostname() == 'peter-nady':
+  db_host = "peter-nady"
+  db_user = get_env_value("DB_USER_DEV")
+  db_password = get_env_value("DB_PASSWORD_DEV")
+  db_name = get_env_value("DB_NAME_DEV")
 
 DATABASES = {
     'default': {

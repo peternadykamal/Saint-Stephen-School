@@ -87,7 +87,7 @@
       "presentation": {
         "echo": true,
         "reveal": "always",
-        "panel": "shared",
+        "panel": "shared"
       },
       "problemMatcher": []
     },
@@ -106,13 +106,14 @@
       "problemMatcher": []
     },
     {
-      "label": "deploy and runserver",
+      "label": "deploy and runserver windows",
       "type": "shell",
       "command": "${workspaceFolder}\\utils\\batScripts\\deploy.bat",
       "presentation": {
         "echo": true,
         "reveal": "always",
-        "panel": "shared"
+        "panel": "shared",
+        "close": true
       },
       "dependsOn": "install requirements",
       "problemMatcher": []
@@ -129,7 +130,7 @@
         "close": true
       },
       "problemMatcher": []
-    },
+    }
   ],
   "inputs": [
     {
@@ -141,7 +142,7 @@
       "id": "password",
       "type": "promptString",
       "description": "Enter your password",
-      "password": true,
+      "password": true
     }
   ]
 }

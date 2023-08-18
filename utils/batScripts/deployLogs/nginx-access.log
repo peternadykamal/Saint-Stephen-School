@@ -504,3 +504,141 @@
 [17/Aug/2023:03:43:26 -0400] 192.168.1.6 - - -  192.168.1.100 to: 192.168.1.100:8000: POST /u/get_talmza_level_years/ HTTP/1.1 200 upstream_response_time 4.035 msec 1692258206.219 request_time 4.035
 [17/Aug/2023:03:43:27 -0400] 192.168.1.6 - - -  192.168.1.100 to: -: GET /static/images/logo.png HTTP/1.1 200 upstream_response_time - msec 1692258207.528 request_time 5.369
 [17/Aug/2023:03:43:27 -0400] 192.168.1.6 - - -  192.168.1.100 to: 192.168.1.100:8000: GET /files/images/user-default.png/ HTTP/1.1 200 upstream_response_time 4.133 msec 1692258207.655 request_time 4.133
+[17/Aug/2023:19:10:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: 192.168.1.100:8000: GET /u/profile-form/ HTTP/1.1 502 upstream_response_time 21.046 msec 1692292242.672 request_time 21.046
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET /u/profile-form/ HTTP/1.1 200 upstream_response_time 2.024, 0.236 msec 1692292366.720 request_time 2.260
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/bootstrap.rtl.min.css HTTP/1.1 200 upstream_response_time - msec 1692292366.767 request_time 0.000
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/bootstrap.bundle.min.js HTTP/1.1 200 upstream_response_time - msec 1692292366.793 request_time 0.000
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/profileFormScript.js HTTP/1.1 200 upstream_response_time - msec 1692292366.834 request_time 0.000
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Bold.ttf HTTP/1.1 200 upstream_response_time - msec 1692292366.849 request_time 0.000
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Reem_Kufi/ReemKufi-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692292366.849 request_time 0.000
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/fonts/bootstrap-icons.woff2?24e3eb84d0bcaf83d77f904c78ac1f47 HTTP/1.1 200 upstream_response_time - msec 1692292366.885 request_time 0.000
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Lateef/Lateef-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692292366.885 request_time 0.000
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Light.ttf HTTP/1.1 200 upstream_response_time - msec 1692292366.964 request_time 0.000
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/logo.png HTTP/1.1 200 upstream_response_time - msec 1692292366.964 request_time 0.079
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET /files/images/user-default.png HTTP/1.1 301 upstream_response_time 0.155 msec 1692292366.989 request_time 0.155
+[17/Aug/2023:19:12:46 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: POST /u/get_school_level_years/ HTTP/1.1 200 upstream_response_time 0.031 msec 1692292366.995 request_time 0.031
+[17/Aug/2023:19:12:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: POST /u/get_talmza_level_years/ HTTP/1.1 200 upstream_response_time 0.036 msec 1692292367.000 request_time 0.036
+[17/Aug/2023:19:12:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET /files/images/user-default.png/ HTTP/1.1 200 upstream_response_time 0.004 msec 1692292367.017 request_time 0.004
+[17/Aug/2023:19:12:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church%20favicon/favicon.ico HTTP/1.1 200 upstream_response_time - msec 1692292367.045 request_time 0.000
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET /u/profile-form/ HTTP/1.1 200 upstream_response_time 0.011 msec 1692292394.613 request_time 0.011
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/bootstrap.rtl.min.css HTTP/1.1 200 upstream_response_time - msec 1692292394.660 request_time 0.000
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/bootstrap.bundle.min.js HTTP/1.1 200 upstream_response_time - msec 1692292394.661 request_time 0.000
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/profileFormScript.js HTTP/1.1 200 upstream_response_time - msec 1692292394.662 request_time 0.000
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/logo.png HTTP/1.1 200 upstream_response_time - msec 1692292394.671 request_time 0.000
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET /files/images/user-default.png HTTP/1.1 301 upstream_response_time 0.002 msec 1692292394.676 request_time 0.002
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Reem_Kufi/ReemKufi-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692292394.701 request_time 0.000
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Light.ttf HTTP/1.1 200 upstream_response_time - msec 1692292394.702 request_time 0.000
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Lateef/Lateef-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692292394.702 request_time 0.000
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Bold.ttf HTTP/1.1 200 upstream_response_time - msec 1692292394.702 request_time 0.000
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/fonts/bootstrap-icons.woff2?24e3eb84d0bcaf83d77f904c78ac1f47 HTTP/1.1 200 upstream_response_time - msec 1692292394.703 request_time 0.000
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: POST /u/get_talmza_level_years/ HTTP/1.1 200 upstream_response_time 0.005 msec 1692292394.706 request_time 0.005
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET /files/images/user-default.png/ HTTP/1.1 200 upstream_response_time 0.004 msec 1692292394.733 request_time 0.004
+[17/Aug/2023:19:13:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church%20favicon/favicon.ico HTTP/1.1 200 upstream_response_time - msec 1692292394.858 request_time 0.000
+[17/Aug/2023:19:13:16 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: POST /u/get_school_level_years/ HTTP/1.1 200 upstream_response_time 2.017, 0.004 msec 1692292396.721 request_time 2.021
+[17/Aug/2023:19:13:41 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET /favicon.ico HTTP/1.1 499 upstream_response_time 0.001 msec 1692292421.898 request_time 0.001
+[17/Aug/2023:19:13:43 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET /u/log-out/ HTTP/1.1 302 upstream_response_time 0.008 msec 1692292423.434 request_time 0.008
+[17/Aug/2023:19:13:43 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000: GET / HTTP/1.1 499 upstream_response_time 0.001 msec 1692292423.441 request_time 0.001
+[17/Aug/2023:19:13:49 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET /files/images/user-default.png/ HTTP/1.1 403 upstream_response_time 0.002 msec 1692292429.567 request_time 0.002
+[17/Aug/2023:19:13:55 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 2.022, 0.015 msec 1692292435.226 request_time 2.037
+[17/Aug/2023:19:13:55 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church.png HTTP/1.1 200 upstream_response_time - msec 1692292435.272 request_time 0.000
+[17/Aug/2023:19:13:55 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/Saint%20Stephen.png HTTP/1.1 200 upstream_response_time - msec 1692292435.301 request_time 0.000
+[17/Aug/2023:19:52:23 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET /files/images/user-default.png/ HTTP/1.1 403 upstream_response_time 2.024, 0.013 msec 1692294743.308 request_time 2.037
+[17/Aug/2023:19:52:23 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET /favicon.ico HTTP/1.1 499 upstream_response_time 0.001 msec 1692294743.362 request_time 0.001
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 0.030 msec 1692294746.041 request_time 0.030
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/bootstrap.rtl.min.css HTTP/1.1 304 upstream_response_time - msec 1692294746.082 request_time 0.000
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/bootstrap.bundle.min.js HTTP/1.1 304 upstream_response_time - msec 1692294746.087 request_time 0.000
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/logo.png HTTP/1.1 304 upstream_response_time - msec 1692294746.101 request_time 0.000
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church.png HTTP/1.1 304 upstream_response_time - msec 1692294746.102 request_time 0.000
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/Saint%20Stephen.png HTTP/1.1 304 upstream_response_time - msec 1692294746.102 request_time 0.000
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Reem_Kufi/ReemKufi-Regular.ttf HTTP/1.1 304 upstream_response_time - msec 1692294746.123 request_time 0.000
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Light.ttf HTTP/1.1 304 upstream_response_time - msec 1692294746.124 request_time 0.000
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Bold.ttf HTTP/1.1 304 upstream_response_time - msec 1692294746.124 request_time 0.000
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Lateef/Lateef-Regular.ttf HTTP/1.1 304 upstream_response_time - msec 1692294746.125 request_time 0.000
+[17/Aug/2023:19:52:26 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/fonts/bootstrap-icons.woff2?24e3eb84d0bcaf83d77f904c78ac1f47 HTTP/1.1 304 upstream_response_time - msec 1692294746.128 request_time 0.000
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 2.033, 0.002 msec 1692295347.128 request_time 2.035
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/bootstrap.rtl.min.css HTTP/1.1 200 upstream_response_time - msec 1692295347.169 request_time 0.000
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/bootstrap.bundle.min.js HTTP/1.1 200 upstream_response_time - msec 1692295347.171 request_time 0.000
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/logo.png HTTP/1.1 200 upstream_response_time - msec 1692295347.181 request_time 0.001
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church.png HTTP/1.1 200 upstream_response_time - msec 1692295347.181 request_time 0.001
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/Saint%20Stephen.png HTTP/1.1 200 upstream_response_time - msec 1692295347.183 request_time 0.000
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Reem_Kufi/ReemKufi-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692295347.210 request_time 0.000
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Light.ttf HTTP/1.1 200 upstream_response_time - msec 1692295347.210 request_time 0.000
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Bold.ttf HTTP/1.1 200 upstream_response_time - msec 1692295347.210 request_time 0.000
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Lateef/Lateef-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692295347.210 request_time 0.000
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/fonts/bootstrap-icons.woff2?24e3eb84d0bcaf83d77f904c78ac1f47 HTTP/1.1 200 upstream_response_time - msec 1692295347.211 request_time 0.000
+[17/Aug/2023:20:02:27 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church%20favicon/favicon.ico HTTP/1.1 200 upstream_response_time - msec 1692295347.224 request_time 0.000
+[17/Aug/2023:20:28:02 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 2.028, 0.003 msec 1692296882.209 request_time 2.031
+[17/Aug/2023:20:28:02 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/bootstrap.bundle.min.js HTTP/1.1 200 upstream_response_time - msec 1692296882.293 request_time 0.000
+[17/Aug/2023:20:28:04 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 0.002 msec 1692296884.771 request_time 0.002
+[17/Aug/2023:20:28:04 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/bootstrap.rtl.min.css HTTP/1.1 200 upstream_response_time - msec 1692296884.882 request_time 0.001
+[17/Aug/2023:20:28:04 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/bootstrap.bundle.min.js HTTP/1.1 200 upstream_response_time - msec 1692296884.882 request_time 0.000
+[17/Aug/2023:20:28:04 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/logo.png HTTP/1.1 200 upstream_response_time - msec 1692296884.899 request_time 0.002
+[17/Aug/2023:20:28:04 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church.png HTTP/1.1 200 upstream_response_time - msec 1692296884.901 request_time 0.003
+[17/Aug/2023:20:28:04 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/Saint%20Stephen.png HTTP/1.1 200 upstream_response_time - msec 1692296884.901 request_time 0.000
+[17/Aug/2023:20:28:05 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Reem_Kufi/ReemKufi-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692296885.001 request_time 0.000
+[17/Aug/2023:20:28:05 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Light.ttf HTTP/1.1 200 upstream_response_time - msec 1692296885.002 request_time 0.000
+[17/Aug/2023:20:28:05 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Bold.ttf HTTP/1.1 200 upstream_response_time - msec 1692296885.002 request_time 0.000
+[17/Aug/2023:20:28:05 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Lateef/Lateef-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692296885.003 request_time 0.000
+[17/Aug/2023:20:28:05 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/fonts/bootstrap-icons.woff2?24e3eb84d0bcaf83d77f904c78ac1f47 HTTP/1.1 200 upstream_response_time - msec 1692296885.003 request_time 0.000
+[17/Aug/2023:20:28:05 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church%20favicon/favicon.ico HTTP/1.1 200 upstream_response_time - msec 1692296885.080 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 2.021, 0.002 msec 1692299332.658 request_time 2.023
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/bootstrap.bundle.min.js HTTP/1.1 200 upstream_response_time - msec 1692299332.714 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/bootstrap.rtl.min.css HTTP/1.1 304 upstream_response_time - msec 1692299332.714 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/logo.png HTTP/1.1 304 upstream_response_time - msec 1692299332.737 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church.png HTTP/1.1 304 upstream_response_time - msec 1692299332.737 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/Saint%20Stephen.png HTTP/1.1 304 upstream_response_time - msec 1692299332.739 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Reem_Kufi/ReemKufi-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692299332.742 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Light.ttf HTTP/1.1 304 upstream_response_time - msec 1692299332.745 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Bold.ttf HTTP/1.1 304 upstream_response_time - msec 1692299332.745 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Lateef/Lateef-Regular.ttf HTTP/1.1 304 upstream_response_time - msec 1692299332.746 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/fonts/bootstrap-icons.woff2?24e3eb84d0bcaf83d77f904c78ac1f47 HTTP/1.1 200 upstream_response_time - msec 1692299332.756 request_time 0.000
+[17/Aug/2023:21:08:52 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church%20favicon/favicon.ico HTTP/1.1 200 upstream_response_time - msec 1692299332.825 request_time 0.000
+[17/Aug/2023:21:29:17 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 2.018, 0.036 msec 1692300557.099 request_time 2.054
+[17/Aug/2023:21:30:00 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 0.002 msec 1692300600.000 request_time 0.002
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 2.023, 0.008 msec 1692302922.338 request_time 2.031
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/bootstrap.bundle.min.js HTTP/1.1 200 upstream_response_time - msec 1692302922.399 request_time 0.000
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/bootstrap.rtl.min.css HTTP/1.1 304 upstream_response_time - msec 1692302922.400 request_time 0.000
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/logo.png HTTP/1.1 304 upstream_response_time - msec 1692302922.412 request_time 0.000
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church.png HTTP/1.1 304 upstream_response_time - msec 1692302922.412 request_time 0.000
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/Saint%20Stephen.png HTTP/1.1 304 upstream_response_time - msec 1692302922.414 request_time 0.000
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Reem_Kufi/ReemKufi-Regular.ttf HTTP/1.1 304 upstream_response_time - msec 1692302922.671 request_time 0.000
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Light.ttf HTTP/1.1 304 upstream_response_time - msec 1692302922.671 request_time 0.000
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Bold.ttf HTTP/1.1 304 upstream_response_time - msec 1692302922.673 request_time 0.000
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Lateef/Lateef-Regular.ttf HTTP/1.1 304 upstream_response_time - msec 1692302922.673 request_time 0.000
+[17/Aug/2023:22:08:42 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/fonts/bootstrap-icons.woff2?24e3eb84d0bcaf83d77f904c78ac1f47 HTTP/1.1 304 upstream_response_time - msec 1692302922.674 request_time 0.000
+[17/Aug/2023:22:29:19 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET / HTTP/1.1 502 upstream_response_time 2.012, 2.026 msec 1692304159.522 request_time 4.038
+[17/Aug/2023:22:29:25 +0200] 127.0.0.1 - - -  127.0.0.1 to: Saint_Stephen_School: GET / HTTP/1.1 502 upstream_response_time 0.000 msec 1692304165.488 request_time 0.000
+[17/Aug/2023:22:32:07 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET / HTTP/1.1 502 upstream_response_time 2.008, 2.012 msec 1692304327.538 request_time 4.020
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 2.030, 0.002 msec 1692304847.430 request_time 2.032
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/bootstrap.rtl.min.css HTTP/1.1 200 upstream_response_time - msec 1692304847.469 request_time 0.000
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/bootstrap.bundle.min.js HTTP/1.1 200 upstream_response_time - msec 1692304847.481 request_time 0.000
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/Saint%20Stephen.png HTTP/1.1 200 upstream_response_time - msec 1692304847.481 request_time 0.000
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/logo.png HTTP/1.1 200 upstream_response_time - msec 1692304847.510 request_time 0.000
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church.png HTTP/1.1 200 upstream_response_time - msec 1692304847.557 request_time 0.000
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Reem_Kufi/ReemKufi-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692304847.758 request_time 0.000
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Bold.ttf HTTP/1.1 200 upstream_response_time - msec 1692304847.758 request_time 0.000
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Lateef/Lateef-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692304847.758 request_time 0.000
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Light.ttf HTTP/1.1 200 upstream_response_time - msec 1692304847.758 request_time 0.000
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/fonts/bootstrap-icons.woff2?24e3eb84d0bcaf83d77f904c78ac1f47 HTTP/1.1 200 upstream_response_time - msec 1692304847.773 request_time 0.000
+[17/Aug/2023:22:40:47 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church%20favicon/favicon.ico HTTP/1.1 200 upstream_response_time - msec 1692304847.779 request_time 0.000
+[17/Aug/2023:22:41:12 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET //adminTalmza/users/profile/ HTTP/1.1 302 upstream_response_time 0.033 msec 1692304872.368 request_time 0.033
+[17/Aug/2023:22:41:12 +0200] 127.0.0.1 - - -  127.0.0.1 to: 127.0.0.1:8000: GET /adminTalmza/login/?next=/adminTalmza/users/profile/ HTTP/1.1 200 upstream_response_time 0.161 msec 1692304872.532 request_time 0.161
+[17/Aug/2023:22:41:12 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/admin/css/base.css HTTP/1.1 200 upstream_response_time - msec 1692304872.585 request_time 0.000
+[17/Aug/2023:22:41:12 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/admin/js/theme.js HTTP/1.1 200 upstream_response_time - msec 1692304872.598 request_time 0.000
+[17/Aug/2023:22:41:12 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/admin/js/nav_sidebar.js HTTP/1.1 200 upstream_response_time - msec 1692304872.598 request_time 0.000
+[17/Aug/2023:22:41:12 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/admin/css/nav_sidebar.css HTTP/1.1 200 upstream_response_time - msec 1692304872.598 request_time 0.000
+[17/Aug/2023:22:41:12 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/admin/css/dark_mode.css HTTP/1.1 200 upstream_response_time - msec 1692304872.598 request_time 0.000
+[17/Aug/2023:22:41:12 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/admin/css/responsive.css HTTP/1.1 200 upstream_response_time - msec 1692304872.679 request_time 0.000
+[17/Aug/2023:22:41:12 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/admin/css/login.css HTTP/1.1 200 upstream_response_time - msec 1692304872.679 request_time 0.000
+[17/Aug/2023:22:42:13 +0200] 127.0.0.1 - - -  127.0.0.1 to: [::1]:8000, 127.0.0.1:8000: GET / HTTP/1.1 200 upstream_response_time 2.015, 0.002 msec 1692304933.730 request_time 2.017
+[17/Aug/2023:22:42:13 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/bootstrap.rtl.min.css HTTP/1.1 200 upstream_response_time - msec 1692304933.749 request_time 0.000
+[17/Aug/2023:22:42:13 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/js/bootstrap.bundle.min.js HTTP/1.1 200 upstream_response_time - msec 1692304933.750 request_time 0.000
+[17/Aug/2023:22:42:13 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/logo.png HTTP/1.1 200 upstream_response_time - msec 1692304933.770 request_time 0.001
+[17/Aug/2023:22:42:13 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church.png HTTP/1.1 200 upstream_response_time - msec 1692304933.773 request_time 0.003
+[17/Aug/2023:22:42:13 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/Saint%20Stephen.png HTTP/1.1 200 upstream_response_time - msec 1692304933.774 request_time 0.001
+[17/Aug/2023:22:42:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Reem_Kufi/ReemKufi-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692304934.050 request_time 0.000
+[17/Aug/2023:22:42:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Light.ttf HTTP/1.1 200 upstream_response_time - msec 1692304934.050 request_time 0.000
+[17/Aug/2023:22:42:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Almarai/Almarai-Bold.ttf HTTP/1.1 200 upstream_response_time - msec 1692304934.050 request_time 0.000
+[17/Aug/2023:22:42:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/fonts/Lateef/Lateef-Regular.ttf HTTP/1.1 200 upstream_response_time - msec 1692304934.051 request_time 0.000
+[17/Aug/2023:22:42:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/css/fonts/bootstrap-icons.woff2?24e3eb84d0bcaf83d77f904c78ac1f47 HTTP/1.1 200 upstream_response_time - msec 1692304934.051 request_time 0.000
+[17/Aug/2023:22:42:14 +0200] 127.0.0.1 - - -  127.0.0.1 to: -: GET /static/images/church%20favicon/favicon.ico HTTP/1.1 200 upstream_response_time - msec 1692304934.064 request_time 0.000

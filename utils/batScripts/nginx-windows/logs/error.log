@@ -1,0 +1,2 @@
+2023/08/17 19:04:24 [emerg] 2276#21688: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2023/08/17 19:04:44 [emerg] 8712#24700: invalid log level "archive/Saint-Stephen-School/utils/batScripts/deployLogs/nginx-error.log" in D:\projects archive\Saint-Stephen-School\utils\batScripts\nginx-windows/conf/nginx.conf:10
