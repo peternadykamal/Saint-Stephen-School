@@ -26,6 +26,9 @@ pushd "%nginx_folder%"
 pushd "%nginx_folder%\conf"
 :: replace every \ with /
 set "workspace_dir=%workspace_dir:\=/%"
+:: Remove the trailing slash if present
+if "%workspace_dir:~-1%"=="/" set "workspace_dir=%workspace_dir:~0,-1%"
+echo %workspace_dir%
 call format_conf.bat "%workspace_dir%"
 popd
 start /B "" "%nginx_exe%"
