@@ -161,6 +161,12 @@ body {
   transform: translate(-50%, -70%);
 }
 
+#tagsList {
+  max-height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* -------------------------------------------------------------------------- */
 
 // import functions and variables

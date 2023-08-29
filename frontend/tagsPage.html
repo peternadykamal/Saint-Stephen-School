@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <script src="./bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="./js/Sortable.min.js" defer></script>
+    <script src="./js/utils.js" type="module" defer></script>
+    <script src="./js/tagsPage.js" type="module" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <header
+      class="container-fluid bg-bgcolor border-bottom border-2 border-browndark d-md-block d-none"
+    >
+      <div class="container">
+        <div class="row align-items-center pt-3 pb-1">
+          <!-- Logo and Text (Left Side) -->
+          <a class="col-8 col-md-6 d-flex text-decoration-none" href="#">
+            <img
+              src="./images/logo.png"
+              alt="Logo"
+              class="img-fluid"
+              width="150"
+            />
+            <span class="ml-2 reemkufi-regular h1 text-textcolor"
+              >مدرسة<br />الشَّهِيد اِسْتِفَانُوس</span
+            >
+          </a>
+
+          <!-- Login Button (Right Side) -->
+          <div class="col-md-6 text-center">
+            <div class="row justify-content-end">
+              <div class="col-4">
+                <button class="btn btn-browndarkest rounded-0 px-3 py-3 d-none">
+                  <span class="almarai-light h4">تسجيل الدخول</span>
+                </button>
+                <div class="text-center mb-3">
+                  <span class="almarai-light h5">مرحبًا ,[اسم المستخدم]!</span>
+                </div>
+                <a
+                  class="btn btn-brown rounded-0 px-3 py-2 shadow"
+                  href="{% url 'log-out' %}"
+                >
+                  <span class="almarai-light">تسجيل الخروج</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <nav
+      class="container-fluid border-bottom border-3 border-browndarkest sticky-top bg-bgcolor-glass shadow-sm d-md-block d-none"
+    >
+      <div class="container">
+        <div class="row align-items-center py-2" dir="ltr">
+          <div
+            class="col-lg-9 d-flex justify-content-start align-items-center mx-auto"
+            style="overflow-y: auto"
+          >
+            <a
+              href="#"
+              class="btn btn-pewter rounded-0 shadow-sm mx-4 px-4 py-1"
+              ><span class="almarai-bold text-textcolor">link 1</span></a
+            >
+            <a
+              href="#"
+              class="btn btn-pewter rounded-0 shadow-sm mx-4 px-4 py-1"
+              ><span class="almarai-bold text-textcolor">link 2</span></a
+            >
+            <a
+              href="#"
+              class="btn btn-pewter rounded-0 shadow-sm mx-4 px-4 py-1"
+              ><span class="almarai-bold text-textcolor"
+                >استمارة التقديم</span
+              ></a
+            >
+            <div class="dropdown position-static">
+              <button
+                class="dropdown-toggle btn btn-pewter rounded-0 shadow-sm mx-4 px-4 py-1"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span class="almarai-bold text-textcolor">Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container d-flex my-3" style="flex: 0 0 auto">
+      <div class="row my-auto w-100" style="height: 79vh">
+        <div
+          class="col mx-3 d-flex rounded-2 border border-1 shadow bg-bgcolor p-4 h-100"
+          id="addEditTag"
+        >
+          <div class="editTagMessage m-auto almarai-light fs-5 text-textcolor">
+            اضغط على شعار لاظهار محتواه
+          </div>
+          <div
+            class="editTagSpinner spinner-border m-auto d-none"
+            role="status"
+          >
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <form
+            class="editTagContent w-100 d-flex flex-column h-100 position-relative d-none"
+          >
+            <a
+              href="#"
+              class="btn border border-2 border-redalert btn-floating position-absolute top-0 end-0"
+            >
+              <i
+                class="bi bi-trash3 text-redalert fs-5 fst-normal almarai-light"
+                >مسح الشعار</i
+              >
+            </a>
+            <div class="almarai-light fs-4 mb-2 text-center">معلومات الوسم</div>
+            <div class="col-md-6 px-1">
+              <label
+                for="mobile_attendee"
+                class="form-label lateef-regular fs-4 mb-0"
+                >اسم شعار</label
+              >
+              <input type="text" class="form-control" id="mobile_attendee" />
+            </div>
+            <label class="lateef-regular fs-4 mb-1">الصلاحيات:</label>
+            <div id="id_permissions" class="overflow-y-auto">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="3"
+                  id="permission_3"
+                />
+                <label class="form-check-label" for="permission_3"
+                  >Can delete log entry</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="4"
+                  id="permission_4"
+                />
+                <label class="form-check-label" for="permission_4"
+                  >Can view log entry</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="9"
+                  id="permission_9"
+                />
+                <label class="form-check-label" for="permission_9"
+                  >Can add group</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="10"
+                  id="permission_10"
+                />
+                <label class="form-check-label" for="permission_10"
+                  >Can change group</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="11"
+                  id="permission_11"
+                />
+                <label class="form-check-label" for="permission_11"
+                  >Can delete group</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="12"
+                  id="permission_12"
+                />
+                <label class="form-check-label" for="permission_12"
+                  >Can view group</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="5"
+                  id="permission_5"
+                />
+                <label class="form-check-label" for="permission_5"
+                  >Can add permission</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="6"
+                  id="permission_6"
+                />
+                <label class="form-check-label" for="permission_6"
+                  >Can change permission</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="7"
+                  id="permission_7"
+                />
+                <label class="form-check-label" for="permission_7"
+                  >Can delete permission</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="8"
+                  id="permission_8"
+                />
+                <label class="form-check-label" for="permission_8"
+                  >Can view permission</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="13"
+                  id="permission_13"
+                />
+                <label class="form-check-label" for="permission_13"
+                  >Can add user</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="14"
+                  id="permission_14"
+                />
+                <label class="form-check-label" for="permission_14"
+                  >Can change user</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="15"
+                  id="permission_15"
+                />
+                <label class="form-check-label" for="permission_15"
+                  >Can delete user</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="16"
+                  id="permission_16"
+                  checked=""
+                />
+                <label class="form-check-label" for="permission_16"
+                  >Can view user</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="17"
+                  id="permission_17"
+                />
+                <label class="form-check-label" for="permission_17"
+                  >Can add content type</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="18"
+                  id="permission_18"
+                />
+                <label class="form-check-label" for="permission_18"
+                  >Can change content type</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="19"
+                  id="permission_19"
+                />
+                <label class="form-check-label" for="permission_19"
+                  >Can delete content type</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="20"
+                  id="permission_20"
+                />
+                <label class="form-check-label" for="permission_20"
+                  >Can view content type</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="21"
+                  id="permission_21"
+                />
+                <label class="form-check-label" for="permission_21"
+                  >Can add session</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="22"
+                  id="permission_22"
+                />
+                <label class="form-check-label" for="permission_22"
+                  >Can change session</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="23"
+                  id="permission_23"
+                />
+                <label class="form-check-label" for="permission_23"
+                  >Can delete session</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="24"
+                  id="permission_24"
+                />
+                <label class="form-check-label" for="permission_24"
+                  >Can view session</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="29"
+                  id="permission_29"
+                />
+                <label class="form-check-label" for="permission_29"
+                  >Can add address</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="30"
+                  id="permission_30"
+                />
+                <label class="form-check-label" for="permission_30"
+                  >Can change address</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="31"
+                  id="permission_31"
+                />
+                <label class="form-check-label" for="permission_31"
+                  >Can delete address</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="32"
+                  id="permission_32"
+                  checked=""
+                />
+                <label class="form-check-label" for="permission_32"
+                  >Can view address</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="49"
+                  id="permission_49"
+                />
+                <label class="form-check-label" for="permission_49"
+                  >Can add expenses profile form</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="50"
+                  id="permission_50"
+                />
+                <label class="form-check-label" for="permission_50"
+                  >Can change expenses profile form</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="51"
+                  id="permission_51"
+                />
+                <label class="form-check-label" for="permission_51"
+                  >Can delete expenses profile form</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="52"
+                  id="permission_52"
+                  checked=""
+                />
+                <label class="form-check-label" for="permission_52"
+                  >Can view expenses profile form</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="25"
+                  id="permission_25"
+                />
+                <label class="form-check-label" for="permission_25"
+                  >Can add profile</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="26"
+                  id="permission_26"
+                />
+                <label class="form-check-label" for="permission_26"
+                  >Can change profile</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="60"
+                  id="permission_60"
+                />
+                <label class="form-check-label" for="permission_60"
+                  >change profile current talmza level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="58"
+                  id="permission_58"
+                />
+                <label class="form-check-label" for="permission_58"
+                  >change profile talmza level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="27"
+                  id="permission_27"
+                />
+                <label class="form-check-label" for="permission_27"
+                  >Can delete profile</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="28"
+                  id="permission_28"
+                  checked=""
+                />
+                <label class="form-check-label" for="permission_28"
+                  >Can view profile</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="59"
+                  id="permission_59"
+                />
+                <label class="form-check-label" for="permission_59"
+                  >view profile current talmza level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="57"
+                  id="permission_57"
+                />
+                <label class="form-check-label" for="permission_57"
+                  >view profile talmza level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="41"
+                  id="permission_41"
+                />
+                <label class="form-check-label" for="permission_41"
+                  >Can add profile form log</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="42"
+                  id="permission_42"
+                />
+                <label class="form-check-label" for="permission_42"
+                  >Can change profile form log</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="43"
+                  id="permission_43"
+                />
+                <label class="form-check-label" for="permission_43"
+                  >Can delete profile form log</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="44"
+                  id="permission_44"
+                />
+                <label class="form-check-label" for="permission_44"
+                  >Can view profile form log</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="33"
+                  id="permission_33"
+                />
+                <label class="form-check-label" for="permission_33"
+                  >Can add school level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="34"
+                  id="permission_34"
+                />
+                <label class="form-check-label" for="permission_34"
+                  >Can change school level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="35"
+                  id="permission_35"
+                />
+                <label class="form-check-label" for="permission_35"
+                  >Can delete school level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="36"
+                  id="permission_36"
+                  checked=""
+                />
+                <label class="form-check-label" for="permission_36"
+                  >Can view school level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="37"
+                  id="permission_37"
+                />
+                <label class="form-check-label" for="permission_37"
+                  >Can add talmza level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="38"
+                  id="permission_38"
+                />
+                <label class="form-check-label" for="permission_38"
+                  >Can change talmza level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="39"
+                  id="permission_39"
+                />
+                <label class="form-check-label" for="permission_39"
+                  >Can delete talmza level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="40"
+                  id="permission_40"
+                  checked=""
+                />
+                <label class="form-check-label" for="permission_40"
+                  >Can view talmza level</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="61"
+                  id="permission_61"
+                />
+                <label class="form-check-label" for="permission_61"
+                  >Can add temp</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="62"
+                  id="permission_62"
+                />
+                <label class="form-check-label" for="permission_62"
+                  >Can change temp</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="63"
+                  id="permission_63"
+                />
+                <label class="form-check-label" for="permission_63"
+                  >Can delete temp</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="64"
+                  id="permission_64"
+                />
+                <label class="form-check-label" for="permission_64"
+                  >Can view temp</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="53"
+                  id="permission_53"
+                />
+                <label class="form-check-label" for="permission_53"
+                  >Can add user permission tag</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="54"
+                  id="permission_54"
+                />
+                <label class="form-check-label" for="permission_54"
+                  >Can change user permission tag</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="55"
+                  id="permission_55"
+                />
+                <label class="form-check-label" for="permission_55"
+                  >Can delete user permission tag</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="permissions"
+                  value="56"
+                  id="permission_56"
+                />
+                <label class="form-check-label" for="permission_56"
+                  >Can view user permission tag</label
+                >
+              </div>
+            </div>
+            <div
+              id="update-tag-buttons"
+              class="row justify-content-around mt-3"
+            >
+              <button
+                type="button"
+                class="col-md-3 col-12 btn border border-2 border-redalert rounded-0 p-2"
+                id="cancelUpdateTag"
+              >
+                <span class="almarai-regular text-redalert fs-5"
+                  >إلغاء التغييرات</span
+                >
+              </button>
+              <button
+                type="button"
+                class="col-md-3 col-12 btn btn-greenalert rounded-0 almarai-light"
+                id="saveTagChanges"
+              >
+                <span class="almarai-light fs-5">حفظ شعار</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-5 d-flex flex-column h-100">
+          <div id="tagsList" class="list-group flex-grow-1">
+            <div
+              class="list-group-item d-flex align-items-center undraggable"
+              data-id="1"
+            >
+              admin
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="2">
+              You can also select text
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="3">
+              Best of both worlds!
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div class="list-group-item d-flex align-items-center" data-id="4">
+              hello world!
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+            <div
+              class="list-group-item d-flex align-items-center undraggable"
+              data-id="5"
+            >
+              مخدوم
+              <i
+                class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"
+              ></i>
+            </div>
+          </div>
+          <div id="addTag-updateHierarchy-buttons" class="m-4 mb-0 d-flex">
+            <button
+              type="button"
+              class="col-md col-12 btn btn-browndarkest rounded-0 me-md-5"
+              id="addNewTag"
+            >
+              <span class="almarai-regular fs-5">إضافة شعار جديد</span>
+            </button>
+            <button
+              type="button"
+              class="col-md col-12 btn btn-brown rounded-0 almarai-light"
+              id="updateHierarchy"
+            >
+              <span class="almarai-light fs-5">تغير ترتيب الشعرات</span>
+            </button>
+          </div>
+          <div id="update-hierarchy-buttons" class="m-4 mb-0 d-flex d-none">
+            <button
+              type="button"
+              class="col-md col-12 btn border border-2 border-redalert rounded-0 p-2 me-md-5"
+              id="cancelUpdateHierarchy"
+            >
+              <span class="almarai-regular text-redalert fs-5"
+                >إلغاء التغييرات</span
+              >
+            </button>
+            <button
+              type="button"
+              class="col-md col-12 btn btn-greenalert rounded-0 almarai-light"
+              id="saveHierarchy"
+            >
+              <span class="almarai-light fs-5">حفظ التسلسل الجديد</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="mt-auto bg-browndark pt-4">
+      <div class="container text-center">
+        <div class="h1 reemkufi-regular text-textcolor mb-0">
+          مدرسة الشَّهِيد اِسْتِفَانُوس
+        </div>
+        <div class="almarai-light text-textcolor">
+          بكنيسة السيدة العذراء مريم والشهيد مارجرجس بغبريال
+        </div>
+        <div class="row justify-content-center mt-4">
+          <div class="col-xl-2 col-md-3 col">
+            <div class="text-start mb-3 fs-4" dir="ltr">
+              <div class="text-muted text-decoration-none d-block mb-md-0 mb-3">
+                <span class="fs-5 fw-light text-bgcolor">03 5033626</span>
+                <i class="bi bi-telephone text-bgcolor"></i>
+              </div>
+              <a
+                class="text-muted text-decoration-none d-block mb-md-0 mb-3"
+                href="https://goo.gl/maps/CBc8CB8wvpcrB6d58"
+              >
+                <span class="fs-5 text-bgcolor almarai-light"
+                  >موقع المدرسة</span
+                >
+                <i class="bi bi-geo-alt text-bgcolor"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-3 col">
+            <div class="text-end mb-3 fs-4" dir="ltr">
+              <a
+                class="text-muted text-decoration-none d-block mb-md-0 mb-3"
+                href="https://www.facebook.com/tlmazetastefanous?mibextid=ZbWKwL"
+              >
+                <i class="bi bi-facebook text-bgcolor"></i>
+                <span class="fs-5 fw-bold text-bgcolor">Facebook</span>
+              </a>
+              <a
+                class="text-muted text-decoration-none d-block mb-md-0 mb-3"
+                href="#"
+              >
+                <i class="bi bi-envelope-fill text-bgcolor"></i>
+                <span class="fs-5 fw-bold text-bgcolor">Email</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        dir="ltr"
+        class="container-fluid d-flex justify-content-center bg-browndarker text-bgcolor"
+        lang="en"
+      >
+        &copy; 2023. by Peter Nady &amp; Kamal Nady
+      </div>
+    </footer>
+  </body>
+</html>
