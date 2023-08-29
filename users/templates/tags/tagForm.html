@@ -1,0 +1,52 @@
+<form class="{% if new_tag %}addTagForm{% else %}editTagForm{% endif %} w-100 d-flex flex-column h-100"
+      method="post"
+      action="{% if new_tag %}{% url 'add-tag' %}{% else %}{% url 'update-tag' %}{% endif %}">
+  {% csrf_token %}
+  <div class="almarai-light fs-4 mb-2 text-center">معلومات الوسم</div>
+  <input type="hidden" name="id" value="{{ form.tag_id }}">
+  <label for="{{ form.tag_name.id_for_label }}"
+         class="form-label lateef-regular fs-4 mb-0">اسم شعار</label>
+  {{ form.tag_name }}
+  {% if form.tag_name.errors %}
+    <div class="invalid-feedback d-block almarai-regular text-redalert">
+      {% for error in form.tag_name.errors %}{{ error }}{% endfor %}
+    </div>
+  {% endif %}
+  <label class="lateef-regular fs-4 mb-1">الصلاحيات:</label>
+  <div id="id_permissions" class="overflow-y-auto flex-grow-1">
+    {% for permission in form.permissions.field.choices %}
+      <div class="form-check">
+        <input class="form-check-input"
+               type="checkbox"
+               name="permissions"
+               value="{{ permission.0 }}"
+               id="permission_{{ permission.0 }}"
+               {% if permission in form.permissions.field.initial %}checked{% endif %}>
+        <label class="form-check-label" for="permission_{{ permission.0 }}">{{ permission.1 }}</label>
+      </div>
+    {% endfor %}
+    {% if form.permissions.errors %}
+      <div class="invalid-feedback">
+        {% for error in form.permissions.errors %}{{ error }}{% endfor %}
+      </div>
+    {% endif %}
+  </div>
+  <div id="update-tag-buttons" class="row justify-content-around mt-3">
+    <button type="button"
+            class="cancelButton col-md-3 col-12 btn border border-2 border-redalert rounded-0 p-2">
+      <span class="almarai-regular text-redalert fs-5">إلغاء التغييرات</span>
+    </button>
+    <button type="button"
+            class="saveTagChanges col-md-3 col-12 btn btn-greenalert rounded-0 almarai-light">
+      <span class="almarai-light fs-5">حفظ شعار</span>
+    </button>
+  </div>
+</form>
+{% if not new_tag %}
+  <button type="button"
+          class="btn border border-2 border-redalert btn-floating position-absolute top-0 end-0"
+          id="confirmationToastBtn">
+    <i class="bi bi-trash3 text-redalert fs-5 fst-normal almarai-light">مسح الشعار</i>
+  </button>
+  {% include "tags/deleteTagToast.html" %}
+{% endif %}
