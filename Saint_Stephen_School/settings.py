@@ -10,11 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import socket
-from utils.get_env_value import get_env_value
-from utils.get_current_git_branch import get_current_git_branch
-from pathlib import Path
 import os
+import socket
+from pathlib import Path
+
+from utils.get_current_git_branch import get_current_git_branch
+from utils.get_env_value import get_env_value
 from utils.get_local_ipaddress import get_ip_address
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,7 +34,7 @@ if get_current_git_branch() == 'main':
 else:
   DEBUG = True
 
-DEBUG = False
+# DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', get_ip_address(),
                  'saint-stephen-school.peternady.social',]
@@ -178,6 +179,14 @@ MEDIA_URL = 'files/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# because i use javascript modules in some cases, which because of the new es6 standard, 
+# the browser will not load them if they are not served with the correct mime type so i need to give them type="module"
+# in this case yeah the browser become able to read the files correctly but django can't identity the module type
+# so in this case i need to explicitly tell django that each file with .js extension is a javascript module 
+if DEBUG:
+  import mimetypes
+  mimetypes.add_type("application/javascript", ".js", True)
 
 # This tell django where to uplod user generated content
 STATIC_ROOT = os.path.join(BASE_DIR, 'deployedStaticFiles')
