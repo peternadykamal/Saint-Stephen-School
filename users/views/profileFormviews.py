@@ -1,21 +1,18 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.http import JsonResponse
-
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
+import datetime
+import json
+from datetime import date, timedelta
+from pathlib import Path
 
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect, render
 
 from users import models
 from users.forms import ProfileForm
-
-import datetime
-from datetime import timedelta, date
-from pathlib import Path
-import json
 
 currentYear = datetime.date.today().year
 
