@@ -76,7 +76,7 @@
                     <div class="invalid-feedback d-block almarai-regular text-redalert">{{ profileForm.name.errors.0 }}</div>
                   </div>
                   <div class="col-md-4 px-1">
-                    {% if profileName == "كاميل فايز" or profileName == "كمال نادي كمال سيدهم" %}
+                    {% if 'change_profile' in permissions %}
                       <div class="mb-3">
                       {% else %}
                         <div class="mb-3" hidden>
@@ -404,7 +404,7 @@
                       </div>
                     </div>
                     <!-- ----------------------------------------------------------------------- -->
-                    {% if profileName == "كاميل فايز" or profileName == "كمال نادي كمال سيدهم" %}
+                    {% if canAccessTalmazaSection %}
                       <div class="col-md-6 ps-md-2">
                       {% else %}
                         <div class="col-md-6 ps-md-2" hidden>
