@@ -73,3 +73,49 @@ export async function makeRequest(method, url, data = {}) {
 }
 // makeRequest("GET", "/api/tags/");
 // makeRequest("POST", "/api/tags/", { name: "new tag" });
+/* -------------------------------------------------------------------------- */
+function handleError(message, source, lineno, colno, error) {
+  const toastElement = document.createElement("div");
+  toastElement.classList.add(
+    "toast",
+    "show",
+    "bg-bgcolor-glass",
+    "text-light",
+    "position-fixed", // Changed from "position-absolute"
+    "top-0", // Positioned at the top
+    "start-0", // Positioned at the right
+    "m-3",
+    "rounded-3",
+    "p-3",
+    "fade",
+    "text-textcolor"
+  );
+  toastElement.setAttribute("role", "alert");
+  toastElement.setAttribute("aria-live", "assertive");
+  toastElement.innerHTML = `
+  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      <div class="toast-body text-center almarai-bold text-redalert">
+        حدث خطأ
+      </div>
+  `;
+
+  document.body.appendChild(toastElement);
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
+}
+export function withErrorHandler(fn) {
+  return async (...args) => {
+    try {
+      return await fn(...args);
+    } catch (error) {
+      console.error(error);
+      handleError(
+        error.message,
+        error.source,
+        error.lineno,
+        error.colno,
+        error
+      );
+    }
+  };
+}

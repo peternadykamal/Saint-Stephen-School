@@ -1,4 +1,5 @@
 import * as utils from "./utils.js";
+import { withErrorHandler } from "./utils.js";
 /* -------------------------------------------------------------------------- */
 var tagsIDs = [];
 
@@ -27,14 +28,17 @@ const listItems = sortable.el.querySelectorAll(".list-group-item");
 const editTagSection = document.querySelector(".editTagContent");
 
 listItems.forEach((item) => {
-  item.addEventListener("click", async () => {
-    utils.toggleVisibility("editTagSpinner", "addEditTag");
-    const itemFetchUrl = item.getAttribute("get-tag");
-    const response = await utils.makeRequest("GET", itemFetchUrl);
-    utils.toggleVisibility("editTagContent", "addEditTag");
-    editTagSection.innerHTML = response["form_html"];
-    settingUpTagUpdateFormButtons();
-  });
+  item.addEventListener(
+    "click",
+    withErrorHandler(async () => {
+      utils.toggleVisibility("editTagSpinner", "addEditTag");
+      const itemFetchUrl = item.getAttribute("get-tag");
+      const response = await utils.makeRequest("GET", itemFetchUrl);
+      utils.toggleVisibility("editTagContent", "addEditTag");
+      editTagSection.innerHTML = response["form_html"];
+      settingUpTagUpdateFormButtons();
+    })
+  );
 });
 
 /* --------------------- the use case of updating a tag --------------------- */
@@ -48,27 +52,30 @@ function settingUpTagUpdateFormButtons() {
   });
   // setting up save button
   const saveTagButton = editTagSection.querySelector(".saveTagChanges");
-  saveTagButton.addEventListener("click", async () => {
-    utils.toggleVisibility("editTagSpinner", "addEditTag");
-    const formSubmitUrl = form.getAttribute("action");
-    const options = {
-      method: "POST",
-      headers: {
-        "X-CSRFToken": form.querySelector("input[name=csrfmiddlewaretoken]")
-          .value,
-      },
-      body: new FormData(form),
-    };
-    const fullUrl = utils.getApiUrl(formSubmitUrl);
-    const response = await fetch(fullUrl, options);
-    const json = await response.json();
-    utils.toggleVisibility("editTagContent", "addEditTag");
-    console.log(json["status"]);
-    if (json["status"] === "fail") {
-      editTagSection.innerHTML = json["form_html"];
-      settingUpTagUpdateFormButtons();
-    } else window.location = window.location;
-  });
+  saveTagButton.addEventListener(
+    "click",
+    withErrorHandler(async () => {
+      utils.toggleVisibility("editTagSpinner", "addEditTag");
+      const formSubmitUrl = form.getAttribute("action");
+      const options = {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": form.querySelector("input[name=csrfmiddlewaretoken]")
+            .value,
+        },
+        body: new FormData(form),
+      };
+      const fullUrl = utils.getApiUrl(formSubmitUrl);
+      const response = await fetch(fullUrl, options);
+      const json = await response.json();
+      utils.toggleVisibility("editTagContent", "addEditTag");
+      console.log(json["status"]);
+      if (json["status"] === "fail") {
+        editTagSection.innerHTML = json["form_html"];
+        settingUpTagUpdateFormButtons();
+      } else window.location = window.location;
+    })
+  );
   // setting up cancel button
   const cancelTagButton = editTagSection.querySelector(".cancelButton");
   cancelTagButton.addEventListener("click", () => {
@@ -89,24 +96,30 @@ function settingUpTagUpdateFormButtons() {
 
   // setting up delete button
   const deleteTagButton = editTagSection.querySelector("#deleteTag");
-  deleteTagButton.addEventListener("click", async () => {
-    await utils.makeRequest("DELETE", deleteTagButton.getAttribute("url"));
-    window.location = window.location;
-  });
+  deleteTagButton.addEventListener(
+    "click",
+    withErrorHandler(async () => {
+      await utils.makeRequest("DELETE", deleteTagButton.getAttribute("url"));
+      window.location = window.location;
+    })
+  );
 }
 /* ---------------------- the use case to add a new tag --------------------- */
 const addTagSection = document.querySelector(".addTagContent");
 // add event listener on add button to show the add tag form
 const addTagButton = document.querySelector("#addNewTag");
-addTagButton.addEventListener("click", async () => {
-  utils.toggleVisibility("editTagSpinner", "addEditTag");
-  const itemFetchUrl = addTagButton.getAttribute("url");
-  console.log(itemFetchUrl);
-  const response = await utils.makeRequest("GET", itemFetchUrl);
-  utils.toggleVisibility("addTagContent", "addEditTag");
-  addTagSection.innerHTML = response["form_html"];
-  settingUpTagAddFormButtons();
-});
+addTagButton.addEventListener(
+  "click",
+  withErrorHandler(async () => {
+    utils.toggleVisibility("editTagSpinner", "addEditTag");
+    const itemFetchUrl = addTagButton.getAttribute("url");
+    console.log(itemFetchUrl);
+    const response = await utils.makeRequest("GET", itemFetchUrl);
+    utils.toggleVisibility("addTagContent", "addEditTag");
+    addTagSection.innerHTML = response["form_html"];
+    settingUpTagAddFormButtons();
+  })
+);
 
 function settingUpTagAddFormButtons() {
   // make sure the form doesn't get sumitted when pressing enter
@@ -125,27 +138,30 @@ function settingUpTagAddFormButtons() {
 
   // add event listener on save button
   const saveTagButton = addTagSection.querySelector(".saveTagChanges");
-  saveTagButton.addEventListener("click", async () => {
-    utils.toggleVisibility("editTagSpinner", "addEditTag");
-    const formSubmitUrl = form.getAttribute("action");
-    const options = {
-      method: "POST",
-      headers: {
-        "X-CSRFToken": form.querySelector("input[name=csrfmiddlewaretoken]")
-          .value,
-      },
-      body: new FormData(form),
-    };
-    const fullUrl = utils.getApiUrl(formSubmitUrl);
-    const response = await fetch(fullUrl, options);
-    const json = await response.json();
-    utils.toggleVisibility("addTagContent", "addEditTag");
-    console.log(json["status"]);
-    if (json["status"] === "fail") {
-      addTagSection.innerHTML = json["form_html"];
-      settingUpTagAddFormButtons();
-    } else window.location = window.location;
-  });
+  saveTagButton.addEventListener(
+    "click",
+    withErrorHandler(async () => {
+      utils.toggleVisibility("editTagSpinner", "addEditTag");
+      const formSubmitUrl = form.getAttribute("action");
+      const options = {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": form.querySelector("input[name=csrfmiddlewaretoken]")
+            .value,
+        },
+        body: new FormData(form),
+      };
+      const fullUrl = utils.getApiUrl(formSubmitUrl);
+      const response = await fetch(fullUrl, options);
+      const json = await response.json();
+      utils.toggleVisibility("addTagContent", "addEditTag");
+      console.log(json["status"]);
+      if (json["status"] === "fail") {
+        addTagSection.innerHTML = json["form_html"];
+        settingUpTagAddFormButtons();
+      } else window.location = window.location;
+    })
+  );
 }
 /* ------------------ the use case to change tags hierarchy ----------------- */
 const mainButtons = document.querySelector("#addTag-updateHierarchy-buttons");
@@ -172,9 +188,12 @@ cancelUpdateHierarchyButton.addEventListener("click", () => {
 // add event listener on saveHierarchy button
 // get saveHierarchy button
 const saveHierarchyButton = document.querySelector("#saveHierarchy");
-saveHierarchyButton.addEventListener("click", async () => {
-  const response = await utils.makeRequest("POST", "/tag/updateHierarchy/", {
-    newHierarchy: sortable.toArray(),
-  });
-  window.location = window.location;
-});
+saveHierarchyButton.addEventListener(
+  "click",
+  withErrorHandler(async () => {
+    const response = await utils.makeRequest("POST", "/tag/updateHierarchy/", {
+      newHierarchy: sortable.toArray(),
+    });
+    window.location = window.location;
+  })
+);
