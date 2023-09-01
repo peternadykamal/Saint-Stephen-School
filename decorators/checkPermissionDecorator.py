@@ -1,9 +1,11 @@
 # library_app/decorators.py
 
-from functools import wraps
 import profile
+from functools import wraps
+
 from django.http import Http404
-from users.models import UserPermissionTag, Profile
+
+from users.models import Profile, UserPermissionTag
 
 
 def has_permission_tag(tag_name):
@@ -28,10 +30,8 @@ def has_permission(permission_codename):
   def decorator(view_func):
     @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
-      user = request.user
       try:
-        profile = Profile.objects.get(user__username=user.username)
-        permissions = profile.getAllPermissions()
+        permissions = request.profile.getAllPermissions()
         permissionsCodename = [item.codename for item in permissions]
         if permission_codename in permissionsCodename:
           return view_func(request, *args, **kwargs)

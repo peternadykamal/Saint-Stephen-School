@@ -1,15 +1,14 @@
-from operator import is_
-from django.db import models
-from django.contrib.auth.models import User
-
-import uuid
-
 import secrets
 import string
+import uuid
+from operator import is_
+
+from django.contrib.auth.models import User
+from django.db import models
 
 from .addressModel import Address
-from .talmzaLevelModel import TalmzaLevel
 from .schoolLevelModel import SchoolLevel
+from .talmzaLevelModel import TalmzaLevel
 from .UserPermissionTagModel import UserPermissionTag
 
 
@@ -184,6 +183,18 @@ class Profile(models.Model):
       return None, -1
     except:
       return None, -1
+
+  # TODO test  case this method
+  def hasPermission(self, permission_codename):
+    try:
+      permissions = self.getAllPermissions()
+      permissionsCodename = [item.codename for item in permissions]
+      if permission_codename in permissionsCodename:
+        return True
+      else:
+        return False
+    except:
+      return False
 
   # TODO test  case this method
   def getAllPermissions(self):

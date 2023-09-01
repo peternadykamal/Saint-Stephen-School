@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
+    'users.middleware.UserProfileMiddleware',
     'livereload.middleware.LiveReloadScript',
 ]
 
@@ -180,10 +181,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-# because i use javascript modules in some cases, which because of the new es6 standard, 
+# because i use javascript modules in some cases, which because of the new es6 standard,
 # the browser will not load them if they are not served with the correct mime type so i need to give them type="module"
 # in this case yeah the browser become able to read the files correctly but django can't identity the module type
-# so in this case i need to explicitly tell django that each file with .js extension is a javascript module 
+# so in this case i need to explicitly tell django that each file with .js extension is a javascript module
 if DEBUG:
   import mimetypes
   mimetypes.add_type("application/javascript", ".js", True)
