@@ -1,16 +1,17 @@
-from django.conf import settings
-
-from django.db.models.signals import post_save, post_delete
-from django.dispatch import receiver
-from django.contrib.auth.models import User
-import users.models as models
-
+import csv
 import datetime
 import os
-import csv
 
-from .utils import cropImage, is_image_path_present, deleteProfileImage
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.db.models.signals import post_delete, post_save
+from django.dispatch import receiver
+
+import users.models as models
 import users.tests.quickTest
+
+from .utils import (create_csv_if_not_exists, cropImage, deleteProfileImage,
+                    is_image_path_present)
 
 # We make this signal to trigger any time user added make for it a profile
 
@@ -66,7 +67,13 @@ def saveProfile(sender, instance, **kwargs):
   if not models.Profile.DEFAULT_PROFILE_PATH.replace('/', '\\') in image_path:
     try:
       cropImage(image_path, destination_path)
+    except FileNotFoundError as e:
+      # this exception will be raised if the image is not found
+      default_image_path = models.Profile.DEFAULT_PROFILE_PATH
+      instance.profile_image = default_image_path
+      instance.save()
     except Exception as e:
+      create_csv_if_not_exists(csv_path)
       if not is_image_path_present(csv_path, image_path):
         with open(csv_path, "a", newline="") as csvfile:
           csv_writer = csv.writer(csvfile)
