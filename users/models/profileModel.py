@@ -184,7 +184,6 @@ class Profile(models.Model):
     except:
       return None, -1
 
-  # TODO test  case this method
   def hasPermission(self, permission_codename):
     try:
       permissions = self.getAllPermissions()
@@ -196,7 +195,6 @@ class Profile(models.Model):
     except:
       return False
 
-  # TODO test  case this method
   def getAllPermissions(self):
     permissions = set()
     tags = self.user_permission_tags.all()
@@ -205,7 +203,6 @@ class Profile(models.Model):
         permissions.add(permission)
     return permissions
 
-  # TODO test  case this method
   def getProfileByUserName(user):
     try:
       return Profile.objects.get(user__username=user.username)

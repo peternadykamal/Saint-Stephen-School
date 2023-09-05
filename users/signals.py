@@ -4,11 +4,12 @@ import os
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.db.models.signals import post_delete, post_save
+from django.db.models.signals import post_delete, post_save, pre_delete
 from django.dispatch import receiver
 
 import users.models as models
 import users.tests.quickTest
+from users.models.expensesProfileFormModel import ExpensesProfileForm
 
 from .utils import (create_csv_if_not_exists, cropImage, deleteProfileImage,
                     is_image_path_present)
@@ -47,7 +48,7 @@ def deleteProfile(sender, instance, **kwargs):
     deleteProfileImage(image_path)
   if instance.address:
     instance.address.delete()
-  # TODO delete his all expenses for all years
+  ExpensesProfileForm.objects.filter(created_for=instance).delete()
   user = instance.user
   user.delete()
 
@@ -78,3 +79,13 @@ def saveProfile(sender, instance, **kwargs):
         with open(csv_path, "a", newline="") as csvfile:
           csv_writer = csv.writer(csvfile)
           csv_writer.writerow([cropped_image_path, non_cropped_image_path])
+
+
+@receiver(pre_delete, sender=models.UserPermissionTag)
+def remove_permission_tag_from_profiles(sender, instance, **kwargs):
+    # Get all profiles associated with the instance being deleted
+  profiles = models.Profile.objects.filter(user_permission_tags=instance)
+
+  # Remove the instance from each profile's user_permission_tags
+  for profile in profiles:
+    profile.user_permission_tags.remove(instance)

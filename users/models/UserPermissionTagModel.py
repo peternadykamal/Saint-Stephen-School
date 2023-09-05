@@ -1,6 +1,8 @@
+import re
 import uuid
 from threading import local
 
+from cv2 import add
 from django.contrib.auth.models import Permission
 from django.db import IntegrityError, models, transaction
 
@@ -211,7 +213,6 @@ class UserPermissionTag(models.Model):
       if child:
         UserPermissionTag.swap_tags(tag, child)
 
-  # TODO test case this method
   @staticmethod
   def get_sorted_tags() -> list['UserPermissionTag']:
     """Returns a list of tags sorted from top to buttom"""
@@ -223,13 +224,19 @@ class UserPermissionTag(models.Model):
       tag = tag.child
     return tags
 
-  # TODO test case this method
   @staticmethod
   @transaction.atomic
   def update_hierarchy(newHierarchy: list['UserPermissionTag']):
+    # make sure all tags in new hierarchy are unique
+    if len(newHierarchy) != len(set(newHierarchy)):
+      raise Exception("All tags in the new hierarchy must be unique.")
+
     # newHierarchyTags = [tag.tag_name for tag in newHierarchy]
+
+    # make sure the first and last tags in the hierarchy are not changed
     oldHierarchy = UserPermissionTag.get_sorted_tags()
     condition = oldHierarchy[0].id != newHierarchy[0].id or oldHierarchy[-1].id != newHierarchy[-1].id
+
     if (condition):
       raise Exception(
           "first and last tags in the hierarchy can't be changed.")
@@ -248,10 +255,22 @@ class UserPermissionTag(models.Model):
                         newHierarchy[i].id)
           UserPermissionTag._perform_swap(oldHierarchy[i], newTag)
 
-  # TODO test case this method
+  def add_permission(self, permission_codename):
+    """ take a permission codename and add it to this tag"""
+
+    # first check if the permission exists
+    try:
+      permission = Permission.objects.get(codename=permission_codename)
+    except Permission.DoesNotExist:
+      raise Exception("Permission does not exist.")
+
+    # check if the permission is already added
+    if self.permissions.filter(codename=permission_codename).exists():
+      return
+
+    # add the permission
+    self.permissions.add(permission)
+
   def has_permission(self, required_permission):
-    """ take a permission codename and return true if the user has this permission"""
-    # make sure this permission is in the database
-    if not Permission.objects.filter(codename=required_permission).exists():
-      return False
-    return required_permission in [item.codename for item in self.permissions.all()]
+    """ take a permission codename and return true if this tag has that permission"""
+    return self.permissions.filter(codename=required_permission).exists()
