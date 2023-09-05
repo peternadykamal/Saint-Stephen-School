@@ -1,8 +1,9 @@
-from django.http import HttpResponse
-from django.http import HttpResponseForbidden
-from users.models import Profile
-from django.conf import settings
 import os
+
+from django.conf import settings
+from django.http import HttpResponse, HttpResponseForbidden
+
+from users.models import Profile
 
 
 def mediaAccess(request, path):
@@ -27,8 +28,7 @@ def mediaAccess(request, path):
 
   if access_granted:
     response = HttpResponse()
-    # TODO make protected get loaded from .env file or from settings file
-    response['X-Accel-Redirect'] = f'/protected/{path}'
+    response['X-Accel-Redirect'] = f'/{settings.PROTECTED_MEDIA_URL}{path}'
     # Content-type will be detected by nginx
     del response['Content-Type']
     return response

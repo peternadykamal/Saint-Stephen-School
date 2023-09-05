@@ -176,6 +176,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = 'files/'
+PROTECTED_MEDIA_URL = 'protected/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
