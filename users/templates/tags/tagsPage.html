@@ -1,7 +1,5 @@
 {% extends "header&footer.html" %}
 {% load static %}
-{% block bodyClass %}
-{% endblock bodyClass %}
 {% block scripts %}
   <script src="{% static 'js' %}/Sortable.min.js" defer></script>
   <script src="{% static 'js' %}/utils.js"  type="module" defer></script>
@@ -62,12 +60,14 @@
             {% if tag.is_top or tag.is_buttom %}
               <div class="list-group-item d-flex align-items-center undraggable"
                    data-id="{{ tag.id }}"
-                   get-tag='{% url 'get-tag' %}?id={{ tag.id }}'>{{ tag.tag_name }}</div>
+                   get-tag='{% url 'get-tag' %}?id={{ tag.id }}'>
+                <span class="badge bg-dark text-bgcolor fs-6 almarai-light shadow-sm">{{ tag.tag_name }}</span>
+              </div>
             {% else %}
               <div class="list-group-item d-flex align-items-center"
                    data-id="{{ tag.id }}"
                    get-tag='{% url 'get-tag' %}?id={{ tag.id }}'>
-                {{ tag.tag_name }}
+                <span class="badge bg-champagnelight text-textcolor fs-6 almarai-light shadow-sm">{{ tag.tag_name }}</span>
                 <i class="bi bi-grip-vertical fs-5 bg-body-secondary p-1 rounded-1 btn ms-auto d-none"></i>
               </div>
             {% endif %}

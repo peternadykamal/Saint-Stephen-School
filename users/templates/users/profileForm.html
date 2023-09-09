@@ -1,7 +1,7 @@
 {% extends "header&footer.html" %}
 {% load static %}
 {% block bodyClass %}
-  bg-champagne
+  bg-champagnelight
 {% endblock bodyClass %}
 {% block scripts %}
   <script src="{% static 'js' %}/profileFormScript.js" defer></script>
@@ -432,7 +432,6 @@
                         <div class="mb-3">
                           <label for="current_talmza_level_year"
                                  class="form-label lateef-regular fs-4 mb-0">
-                            سنة
                             {{ profileForm.current_talmza_level_year.label }}
                           </label>
                           <select class="form-select form-control border border-2 border-textcoloralt p-2"

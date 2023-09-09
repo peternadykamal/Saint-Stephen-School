@@ -5,6 +5,7 @@
 
 $greenalert: #187416;
 $redalert: #c51605;
+$bluealert: #2164b0;
 $textcolor: #171215;
 $textcoloralt: #4e4b44;
 $bgcolor: #f7f7f0;
@@ -13,6 +14,7 @@ $browndark: #887f77;
 $browndarkest: #201a1e;
 $brown: #d0b49f;
 $champagne: #e5d4c9;
+$champagnelight: #e2d4c6;
 $pewter: #e2e6e7;
 
 body,
@@ -168,6 +170,7 @@ body {
 }
 
 /* -------------------------------------------------------------------------- */
+$primary: $bluealert;
 
 // import functions and variables
 @import "../bootstrap/scss/functions";
@@ -185,6 +188,7 @@ $custom-theme-colors: (
   "browndarkest": $browndarkest,
   "brown": $brown,
   "champagne": $champagne,
+  "champagnelight": $champagnelight,
   "pewter": $pewter,
 );
 $theme-colors: map-merge($theme-colors, $custom-theme-colors);

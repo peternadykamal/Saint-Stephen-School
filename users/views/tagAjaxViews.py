@@ -24,7 +24,8 @@ def getTag(request):
     tag = get_object_or_404(models.UserPermissionTag, id=tag_id)
     form = UserPermissionTagForm(
         instance=tag)
-    form_html = render(request, 'tags/tagForm.html', {'form': form})
+    form_html = render(request, 'tags/tagForm.html',
+                       {'form': form, "tag": tag})
     form_html = str(form_html.content, encoding='utf8')
     return JsonResponse({"form_html": form_html})
   else:
@@ -43,7 +44,6 @@ def updateHierarchy(request):
   try:
     requestData = json.loads(request.body.decode('utf-8'))
     newHierarchy = requestData['newHierarchy']
-    print(newHierarchy)
     newTags = [models.UserPermissionTag.objects.get(
         id=tag) for tag in newHierarchy]
     models.UserPermissionTag.update_hierarchy(newTags)
@@ -64,7 +64,6 @@ def updateTag(request):
     tag = get_object_or_404(models.UserPermissionTag, id=tag_id)
     form = UserPermissionTagForm(
         request.POST, instance=tag)
-    print(form.is_valid())
     if (form.is_valid()):
       form.save()
       return JsonResponse({'status': 'success'})
@@ -96,5 +95,8 @@ def addTag(request):
 @ require_http_methods(["DELETE"])
 def deleteTag(request, tag_id):
   tag = get_object_or_404(models.UserPermissionTag, id=tag_id)
-  models.UserPermissionTag.delete_tag(tag)
-  return JsonResponse({'status': 'success'})
+  if not tag.is_buttom and not tag.is_top:
+    models.UserPermissionTag.delete_tag(tag)
+    return JsonResponse({'status': 'success'})
+  else:
+    return JsonResponse({'status': 'fail'})

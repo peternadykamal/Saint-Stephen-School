@@ -96,13 +96,15 @@ function settingUpTagUpdateFormButtons() {
 
   // setting up delete button
   const deleteTagButton = editTagSection.querySelector("#deleteTag");
-  deleteTagButton.addEventListener(
-    "click",
-    withErrorHandler(async () => {
-      await utils.makeRequest("DELETE", deleteTagButton.getAttribute("url"));
-      window.location = window.location;
-    })
-  );
+  if (deleteTagButton) {
+    deleteTagButton.addEventListener(
+      "click",
+      withErrorHandler(async () => {
+        await utils.makeRequest("DELETE", deleteTagButton.getAttribute("url"));
+        window.location = window.location;
+      })
+    );
+  }
 }
 /* ---------------------- the use case to add a new tag --------------------- */
 const addTagSection = document.querySelector(".addTagContent");

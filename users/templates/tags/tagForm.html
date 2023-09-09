@@ -42,7 +42,7 @@
     </button>
   </div>
 </form>
-{% if not new_tag %}
+{% if not new_tag and not tag.is_top and not tag.is_buttom %}
   <button type="button"
           class="btn border border-2 border-redalert btn-floating position-absolute top-0 end-0"
           id="confirmationToastBtn">
