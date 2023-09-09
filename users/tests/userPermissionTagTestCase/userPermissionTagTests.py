@@ -716,6 +716,81 @@ class UserPermissionTagTestCase(TestCase):
     # Check that the tag does not have the permission
     self.assertFalse(tag.has_permission(permission.codename))
 
+  def test_get_highest_tag(self):
+    # tag3
+    # tag4
+    # tag1
+    # tag2
+
+    UserPermissionTagTestCase.create4Tags()
+    tag2 = UserPermissionTag.objects.get(tag_name="t2")
+    tag4 = UserPermissionTag.objects.get(tag_name="t4")
+
+    # Create a list of UserPermissionTags
+    tags = [tag2, tag4]
+
+    # Get the highest permission tag from the list
+    highest_permission_tag = UserPermissionTag.get_highest_tag(tags)
+
+    # Assert that the highest permission tag is the expected one
+    self.assertEqual(highest_permission_tag, tag4)
+
+  def test_get_highest_tag_with_one_tag(self):
+    # tag3
+    # tag4
+    # tag1
+    # tag2
+
+    UserPermissionTagTestCase.create4Tags()
+    tag2 = UserPermissionTag.objects.get(tag_name="t2")
+
+    # Create a list of UserPermissionTags that don't match the hierarchy
+    tags = [tag2]
+
+    # Get the highest permission tag from the list
+    highest_permission_tag = UserPermissionTag.get_highest_tag(tags)
+
+    # Assert that there is no match and the result is None
+    self.assertEqual(highest_permission_tag, tag2)
+
+  def test_get_highest_tag_empty_list(self):
+    UserPermissionTagTestCase.create4Tags()
+
+    # Create an empty list of UserPermissionTags
+    tags = []
+
+    # Get the highest permission tag from the empty list
+    highest_permission_tag = UserPermissionTag.get_highest_tag(tags)
+
+    # Assert that the result is None for an empty list
+    self.assertIsNone(highest_permission_tag)
+
+  def test_get_highest_tag_with_order(self):
+    # tag3
+    # tag4
+    # tag1
+    # tag2
+
+    UserPermissionTagTestCase.create4Tags()
+
+    tag2 = UserPermissionTag.objects.get(tag_name="t2")
+    tag4 = UserPermissionTag.objects.get(tag_name="t4")
+
+    # Create a list of UserPermissionTags
+    tags = [tag2, tag4]
+
+    highest_tag, top_order = UserPermissionTag.get_highest_tag(
+        tags, return_order=True)
+
+    self.assertEqual(highest_tag, tag4)
+    self.assertEqual(top_order, 1)
+
+    tags = [tag2]
+    highest_tag, top_order = UserPermissionTag.get_highest_tag(
+        tags, return_order=True)
+    self.assertEqual(highest_tag, tag2)
+    self.assertEqual(top_order, 3)
+
   def create4Tags():
     tag1 = UserPermissionTag.objects.create(tag_name="t1")
     UserPermissionTag.insert_tag(tag1)

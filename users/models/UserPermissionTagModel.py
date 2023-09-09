@@ -3,11 +3,13 @@ import uuid
 from threading import local
 
 from cv2 import add
-from django.contrib.auth.models import Permission
+from django.contrib.auth.models import Permission, User
 from django.db import IntegrityError, models, transaction
+from django.test import tag
 
 
 class UserPermissionTag(models.Model):
+  order = models.IntegerField(default=-1)
   tag_name = models.CharField(max_length=100, unique=True)
   permissions = models.ManyToManyField(Permission, blank=True)
 
@@ -119,6 +121,7 @@ class UserPermissionTag(models.Model):
 
     UserPermissionTag.updateHighestTag()
     UserPermissionTag.updateLowestTag()
+    UserPermissionTag._updateTagsOrder()
 
   def updateHighestTag():
     try:
@@ -148,6 +151,18 @@ class UserPermissionTag(models.Model):
     except:
       ''''''
 
+  def _updateTagsOrder():
+    try:
+      tag = UserPermissionTag.objects.select_for_update().get(is_top=True)
+      order = 0
+      while tag:
+        tag.order = order
+        tag.save()
+        order += 1
+        tag = tag.child
+    except:
+      ''''''
+
   @staticmethod
   def swap_tags(tag1: "UserPermissionTag", tag2: "UserPermissionTag"):
     with transaction.atomic():
@@ -170,6 +185,7 @@ class UserPermissionTag(models.Model):
 
       UserPermissionTag.updateHighestTag()
       UserPermissionTag.updateLowestTag()
+      UserPermissionTag._updateTagsOrder()
 
   @staticmethod
   def insert_tag(tag: "UserPermissionTag", parent_id=None):
@@ -198,6 +214,7 @@ class UserPermissionTag(models.Model):
 
       UserPermissionTag.updateHighestTag()
       UserPermissionTag.updateLowestTag()
+      UserPermissionTag._updateTagsOrder()
 
   @staticmethod
   def move_up(tag: "UserPermissionTag"):
@@ -243,7 +260,6 @@ class UserPermissionTag(models.Model):
 
     for i in range(len(newHierarchy)):
       oldHierarchy = UserPermissionTag.get_sorted_tags()
-      print(oldHierarchy)
       if (len(oldHierarchy) != len(newHierarchy)):
         raise Exception(
             "The new hierarchy is not the same length as the old one.")
@@ -274,3 +290,31 @@ class UserPermissionTag(models.Model):
   def has_permission(self, required_permission):
     """ take a permission codename and return true if this tag has that permission"""
     return self.permissions.filter(codename=required_permission).exists()
+
+  @staticmethod
+  def get_highest_tag(tags: list['UserPermissionTag'], return_order=False):
+    ''' take a list of tags and return the highest permission tag'''
+    # check first if tags in database
+    if UserPermissionTag.objects.count() == 0:
+      if return_order:
+        return None, -1
+      else:
+        return None
+
+    if len(tags) == 0:
+      if return_order:
+        return None, -1
+      else:
+        return None
+    elif len(tags) == 1:
+      if return_order:
+        return tags[0], tags[0].order
+      else:
+        return tags[0]
+    else:
+      # sort tags by order, and return new list
+      sortedTags = sorted(tags, key=lambda tag: tag.order)
+      if return_order:
+        return sortedTags[0], sortedTags[0].order
+      else:
+        return sortedTags[0]

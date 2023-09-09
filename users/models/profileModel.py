@@ -55,7 +55,9 @@ class Profile(models.Model):
   profile_image = models.ImageField(
       null=True, blank=True, upload_to='images/profiles', default=DEFAULT_PROFILE_PATH)
   user_permission_tags = models.ManyToManyField(
-      UserPermissionTag, blank=True)
+      UserPermissionTag, blank=True, related_name='profiles_with_user_permission_tag')
+  highest_tag = models.ForeignKey(
+      UserPermissionTag, on_delete=models.SET_NULL, null=True, blank=True, related_name='profile_with_highest_tag')
 
   id = models.UUIDField(default=uuid.uuid4, unique=True,
                         primary_key=True, editable=False)

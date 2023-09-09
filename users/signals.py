@@ -4,11 +4,11 @@ import os
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.db.models.signals import post_delete, post_save, pre_delete
+from django.db.models.signals import (m2m_changed, post_delete, post_save,
+                                      pre_delete)
 from django.dispatch import receiver
 
 import users.models as models
-import users.tests.quickTest
 from users.models.expensesProfileFormModel import ExpensesProfileForm
 
 from .utils import (create_csv_if_not_exists, cropImage, deleteProfileImage,
@@ -89,3 +89,12 @@ def remove_permission_tag_from_profiles(sender, instance, **kwargs):
   # Remove the instance from each profile's user_permission_tags
   for profile in profiles:
     profile.user_permission_tags.remove(instance)
+
+
+@receiver(m2m_changed, sender=models.Profile.user_permission_tags.through)
+def update_highest_tag(sender, instance, action, pk_set, **kwargs):
+  if action == 'post_add' or action == 'post_remove':
+    highest_tag = models.UserPermissionTag.get_highest_tag(
+        list(instance.user_permission_tags.all()))
+    instance.highest_tag = highest_tag
+    instance.save()
