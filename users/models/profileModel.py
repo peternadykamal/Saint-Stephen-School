@@ -1,16 +1,45 @@
+import profile
 import secrets
 import string
 import uuid
+from datetime import date
 from operator import is_
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Case, ExpressionWrapper, IntegerField, Q, When
+from django.forms import model_to_dict
+
 from users.models.PermissionLogModel import PermissionLog
 
 from .addressModel import Address
 from .schoolLevelModel import SchoolLevel
 from .talmzaLevelModel import TalmzaLevel
 from .UserPermissionTagModel import UserPermissionTag
+
+
+class ProfileQuerySet(models.QuerySet):
+  def with_age(self) -> models.QuerySet:
+    today = date.today()
+    age_expression = ExpressionWrapper(
+        today.year - models.F('birthdate__year') - Case(
+            When(
+                Q(birthdate__month__gt=today.month) |
+                (Q(birthdate__month=today.month) &
+                 Q(birthdate__day__gt=today.day)),
+                then=1
+            ),
+            default=0,
+            output_field=IntegerField()
+        ),
+        output_field=IntegerField()
+    )
+    return self.annotate(age=age_expression)
+
+
+class ProfileManager(models.Manager):
+  def get_queryset(self):
+    return ProfileQuerySet(self.model, using=self._db)
 
 
 class Profile(models.Model):
@@ -62,9 +91,38 @@ class Profile(models.Model):
   id = models.UUIDField(default=uuid.uuid4, unique=True,
                         primary_key=True, editable=False)
 
+  @property
+  def age(self):
+    today = date.today()
+    if self.birthdate:
+      age = today.year - self.birthdate.year - \
+          ((today.month, today.day) < (self.birthdate.month, self.birthdate.day))
+      return age
+    return None
+
+  objects = ProfileManager()
+
   def __str__(self):
     # return str(self.name + " " + self.user.username)
     return str(self.name)
+
+  def to_dict(self):  # this function is used when we want to return the profile data as a json object for read only purposes
+    data = model_to_dict(self, exclude=['talmza_level', 'school_level',
+                         'address', 'profile_image', 'user_permission_tags', 'highest_tag'])
+
+    data['registration_id'] = self.user.username
+    data['talmza_level'] = {'level_name': self.talmza_level.level_name,
+                            'id': self.talmza_level.id} if self.talmza_level else None
+    data['school_level'] = {'level_name': self.school_level.level_name,
+                            'id': self.school_level.id} if self.school_level else None
+    data['address'] = model_to_dict(self.address) if self.address else None
+    data['profile_image'] = self.profile_image.url if self.profile_image else None
+    data['user_permission_tags'] = [
+        {'order': item.order, 'tag_name': item.tag_name, 'id': item.id} for item in self.user_permission_tags.all()]
+    data['highest_tag'] = {'order': self.highest_tag.order, 'tag_name': self.highest_tag.tag_name,
+                           'id': self.highest_tag.id} if self.highest_tag else None
+
+    return data
 
   def levelUpTalmza(self):
     maxYear = self.talmza_level.number_of_years

@@ -11,4 +11,8 @@ urlpatterns = [
          name="get_school_level_years"),
     path('get_talmza_level_years/', views.getTalmzaLevelYears,
          name="get_talmza_level_years"),
+
+    path('profile/search/', views.searchUsers, name="search_users"),
+    path('profile/get/<uuid:user_id>/',
+         views.getUserProfile, name="get_user_profile"),
 ]

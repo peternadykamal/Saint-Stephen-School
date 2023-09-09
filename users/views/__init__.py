@@ -1,3 +1,4 @@
+from .profileCRUDViews import searchUsers, getUserProfile
 from .profileFormAjaxViews import getSchoolLevelYears, getTalmzaLevelYears
 from .profileFormViews import profileForm
 from .signInAndOutViews import logoutUser, signIn
