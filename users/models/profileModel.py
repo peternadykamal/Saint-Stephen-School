@@ -5,6 +5,7 @@ from operator import is_
 
 from django.contrib.auth.models import User
 from django.db import models
+from users.models.PermissionLogModel import PermissionLog
 
 from .addressModel import Address
 from .schoolLevelModel import SchoolLevel
@@ -186,6 +187,8 @@ class Profile(models.Model):
 
   def hasPermission(self, permission_codename):
     try:
+      PermissionLog.objects.create(
+          user=self.user, permission_codename=permission_codename)
       permissions = self.getAllPermissions()
       permissionsCodename = [item.codename for item in permissions]
       if permission_codename in permissionsCodename:

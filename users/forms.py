@@ -4,6 +4,8 @@ from django import forms
 from django.contrib.auth.models import Permission
 from django.forms import DateField, ModelForm, ValidationError
 
+from users.models.PermissionLogModel import PermissionLog
+
 from . import models
 
 
@@ -131,7 +133,7 @@ class ProfileForm(ModelForm):
 
 class UserPermissionTagForm(ModelForm):
   permissions = forms.ModelMultipleChoiceField(
-      queryset=Permission.objects.all(),
+      queryset=Permission.objects.none(),
       widget=forms.CheckboxSelectMultiple,
       required=False,
   )
@@ -151,8 +153,20 @@ class UserPermissionTagForm(ModelForm):
 
   def __init__(self, *args, **kwargs):
     super().__init__(*args, **kwargs)
+    # Get a list of permission IDs that have been checked in the logs
+    logged_permission_ids = PermissionLog.objects.values_list(
+        'permission__id', flat=True)
+
+    # Filter the queryset to include only the permissions that have been logged
+    permissions_queryset = Permission.objects.filter(
+        id__in=logged_permission_ids)
+
+    # Update the permissions field queryset
+    self.fields['permissions'].queryset = permissions_queryset
+
+    # set the permissions field choices format
     permissions_choices = [
-        (permission.id, permission.name) for permission in Permission.objects.all()
+        (permission.id, permission.name) for permission in self.fields['permissions'].queryset.all()
     ]
     self.fields['permissions'].choices = permissions_choices
 
