@@ -55,7 +55,6 @@ def cropImage(input_path, destination_path):
 
   original_filename = os.path.basename(input_path)
   os.makedirs(destination_path, exist_ok=True)
-  print(os.path.join(destination_path, original_filename))
   original_image.save(os.path.join(destination_path, original_filename))
 
   if cropped_array is not None and cropped_array.any():

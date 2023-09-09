@@ -1,9 +1,10 @@
 from users.models import Profile, UserPermissionTag
+from utils.run_test import runTest
 
 
 def test():
-  print('# ---------------------------------------------------------------------------- #')
-  print('# ---------------------------------------------------------------------------- #')
+  runTest('users', 'ProfileCRUDViewsTestCase', 'test_get_user_profile')
+  # runTest('users')
 
 
-# test()
+test()
