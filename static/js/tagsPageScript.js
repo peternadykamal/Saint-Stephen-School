@@ -59,10 +59,6 @@ function settingUpTagUpdateFormButtons() {
       const formSubmitUrl = form.getAttribute("action");
       const options = {
         method: "POST",
-        headers: {
-          "X-CSRFToken": form.querySelector("input[name=csrfmiddlewaretoken]")
-            .value,
-        },
         body: new FormData(form),
       };
       const fullUrl = utils.getApiUrl(formSubmitUrl);
@@ -147,10 +143,6 @@ function settingUpTagAddFormButtons() {
       const formSubmitUrl = form.getAttribute("action");
       const options = {
         method: "POST",
-        headers: {
-          "X-CSRFToken": form.querySelector("input[name=csrfmiddlewaretoken]")
-            .value,
-        },
         body: new FormData(form),
       };
       const fullUrl = utils.getApiUrl(formSubmitUrl);

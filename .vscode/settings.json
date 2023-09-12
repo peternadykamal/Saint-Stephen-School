@@ -73,7 +73,7 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[django-html]": {
-    "editor.defaultFormatter": "monosans.djlint"
+    "editor.defaultFormatter": "monosans.djlint",
   },
   "djlint.ignore": [
     "H025",
@@ -82,5 +82,18 @@
     "H030",
     "H031",
     "H023"
+  ],
+  "emmet.includeLanguages": {
+    "django-html": "html",
+  },
+  "css.styleSheets": [
+    "/static/css/bootstrap.rtl.min.css",
+  ],
+  // the below setting is to have css intellisense in django templates
+  // this setting must be in settings of application scope, just coppy "css.enabledLanguages"
+  // paste it in settings search bar and add "django-html" to it.
+  "css.enabledLanguages": [
+    "django-html",
+    "html"
   ],
 }

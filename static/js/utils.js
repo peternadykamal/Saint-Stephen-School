@@ -79,7 +79,7 @@ function handleError(message, source, lineno, colno, error) {
   toastElement.classList.add(
     "toast",
     "show",
-    "bg-bgcolor-glass",
+    "bg-glass",
     "text-light",
     "position-fixed", // Changed from "position-absolute"
     "top-0", // Positioned at the top
@@ -118,4 +118,22 @@ export function withErrorHandler(fn) {
       );
     }
   };
+}
+
+// in some cases while designing the page, you want to jump
+// to specific element when page loads
+export function jumpToElement(elementId) {
+  /**
+   * @param {string} elementId
+   * @returns {void}
+   * here is an example of how to use it
+   * at the end of your template file add this
+   * ''' html
+   * <script type="module">import {jumpToElement} from "{% static 'js' %}/utils.js";
+   *   jumpToElement("jumpOnLoad");
+   * </script>
+   * '''
+   */
+  const element = document.querySelector(`#${elementId}`);
+  element.scrollIntoView({ behavior: "smooth" });
 }

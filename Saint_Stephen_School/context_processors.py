@@ -88,6 +88,7 @@ def navigation_config(request):
     profileTags = request.profile.user_permission_tags.all()
   else:
     profilePermissions = []
+    profileTags = []
   NAVIGATION_CONFIG.extend(
       (generate_navigation_items(profilePermissions, profileTags, navigation_items)))
 
