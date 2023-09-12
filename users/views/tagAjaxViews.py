@@ -62,8 +62,7 @@ def updateTag(request):
   tag_id = request.POST.get('id', None)
   if tag_id:
     tag = get_object_or_404(models.UserPermissionTag, id=tag_id)
-    form = UserPermissionTagForm(
-        request.POST, instance=tag)
+    form = UserPermissionTagForm(data=request.POST, instance=tag)
     if (form.is_valid()):
       form.save()
       return JsonResponse({'status': 'success'})
@@ -77,7 +76,7 @@ def updateTag(request):
 @ has_permission_tag(tag_name='admin')
 @ require_POST
 def addTag(request):
-  form = UserPermissionTagForm(request.POST)
+  form = UserPermissionTagForm(data=request.POST)
   if (form.is_valid()):
     newTag = form.save()
     lastTag = models.UserPermissionTag.objects.get(is_buttom=True)
