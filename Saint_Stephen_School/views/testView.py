@@ -50,19 +50,3 @@ def testSearch(request):
     return JsonResponse({'search': f'{search}', 'age': f'{age}', 'method': 'GET'})
   elif request.method == 'POST':
     return JsonResponse({'method': 'POST'})
-
-# this path gets the user profile data
-
-
-def profileTest(request):
-  profileForm = ProfileForm()
-  if request.method == 'POST':
-    profileForm = ProfileForm(request.POST)
-    if profileForm.is_valid():
-      profileForm.save()
-      return JsonResponse({'status': 'success'})
-    else:
-      return JsonResponse({'status': 'fail'})
-  elif request.method == 'GET':
-    profileForm = ProfileForm()
-    return render(request, 'testTemplate.html', {'form': profileForm})
