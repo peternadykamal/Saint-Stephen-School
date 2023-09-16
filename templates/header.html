@@ -23,7 +23,7 @@
       </a>
       {% if request.user.is_authenticated %}
         <div class="col-4 py-1 px-1 my-1 ms-auto me-2 text-center">
-          <span class="almarai-light small">مرحبًا ,{{ profileName|truncatechars:15 }}!</span>
+          <span class="almarai-light small">مرحبًا ,{{ request.profile.name|truncatechars:15 }}!</span>
         </div>
       {% else %}
         <a class="col-4 btn btn-browndarkest rounded-0 py-1 px-1 my-1 ms-auto me-2"
@@ -117,7 +117,7 @@
             <div class="col-5">
               {% if request.user.is_authenticated %}
                 <div class="text-center mb-2">
-                  <span class="almarai-light h5">مرحبًا ,{{ profileName|truncatechars:15 }}!</span>
+                  <span class="almarai-light h5">مرحبًا ,{{ request.profile.name|truncatechars:15 }}!</span>
                 </div>
                 <a class="btn btn-brown rounded-0 px-3 py-2 shadow"
                    href="{% url 'log-out' %}">

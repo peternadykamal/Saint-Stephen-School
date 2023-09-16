@@ -127,6 +127,7 @@ footer {
   background-color: inherit;
 }
 
+// related to the sign in input fields
 .form-group > label {
   bottom: 38px;
   left: 15px;
@@ -137,16 +138,6 @@ footer {
   transition: 0.2s;
   pointer-events: none;
   background-color: inherit;
-}
-
-.form-group > input.form-control,
-.form-group > textarea.form-control {
-  border: 2px solid $textcoloralt;
-  background-color: inherit;
-  padding: 10px;
-  border-radius: 8px;
-  transition: border-color 0.2s;
-  box-sizing: border-box;
 }
 
 .form-group.active > label,
@@ -232,6 +223,10 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"],
+input[type="file"],
+select.form-select,
+.form-group > input.form-control,
+.form-group > textarea.form-control,
 .uneditable-input {
   border: 2px solid $textcoloralt;
   background-color: inherit;
@@ -258,8 +253,13 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
+input[type="file"]:focus,
+select.form-select:focus,
+.form-group > input.form-control:focus,
+.form-group > textarea.form-control:focus,
 .uneditable-input:focus {
   border: 3px solid $textcoloralt;
+  padding: 7px;
   box-shadow: none;
   outline: 0 none;
 }

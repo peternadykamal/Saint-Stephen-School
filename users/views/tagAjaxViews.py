@@ -44,8 +44,8 @@ def updateHierarchy(request):
   try:
     requestData = json.loads(request.body.decode('utf-8'))
     newHierarchy = requestData['newHierarchy']
-    newTags = [models.UserPermissionTag.objects.get(
-        id=tag) for tag in newHierarchy]
+    newTags = [get_object_or_404(
+        models.UserPermissionTag, id=tag) for tag in newHierarchy]
     models.UserPermissionTag.update_hierarchy(newTags)
     response_data = {'status': 'success'}
     return JsonResponse(response_data)

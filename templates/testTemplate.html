@@ -1,0 +1,38 @@
+{% extends "header&footer.html" %}
+{% load static %}
+{% block scripts %}
+  <script src="{% static 'js' %}/utils.js"  type="module" defer></script>
+  <script src="https://unpkg.com/htmx.org@1.9.5"
+          integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
+          crossorigin="anonymous"
+          defer></script>
+  <script type="module">
+    import * as utils from "{% static 'js' %}/utils.js";
+    const errorEvents = [
+      'htmx:responseError',
+      'htmx:sendError',
+      'htmx:sseError',
+      'htmx:onLoadError',
+      'htmx:swapError',
+      'htmx:targetError',
+      'htmx:timeout',
+      'htmx:validation:failed',
+      'htmx:validation:halted',
+      'htmx:xhr:abort',
+      'htmx:syntax:error'
+    ];
+
+    errorEvents.forEach(eventName => {
+      document.addEventListener(eventName, utils.withErrorHandler(event => {
+        const errorMessage = `HTMX ${eventName} event occurred.`;
+        console.log(eventName)
+        const customError = new Error(errorMessage);
+        customError.event = event;
+        throw customError;
+      }));
+    });
+  </script>
+{% endblock scripts %}
+{% block content %}
+  <div class="container" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'></div>
+{% endblock content %}

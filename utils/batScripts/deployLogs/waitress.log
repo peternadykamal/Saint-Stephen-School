@@ -244,3 +244,30 @@ WARNING:waitress.queue:Task queue depth is 1
 WARNING:waitress.queue:Task queue depth is 2
 WARNING:waitress.queue:Task queue depth is 3
 WARNING:waitress.queue:Task queue depth is 4
+INFO:waitress:Serving on http://127.0.0.1:8000
+WARNING:django.request:Not Found: /test/
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 3
+WARNING:waitress.queue:Task queue depth is 4
+WARNING:waitress.queue:Task queue depth is 5
+WARNING:waitress.queue:Task queue depth is 5
+WARNING:waitress.queue:Task queue depth is 6
+WARNING:waitress.queue:Task queue depth is 7
+WARNING:waitress.queue:Task queue depth is 8
+WARNING:waitress.queue:Task queue depth is 9
+WARNING:waitress.queue:Task queue depth is 9
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2

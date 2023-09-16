@@ -15,6 +15,11 @@ urlpatterns = [
 
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+  # testing path for playing with templates and components
+  urlpatterns += [path('test/', views.renderTestTemplate, name='test-template'),
+                  path('testPost/', views.testPost, name='test-post'),
+                  path('testGet/', views.testGet, name='test-get'),
+                  path('testSearch/', views.testSearch, name='test-search')]
 else:
   urlpatterns += static(settings.STATIC_URL,
                         document_root=settings.STATIC_ROOT)
