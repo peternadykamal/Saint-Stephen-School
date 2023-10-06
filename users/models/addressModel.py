@@ -38,7 +38,7 @@ class Address(models.Model):
 
     return ', '.join(details)
 
-  def getAddressFromRequset(request, oldAddress=None):
+  def getAddressFromRequest(request, oldAddress=None):
 
     building = request.POST.get("building")
     street = request.POST.get("street")

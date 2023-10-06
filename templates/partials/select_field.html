@@ -1,0 +1,52 @@
+{% comment %} 
+it is expected to have a variable called choices passed to this template
+it is an array of options where each option is an array of three elements
+0: the id of the option (UUID), 1: the text of the option (text), 2: is this option selected (boolean)
+
+some times the option might not have an id, in that case the id will be null
+also in some cases i want to pass other data with the option, in this case
+{{options fragment}} will be passed with the select component that contain exactly how to reder the options
+
+in some cases you might want to have dependent select field, in this case you can use htmx attributes
+here is an tutorial link that explain how to do that https://youtu.be/UCl5O-XVChk?si=LEvYUmvmtNFyOLiL
+{% endcomment %}
+{% var font=font|default:"lateef-regular" %}
+{% var label_class=label_class|default:"fs-4 mb-0" %}
+<div class="{{ field_class }}">
+  <div class="{% if label_beside %}row{% endif %}">
+    <div class="col-md-auto col-12 align-self-center">
+      <label for="{{ id }}"
+             class="form-label d-block text-truncate {{ label_class }} {{ font }}">
+        {{ label }}
+        {% if required %}<span class="asteriskField">*</span>{% endif %}
+      </label>
+    </div>
+    <div class="col">
+      <select class="form-select form-control border border-2 border-textcoloralt p-2"
+              {% attrs hx-trigger hx-post hx-get hx-target %}
+              id="{{ id }}"
+              name="{{ id }}"
+              {% if required %}required{% endif %}
+              aria-label="Choose an option"
+              aria-required="{{ required }}"
+              aria-describedby="{{ id }}-description">
+        {% if children %}
+          {{ children }}
+        {% else %}
+          {% for choice in choices %}
+            <option {% if option.0 %}value="{{ option.0 }}"{% endif %}
+                    {% if option.2 %}selected{% endif %}>{{ option.1 }}</option>
+          {% endfor %}
+        {% endif %}
+      </select>
+    </div>
+  </div>
+</div>
+{% comment %} 
+  {% fragment as url %} {% url "get_school_level_years" %} {% endfragment %}
+  {% #select options=F_option label="testing select field" hx-trigger="change" hx-target="#current_school_level_year" hx-post=url %}
+  <option value="hello">hello</option>
+  {% /select %}
+  
+  {% input id="name" label="Name" label_beside %}
+{% endcomment %}

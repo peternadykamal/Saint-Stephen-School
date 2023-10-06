@@ -1,0 +1,171 @@
+{% var num_inputs=num_inputs|default:"1" %}
+{% var label_beside=label_beside|default:False %}
+{% var floating_label=floating_label|default:False %}
+{% var material_label=material_label|default:False %}
+{% var required=required|default:False %}
+{% var id=id|default:"" %}
+{% var label=label|default:"" %}
+{% comment %} 
+saved just because i like the idea
+  {% if label_beside %}
+    {% assign label_class = label_class | append: " col-form-label" %}
+  {% endif %}
+{% endcomment %}
+<div class="{{ field_class }}">
+  {% if not floating_label and not material_label %}
+    {% var font=font|default:"lateef-regular" %}
+    {% var label_class=label_class|default:"fs-4 mb-0" %}
+    <div class="{% if label_beside %}row{% endif %}">
+      <div class="col-md-auto col-12 align-self-center">
+        <label for="{{ id }}"
+               class="form-label d-block text-truncate {{ label_class }} {{ font }}">
+          {{ label }}
+          {% if required %}<span class="asteriskField">*</span>{% endif %}
+        </label>
+      </div>
+      <div class="col">
+        {% if not num_inputs or num_inputs == 1 or num_inputs == "1" %}
+          <div class="input-group">
+            {{ children }}
+            <input type="text"
+                   class="form-control"
+                   id="{{ id }}"
+                   name="{{ id }}"
+                   {% if required %}required{% endif %}
+                   aria-labelledby="{{ id }}-label"
+                   aria-label="Enter {{ label }}"
+                   value="{{ value|default_if_none:'' }}">
+          </div>
+        {% else %}
+          <div class="input-group multi-input-group">
+            {{ children }}
+            {% with " "|center:num_inputs as range %}
+              {% for _ in range %}
+                <input type="text"
+                       class="form-control"
+                       id="{{ id }}-{{ forloop.counter }}"
+                       name="{{ id }}-{{ forloop.counter }}"
+                       {% if required %}required{% endif %}
+                       aria-labelledby="{{ id }}-label"
+                       aria-label="Enter {{ label }}"
+                       onkeypress="handleSpaceAsTab(event,'{{ id }}')">
+              {% endfor %}
+            {% endwith %}
+          </div>
+          <input type="hidden"
+                 id="{{ id }}"
+                 name="{{ id }}"
+                 value="{{ value|default_if_none:'' }}"
+                 aria-labelledby="{{ id }}-label">
+          <script>
+        function handleSpaceAsTab(event,id) {
+          // remove spaces
+          event.target.value = event.target.value.replace(/\s/g, '');
+          
+          // concatenate all input fields in hidden field with id
+          const parentWithClass = event.target.parentElement;
+          if (parentWithClass && parentWithClass.classList.contains('multi-input-group')) {
+            const sibblingInputFields  = parentWithClass.querySelectorAll('input[type="text"]');
+            const concatenatedInput = document.querySelector(`#${id}`)
+            concatenatedInput.value = Array.from(sibblingInputFields).map(field => field.value).join('');
+          }
+          
+          // handle space as tab
+          const keyCode = event.keyCode || event.which;
+          if (keyCode === 32) {
+            event.preventDefault();
+            const inputFields = document.querySelectorAll('input[type="text"]');
+            const currentIndex = Array.from(inputFields).indexOf(event.target);
+            const nextIndex = (currentIndex + 1) % inputFields.length;
+            inputFields[nextIndex].focus();
+          }
+        }
+
+        function onHiddenInputLoaded(id) {
+          // split concatenated value in hidden input field to input fields
+          const hiddenInput = document.getElementById(id);
+          const siblingContainer = hiddenInput.previousElementSibling;
+          const inputFields = siblingContainer.querySelectorAll('input[type="text"]');
+          const concatenatedValue = hiddenInput.value;
+          const values = concatenatedValue.split(' ');
+        
+          values.forEach((value, index) => {
+            if (inputFields[index]) {
+              inputFields[index].value = value;
+            }
+          });
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+          onHiddenInputLoaded('{{ id }}');
+        });
+          </script>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+  {% var font=font|default:"almarai-regular" %}
+  {% var label_class=label_class|default:"mb-0" %}
+  {% if floating_label %}
+    {% if children %}<div class="input-group">{% endif %}
+      {{ children }}
+      <div class="form-floating">
+        <input type="text"
+               class="form-control"
+               name="{{ id }}"
+               id="{{ id }}"
+               placeholder="{{ label }}"
+               {% if required %}required{% endif %}
+               value="{{ value|default_if_none:'' }}"
+               aria-labelledby="{{ id }}-label"
+               aria-label="Enter {{ label }}" />
+        <label for="{{ id }}" class="{{ label_class }} {{ font }}">
+          {{ label|truncatechars:45 }}
+          {% if required %}<span class="asteriskField">*</span>{% endif %}
+        </label>
+      </div>
+      {% if children %}</div>{% endif %}
+  {% endif %}
+  {% if material_label %}
+    <div class="form-group">
+      <input type="text"
+             class="form-control"
+             id="{{ id }}"
+             name="{{ id }}"
+             {% if required %}required{% endif %}
+             value="{{ value|default_if_none:'' }}"
+             aria-labelledby="{{ id }}-label"
+             aria-label="Enter {{ label }}" />
+      <label for="{{ id }}" class="{{ label_class }} {{ font }}">
+        {{ label|truncatechars:45 }}
+        {% if required %}<span class="asteriskField">*</span>{% endif %}
+      </label>
+    </div>
+  {% endif %}
+  {% if errors %}<div class="invalid-feedback d-block almarai-regular text-redalert">{{ errors.0 }}</div>{% endif %}
+</div>
+{% comment %} 
+  here are a set of examples for the input field
+  {% input id="name" label="Name" %}
+  {% input id="name" label="Name" label_beside%}
+  {% input id="name" label="Name" floating_label %}
+  {% input id="name" label="Name" material_label %}
+  {% input id="name" label="Name" num_inputs=2 %}
+  {% input id="name" label="Name" num_inputs=2 label_beside %}
+  
+  {% input id="name" label="Name" num_inputs=2 required %}
+  {% input id="name" label="Name" num_inputs=2 required label_beside %}
+
+  {% input id="name" label="Name" num_inputs=2 value="test" %}
+  {% input id="name" label="Name" num_inputs=2 value="test" label_beside %}
+  {% input id="name" label="Name" num_inputs=2 value="test" required font="lateef-regular" %}
+  {% input id="name" label="Name" num_inputs=2 value="test" required label_beside font="lateef-regular" %}
+  {% input id="name" label="Name" num_inputs=2 value="test" required font="lateef-regular" label_beside label_class="fs-4 mb-0" %}
+  {% input id="name" label="Name" num_inputs=2 value="test" required font="lateef-regular" label_beside label_class="fs-4 mb-0" field_class="col-md-4 col" %}
+
+  with children
+  {% #input label="dah 4a8al" num_inputs=2 id="search" required value='hello' floating_label %}
+    <button class="btn btn-outline-champagne border border-2 border-textcoloralt" type="button" id="searchButton">
+      <i class="bi bi-search text-textcoloralt"></i>
+    </button>
+  {% /input %}
+{% endcomment %}

@@ -1,0 +1,44 @@
+{% var profile_class=profile_class|add:" profile-container border " %}
+{% comment %} size {% endcomment %}
+{% if size == "XXL" %}
+  {% var style="width: 200px;height: 200px;" %}
+  {% var profile_class=profile_class|add:" border-5 rounded-5 " %}
+{% elif size == "XL" %}
+  {% var style="width: 150px;height: 150px;" %}
+  {% var profile_class=profile_class|add:" border-4 rounded-4 " %}
+{% elif size == "L" %}
+  {% var style="width: 100px;height: 100px;" %}
+  {% var profile_class=profile_class|add:" border-3 rounded-3 " %}
+{% elif size == "MD" %}
+  {% var style="width: 50px;height: 50px;" %}
+  {% var profile_class=profile_class|add:" border-2 rounded-2 " %}
+{% elif size == "SM" %}
+  {% var style="width: 35px;height: 35px;" %}
+  {% var profile_class=profile_class|add:" border-2 rounded-2 " %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} 
+  regarding the rounded class, in case of the circle parameter is specidifed
+  the profile_class will contain both rounded-n and rounded-circle at the same time
+  but becasue they have the same specificity, the last one will be applied which is
+  rounded-circle
+{% endcomment %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} round {% endcomment %}
+{% if circle %}
+  {% var profile_class=profile_class|add:" rounded-circle border-textcoloralt " %}
+{% else %}
+  {% var profile_class=profile_class|add:" border-browndarkest " %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+<div class="{{ profile_class }}" {% attrs style %} id="{{ id }}">
+  <img alt="Image Preview" id="{{ imgId }}" {% attrs src %}>
+</div>
+{% comment %} 
+  {% fragment as profile_path %} {{ MEDIA_URL }}images/user-default.png {% endfragment %}
+  {% profile_image size="XXL" circle src=profile_path %}
+  {% profile_image size="XL" src=profile_path %}
+  {% profile_image size="L" circle src=profile_path %}
+  {% profile_image size="MD" src=profile_path %}
+  {% profile_image size="SM" circle src=profile_path %}
+{% endcomment %}

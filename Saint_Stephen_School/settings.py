@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
     'landing.apps.LandingConfig',
     'users.apps.UsersConfig',
+    'slippers',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'Saint_Stephen_School.context_processors.navigation_config',
             ],
+            "builtins": ["slippers.templatetags.slippers"],
         },
     },
 ]

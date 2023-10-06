@@ -23,6 +23,8 @@ currentYear = datetime.date.today().year
 
 @ login_required(login_url='sign-in')
 def profileForm(request):
+  # if request method is GET and there is a query string with id or
+  # if the request method is POST and there is a userId in the request body
   if ((request.method == 'GET' and request.GET.get('id')) or (request.method == 'POST' and request.POST.get('userId'))):
     return updateProfileForm(request)
   else:
@@ -85,7 +87,7 @@ def newProfileForm(request):
       profile = profileForm.save(commit=False)
 
       if models.ExpensesProfileForm.validateAmountPayed(amount_of_money_payed):
-        profile.address = models.Address.getAddressFromRequset(request)
+        profile.address = models.Address.getAddressFromRequest(request)
         profile.user = createNewUser(context)
 
         profile.save()
@@ -189,7 +191,7 @@ def updateProfileForm(request):
 def canAccessTalmzaFields(request, profile, context):
   # check if the user can access the talmaza section in the profile form
   condition = (profile != None and request.profile.hasPermission('change_profile_talmza_level')) or (
-      not profile and (request.profile.hasPermission('add_profile_talmza_level')))
+      profile != None and (request.profile.hasPermission('add_profile_talmza_level')))
   context["canAccessTalmazaSection"] = condition
 
 
@@ -207,10 +209,10 @@ def getAmountOfMoneyPayed(request):
 
 def updateProfileAddress(profile, request):
   if profile.address:
-    profile.address = models.Address.getAddressFromRequset(
+    profile.address = models.Address.getAddressFromRequest(
         request, profile.address)
   else:
-    profile.address = models.Address.getAddressFromRequset(request)
+    profile.address = models.Address.getAddressFromRequest(request)
 
 
 def createNewExpenses(amount_of_money_payed, profile, context):

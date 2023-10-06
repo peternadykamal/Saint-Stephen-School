@@ -1,0 +1,66 @@
+{% comment %} defualt values {% endcomment %}
+{% var color=color|default:"black" %}
+{% var size=size|default:"MD" %}
+{% var icon=icon|default:"" %}
+{% if not anchor %}
+  {% var button=button|default:True %}
+{% endif %}
+{% var shadow=shadow|default:"" %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% var icon_class=icon_class|add:" bi " %}
+{% comment %} size  {% endcomment %}
+{% if size == "XXL" %}
+  {% var icon_class=icon_class|add:" fs-1 px-1" %}
+{% elif size == "XL" %}
+  {% var icon_class=icon_class|add:" fs-2 px-1" %}
+{% elif size == "L" %}
+  {% var icon_class=icon_class|add:" fs-4 " %}
+{% elif size == "MD" %}
+  {% var icon_class=icon_class|add:" fs-5 " %}
+{% elif size == "SM" %}
+  {% var icon_class=icon_class|add:" fs-6" %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} color  {% endcomment %}
+{% if color == "black" %}
+  {% var button_class=button_class|add:" btn btn-browndarkest " %}
+{% elif color == "brown" %}
+  {% var button_class=button_class|add:" btn btn-brown " %}
+{% elif color == "grey" %}
+  {% var button_class=button_class|add:" btn btn-secondary " %}
+{% elif color == "green" %}
+  {% var button_class=button_class|add:" btn btn-greenalert " %}
+{% elif color == "red" %}
+  {% var button_class=button_class|add:" btn border border-2 border-redalert " %}
+  {% var icon_class=icon_class|add:" text-redalert " %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} shadow {% endcomment %}
+{% if shadow %}
+  {% var button_class=button_class|add:" shadow-md " %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% if icon %}
+  {% if button %}
+    <button class="{{ button_class }} btn rounded-circle"
+            {% attrs hx-trigger hx-post hx-get hx-target %}
+            id="{{ id }}">
+      <i class=" {{ icon_class }} {{ icon }} "></i>
+    </button>
+  {% elif anchor %}
+    <a class="{{ button_class }} btn rounded-circle"
+       {% attrs href %}
+       id="{{ id }}">
+      <i class=" {{ icon_class }} {{ icon }} "></i>
+    </a>
+  {% endif %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} 
+{% circle_button size="XXL" color="black" icon="bi-trash" shadow %}
+{% circle_button size="XL" color="brown" icon="bi-trash" %}
+{% circle_button size="L" color="grey" icon="bi-trash" shadow %}
+{% circle_button size="MD" color="red" icon="bi-trash" %}
+{% fragment as url %} {% url "get_school_level_years" %} {% endfragment %}
+{% circle_button size="SM" color="green" icon="bi-trash" shadow anchor href=url %}
+{% endcomment %}

@@ -9,3 +9,4 @@ django-livereload-server==0.4
 autocrop==1.3.0
 django-user-agents==0.4.0
 djlint==1.32.1
+slippers==0.6.2

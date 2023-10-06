@@ -1,5 +1,6 @@
 {% extends "header&footer.html" %}
 {% load static %}
+{% load slippers %}
 {% block scripts %}
   <script src="{% static 'js' %}/utils.js"  type="module" defer></script>
   <script src="https://unpkg.com/htmx.org@1.9.5"
@@ -34,5 +35,44 @@
   </script>
 {% endblock scripts %}
 {% block content %}
-  <div class="container" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'></div>
+  <div class="mt-3"></div>
+  <div class="container" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <select class="form-select form-control border border-2 border-textcoloralt p-2"
+            name="school_level"
+            id="school_level"
+            hx-trigger="change"
+            hx-post="{% url 'get_school_level_years' %}"
+            hx-target="#current_school_level_year"
+            required>
+      <option value="410faf62-e732-4eb4-99bd-0ad117730406">اقل من حضانة</option>
+      <option value="d0b12a75-71bc-40e4-94ed-9745a604bef3">حضانة</option>
+      <option value="af153d90-953b-48e6-b8d8-ffa6e2a32320">الابتدائي</option>
+      <option value="750700e2-0aa9-462f-83a8-de322f87cc7e">الإعدادي</option>
+      <option value="c8fa8e83-73f0-45e5-a820-5e2c7d919239">ثانوي</option>
+      <option value="0b23ec22-3483-4227-884e-177432bc0b1f">جامعة</option>
+      <option value="07889dac-ae48-48b8-8d2b-683ee35d8ab2">خريج</option>
+    </select>
+    <div class="mt-3"></div>
+    <div id="current_school_level_year"></div>
+    {% button color="black" label="button" size="XL" round=0 icon="bi-trash" %}
+    {% button color="brown" label="button" size="L" round=1 icon="bi-trash" %}
+    {% button color="green" label="button" size="MD" round=0 icon="bi-trash" %}
+    {% fragment as url %} {% url "get_school_level_years" %} {% endfragment %}
+    {% button color="red" label="button" size="SM" round=1 icon="bi-trash" anchor href=url %}
+    {% button color="black" label="---------- hello ----------" button_class="col-2" size="SM" round=1 truncate_label %}
+    <div class="list-group">
+      {% list_button color="green" label="hello" %}
+      {% fragment as url %} {% url "get_school_level_years" %} {% endfragment %}
+      {% list_button anchor color="black" href=url label="hello_--------------------" %}
+    </div>
+  </div>
 {% endblock content %}
+{% comment %}
+  [x]: input fields
+  [x]: select fields
+  [x]: buttons (including button list, circular buttons)
+  [x]: profile picture
+  [ ]: radio buttons
+  [ ]: multi option field 
+  [ ]: modal
+{% endcomment %}

@@ -1,21 +1,13 @@
-import json
-import re
 from multiprocessing import context
-from urllib import request
 
-from click import echo
 from django.http import JsonResponse, QueryDict
 from django.shortcuts import render
 from django.views.decorators.http import (require_GET, require_http_methods,
                                           require_POST)
-from waitress import profile
-
-from users.forms import ProfileForm
 
 
 def renderTestTemplate(request):
-  context = {'form': ProfileForm()}
-  return render(request, 'testTemplate.html', context)
+  return render(request, 'testTemplate.html')
 
 
 @require_POST
