@@ -12,7 +12,7 @@ here is an tutorial link that explain how to do that https://youtu.be/UCl5O-XVCh
 {% endcomment %}
 {% var font=font|default:"lateef-regular" %}
 {% var label_class=label_class|default:"fs-4 mb-0" %}
-<div class="{{ field_class }}">
+<div id="{{ id }}_field" class="{{ field_class }}">
   <div class="{% if label_beside %}row{% endif %}">
     <div class="col-md-auto col-12 align-self-center">
       <label for="{{ id }}"
@@ -34,8 +34,8 @@ here is an tutorial link that explain how to do that https://youtu.be/UCl5O-XVCh
           {{ children }}
         {% else %}
           {% for choice in choices %}
-            <option {% if option.0 %}value="{{ option.0 }}"{% endif %}
-                    {% if option.2 %}selected{% endif %}>{{ option.1 }}</option>
+            <option {% if choice.0 %}value="{{ choice.0 }}"{% endif %}
+                    {% if choice.0 == value %}selected{% endif %}>{{ choice.1 }}</option>
           {% endfor %}
         {% endif %}
       </select>

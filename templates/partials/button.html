@@ -61,7 +61,7 @@ until now there are 3 types of buttons (note that this includes anchor tags)
 {% comment %} ---------------------------------------------------------------- {% endcomment %}
 {% if button %}
   <button class="{{ button_class }} {% if truncate_label %}d-flex{% endif %}"
-          {% attrs hx-trigger hx-post hx-get hx-target %}
+          {% attrs type value hx-trigger hx-post hx-get hx-target %}
           id="{{ id }}">
     {% if icon %}<i class="{{ icon_class }} {{ icon }}"></i>{% endif %}
     {% if truncate_label %}
