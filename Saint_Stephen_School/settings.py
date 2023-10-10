@@ -54,8 +54,15 @@ INSTALLED_APPS = [
 
     'landing.apps.LandingConfig',
     'users.apps.UsersConfig',
+    "compressor",
     'slippers',
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -206,3 +213,6 @@ MANUALLY_CROPPED_PATHES_CSV = os.path.join(
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# django compressor settings
+COMPRESS_ENABLED = True
