@@ -183,6 +183,22 @@ footer {
   left: 50%;
   transform: translate(-50%, -70%);
 }
+
+// styles related to the attendance page specifically the clock
+#clock {
+  font-size: 4rem;
+  letter-spacing: -0.4rem;
+  line-height: 0.8;
+}
+.editable-span {
+  outline: none;
+  min-width: 1.5rem;
+  font-size: 5rem;
+}
+#ampm {
+  letter-spacing: -0.2rem;
+}
+
 .shadow-md {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
