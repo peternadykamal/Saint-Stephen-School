@@ -177,7 +177,10 @@ TIME_ZONE = 'Africa/Cairo'
 
 USE_I18N = True
 
-USE_TZ = True
+# USE_TZ = True  # this causes some issues with mysql queries that is related to datetimes
+# (specifically the attendance form query)
+# , https://docs.djangoproject.com/en/1.11/ref/settings/#time-zone
+# note that now TIME_ZONE value doesn't matter because we are using USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

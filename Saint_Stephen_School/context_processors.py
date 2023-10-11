@@ -79,6 +79,9 @@ def navigation_config(request):
        'type': 'link', 'label': 'استمارة التقديم', 'url': "profile-form"},
       {'tag': 'admin', 'type': 'link',
        'label': "تعديل شعارات", 'url': "tag-page"},
+      {'tag': 'admin', 'type': 'link',
+       'label': "أخذ الحضور", 'url': "attendance_form"},
+
   ]
 
   NAVIGATION_CONFIG = []

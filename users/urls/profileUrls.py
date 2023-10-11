@@ -15,4 +15,7 @@ urlpatterns = [
     path('profile/search/', views.searchUsers, name="search_users"),
     path('profile/get/<uuid:user_id>/',
          views.getUserProfile, name="get_user_profile"),
+
+    path('attendance/',
+         views.attendanceForm, name="attendance_form"),
 ]

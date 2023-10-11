@@ -1,4 +1,5 @@
 from .addressModel import Address
+from .attendenceModel import Attendance
 from .expensesProfileFormModel import ExpensesProfileForm
 from .PermissionLogModel import PermissionLog
 from .profileFormLogModel import ProfileFormLog
