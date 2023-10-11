@@ -1,0 +1,40 @@
+{% comment %} 
+here is how to use toast messages
+from django.contrib import messages
+messages.success(request, "تم حفظ البيانات بنجاح", extra_tags="toast")
+{% endcomment %}
+{% if messages %}
+  <div class="toast-container position-fixed bottom-0 end-0">
+    {% for message in messages %}
+      {% if 'toast' in message.tags %}
+        <div class="toast-message toast bg-glass m-3 rounded-3 p-2 fade d-flex align-items-center justify-content-between"
+             role="alert"
+             aria-live="assertive">
+          {% if 'success' in message.tags %}
+            <div class="toast-body text-center almarai-bold text-greenalert fs-6">{{ message }}</div>
+          {% elif 'info' in message.tags %}
+            <div class="toast-body text-center almarai-bold text-textcolor fs-6">{{ message }}</div>
+          {% elif 'error' in message.tags %}
+            <div class="toast-body text-center almarai-bold text-redalert fs-6">{{ message }}</div>
+          {% endif %}
+          <button type="button"
+                  class="btn-close p-3"
+                  data-bs-dismiss="toast"
+                  aria-label="Close"></button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <script>
+    // Select all toast messages
+    document.addEventListener("DOMContentLoaded", function () {
+      const toastMessages = document.querySelectorAll(".toast-message.toast");
+
+      // Initialize and show each toast message
+      toastMessages.forEach(function (toast) {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast);
+        toastBootstrap.show();
+      });
+    });
+  </script>
+{% endif %}
