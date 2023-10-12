@@ -1,14 +1,10 @@
-from users.models import UserPermissionTag
-from users.models import Profile
+from users.models import Profile, UserPermissionTag
+from utils.run_test import runTest
 
 
 def test():
-  print('# ---------------------------------------------------------------------------- #')
-  # print(UserPermissionTag.objects.get(
-  #     tag_name='مخدوم').has_permission('add_profile'))
-  # profile = Profile.objects.get(name='شادي جرجس جرجس بخيت')
-  # print(profile.getAllPermissions())
-  print('# ---------------------------------------------------------------------------- #')
+  runTest('users', 'ProfileCRUDViewsTestCase', 'test_get_user_profile')
+  # runTest('users')
 
 
-test()
+# test()

@@ -6,12 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "rtl": " rtlcss .\\css\\bootstrap.min.css .\\css\\bootstrap.rtl.min.css",
-    "watch": "run-when-changed --watch \".\\css\\bootstrap.min.css\" --exec \"npm run rtl\""
+    "watch": "run-when-changed --watch \"./css/bootstrap.min.css\" --exec \"npm run rtl && npm run copy-bootstrap-files\"",
+    "copy-bootstrap-files": "cpy \"./css/{bootstrap.min.css,bootstrap.min.css.map,bootstrap.rtl.min.css}\" ../static"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "rtlcss": "^4.1.0"
+    "rtlcss": "^4.1.0",
+    "cpy-cli": "^5.0.0"
   },
   "devDependencies": {
     "run-when-changed": "^2.1.0"

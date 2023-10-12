@@ -1,0 +1,6 @@
+2023/08/17 19:04:24 [emerg] 2276#21688: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2023/08/17 19:04:44 [emerg] 8712#24700: invalid log level "archive/Saint-Stephen-School/utils/batScripts/deployLogs/nginx-error.log" in D:\projects archive\Saint-Stephen-School\utils\batScripts\nginx-windows/conf/nginx.conf:10
+2023/08/18 10:50:03 [emerg] 16248#12012: CreateDirectory() "D:\projects archive\Saint-Stephen-School\utils\batScripts\nginx-windows/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2023/08/18 10:53:37 [emerg] 3332#25836: CreateDirectory() "D:\projects archive\Saint-Stephen-School\utils\batScripts\nginx-windows/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2023/08/18 10:54:27 [emerg] 18452#21560: CreateDirectory() "D:\projects archive\Saint-Stephen-School\utils\batScripts\nginx-windows/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2023/08/18 10:55:55 [emerg] 9056#18856: CreateDirectory() "D:\projects archive\Saint-Stephen-School\utils\batScripts\nginx-windows/temp/client_body_temp" failed (3: The system cannot find the path specified)

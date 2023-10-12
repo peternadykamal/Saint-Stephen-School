@@ -1,0 +1,8 @@
+components:
+  input: "partials/input_field.html"
+  select: "partials/select_field.html"
+  button: "partials/button.html"
+  list_button: "partials/list_button.html"
+  circle_button: "partials/circular_button.html"
+  profile_image: "partials/profile_image.html"
+  dateTime: "partials/dateTime_field.html"

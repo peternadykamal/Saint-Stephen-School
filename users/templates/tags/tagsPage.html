@@ -1,0 +1,14 @@
+{% extends "header&footer.html" %}
+{% load static %}
+{% block scripts %}
+  <script src="{% static 'js' %}/Sortable.min.js" defer></script>
+  <script src="{% static 'js' %}/utils.js"  type="module" defer></script>
+  <script src="{% static 'js' %}/tagsPageScript.js" type="module" defer></script>
+{% endblock scripts %}
+{% block content %}
+  {% if request.user_agent.is_mobile %}
+    {% include "./mobile/tagsPageMobile.html" %}
+  {% else %}
+    {% include "./desktop/tagsPageDesktop.html" %}
+  {% endif %}
+{% endblock content %}

@@ -1,7 +1,8 @@
-from django.forms import ModelForm, ValidationError, DateField
-from . import models
-
 import datetime
+
+from django.forms import DateField, ModelForm, ValidationError
+
+from users import models
 
 
 class ProfileForm(ModelForm):

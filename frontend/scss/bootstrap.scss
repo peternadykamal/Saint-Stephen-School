@@ -5,6 +5,7 @@
 
 $greenalert: #187416;
 $redalert: #c51605;
+$bluealert: #2164b0;
 $textcolor: #171215;
 $textcoloralt: #4e4b44;
 $bgcolor: #f7f7f0;
@@ -13,16 +14,48 @@ $browndark: #887f77;
 $browndarkest: #201a1e;
 $brown: #d0b49f;
 $champagne: #e5d4c9;
+$champagnelight: #e2d4c6;
 $pewter: #e2e6e7;
+$grey: #dddad4;
+
+// some fixed height for the header and footer for both desktop and mobile
+$navbar-height: 51px;
+$footer-height: 115px;
+$header-height: 100px;
+$mobile-header-height: 45px;
+$mobile-footer-height: $footer-height;
 
 body,
 html {
-  height: 100%;
+  height: calc(100vh + #{$footer-height});
 }
 
-body {
-  display: flex;
-  flex-direction: column;
+header {
+  height: $header-height;
+}
+
+footer {
+  min-height: $footer-height;
+}
+
+@media (max-width: 768px) {
+  header {
+    height: $mobile-header-height;
+  }
+
+  footer {
+    height: $mobile-footer-height;
+  }
+}
+// i want to have a simple way to create a container between the header
+// footer that taked the whole viewport height - header height only
+.fixed-seciton-container {
+  height: calc(100vh - #{$header-height} - #{$navbar-height});
+}
+@media (max-width: 768px) {
+  .fixed-seciton-container {
+    height: calc(100vh - #{$mobile-header-height});
+  }
 }
 
 .church-image {
@@ -95,8 +128,9 @@ body {
   background-color: inherit;
 }
 
+// related to the sign in input fields
 .form-group > label {
-  bottom: 38px;
+  bottom: 35px;
   left: 15px;
   position: relative;
   background-color: inherit;
@@ -104,17 +138,6 @@ body {
   font-size: 1.1em;
   transition: 0.2s;
   pointer-events: none;
-  background-color: inherit;
-}
-
-.form-group > input.form-control,
-.form-group > textarea.form-control {
-  border: 2px solid $textcoloralt;
-  background-color: inherit;
-  padding: 10px;
-  border-radius: 8px;
-  transition: border-color 0.2s;
-  box-sizing: border-box;
 }
 
 .form-group.active > label,
@@ -126,8 +149,8 @@ body {
 }
 
 .profile-container {
-  width: 130px;
-  height: 130px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -148,7 +171,7 @@ body {
   -webkit-transition: -webkit-filter 0.5s ease-out;
 }
 
-.bg-bgcolor-glass {
+.bg-glass {
   background: rgba(247, 247, 240, 0.7);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.3px);
@@ -161,7 +184,28 @@ body {
   transform: translate(-50%, -70%);
 }
 
+// styles related to the attendance page specifically the clock
+#clock {
+  font-size: 4rem;
+  letter-spacing: -0.4rem;
+  line-height: 0.8;
+}
+.editable-span {
+  outline: none;
+  min-width: 1.5rem;
+  font-size: 5rem;
+}
+#ampm {
+  letter-spacing: -0.2rem;
+}
+
+.shadow-md {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 /* -------------------------------------------------------------------------- */
+$primary: $bluealert;
+$secondary: $grey;
 
 // import functions and variables
 @import "../bootstrap/scss/functions";
@@ -179,6 +223,7 @@ $custom-theme-colors: (
   "browndarkest": $browndarkest,
   "brown": $brown,
   "champagne": $champagne,
+  "champagnelight": $champagnelight,
   "pewter": $pewter,
 );
 $theme-colors: map-merge($theme-colors, $custom-theme-colors);
@@ -198,6 +243,10 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"],
+input[type="file"],
+select.form-select,
+.form-group > input.form-control,
+.form-group > textarea.form-control,
 .uneditable-input {
   border: 2px solid $textcoloralt;
   background-color: inherit;
@@ -224,8 +273,13 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
+input[type="file"]:focus,
+select.form-select:focus,
+.form-group > input.form-control:focus,
+.form-group > textarea.form-control:focus,
 .uneditable-input:focus {
   border: 3px solid $textcoloralt;
+  padding: 7px;
   box-shadow: none;
   outline: 0 none;
 }

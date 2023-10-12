@@ -1,0 +1,88 @@
+{% comment %} Parameters:
+- field_class: CSS class for styling the container div.
+- label_beside: Boolean indicating whether the label should be placed beside the input field (default: False).
+- floating_label: Boolean indicating whether to use a floating label design (default: False).
+- material_label: Boolean indicating whether to use a material design label (default: False).
+- required: Boolean indicating whether the input is required (default: False).
+- id: HTML id attribute for the input field (default: empty string).
+- label: Text label for the input field (default: empty string).
+- font: Font name for styling the label text (default: 'lateef-regular' or 'almarai-regular' based on conditions).
+- label_class: CSS class for styling the label element (default: 'fs-4 mb-0' or 'mb-0' based on conditions).
+- children: Content to be placed inside the input element.
+{% endcomment %}
+{% var label_beside=label_beside|default:False %}
+{% var floating_label=floating_label|default:False %}
+{% var material_label=material_label|default:False %}
+{% var required=required|default:False %}
+{% var id=id|default:"" %}
+{% var label=label|default:"" %}
+<div class="{{ field_class }}">
+  {% if not floating_label and not material_label %}
+    {% var font=font|default:"lateef-regular" %}
+    {% var label_class=label_class|default:"fs-4 mb-0" %}
+    <div class="{% if label_beside %}row{% endif %}">
+      <div class="col-md-auto col-12 align-self-center">
+        <label for="{{ id }}"
+               class="form-label d-block text-truncate {{ label_class }} {{ font }}">
+          {{ label }}
+          {% if required %}<span class="asteriskField">*</span>{% endif %}
+        </label>
+      </div>
+      <div class="col">
+        <div class="input-group">
+          {{ children }}
+          <input type="datetime-local"
+                 class="form-control"
+                 id="{{ id }}"
+                 name="{{ id }}"
+                 {% if required %}required{% endif %}
+                 aria-labelledby="{{ id }}-label"
+                 aria-label="Enter {{ label }}"
+                 value="{{ value|default_if_none:'' }}"
+                 {% attrs value min max step readonly required disabled autofocus placeholder autocomplete form list title onchange oninput %}>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% var font=font|default:"almarai-regular" %}
+  {% var label_class=label_class|default:"mb-0" %}
+  {% if floating_label %}
+    {% if children %}<div class="input-group">{% endif %}
+      {{ children }}
+      <div class="form-floating">
+        <input type="datetime-local"
+               class="form-control"
+               name="{{ id }}"
+               id="{{ id }}"
+               placeholder="{{ label }}"
+               {% if required %}required{% endif %}
+               value="{{ value|default_if_none:'' }}"
+               aria-labelledby="{{ id }}-label"
+               aria-label="Enter {{ label }}"
+               {% attrs value min max step readonly required disabled autofocus placeholder autocomplete form list title onchange oninput %} />
+        <label for="{{ id }}" class="{{ label_class }} {{ font }}">
+          {{ label|truncatechars:45 }}
+          {% if required %}<span class="asteriskField">*</span>{% endif %}
+        </label>
+      </div>
+      {% if children %}</div>{% endif %}
+  {% endif %}
+  {% if material_label %}
+    <div class="form-group">
+      <input type="datetime-local"
+             class="form-control"
+             id="{{ id }}"
+             name="{{ id }}"
+             {% if required %}required{% endif %}
+             value="{{ value|default_if_none:'' }}"
+             aria-labelledby="{{ id }}-label"
+             aria-label="Enter {{ label }}"
+             {% attrs value min max step readonly required disabled autofocus placeholder autocomplete form list title onchange oninput %} />
+      <label for="{{ id }}" class="{{ label_class }} {{ font }}">
+        {{ label|truncatechars:45 }}
+        {% if required %}<span class="asteriskField">*</span>{% endif %}
+      </label>
+    </div>
+  {% endif %}
+  {% if errors %}<div class="invalid-feedback d-block almarai-regular text-redalert">{{ errors.0 }}</div>{% endif %}
+</div>

@@ -1,16 +1,18 @@
-from django.conf import settings
-
-from django.db.models.signals import post_save, post_delete
-from django.dispatch import receiver
-from django.contrib.auth.models import User
-import users.models as models
-
+import csv
 import datetime
 import os
-import csv
 
-from .utils import cropImage, is_image_path_present, deleteProfileImage
-import users.tests.quickTest
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.db.models.signals import (m2m_changed, post_delete, post_save,
+                                      pre_delete)
+from django.dispatch import receiver
+
+import users.models as models
+from users.models.expensesProfileFormModel import ExpensesProfileForm
+
+from .utils import (create_csv_if_not_exists, cropImage, deleteProfileImage,
+                    is_image_path_present)
 
 # We make this signal to trigger any time user added make for it a profile
 
@@ -46,7 +48,7 @@ def deleteProfile(sender, instance, **kwargs):
     deleteProfileImage(image_path)
   if instance.address:
     instance.address.delete()
-  # TODO delete his all expenses for all years
+  ExpensesProfileForm.objects.filter(created_for=instance).delete()
   user = instance.user
   user.delete()
 
@@ -66,8 +68,33 @@ def saveProfile(sender, instance, **kwargs):
   if not models.Profile.DEFAULT_PROFILE_PATH.replace('/', '\\') in image_path:
     try:
       cropImage(image_path, destination_path)
+    except FileNotFoundError as e:
+      # this exception will be raised if the image is not found
+      default_image_path = models.Profile.DEFAULT_PROFILE_PATH
+      instance.profile_image = default_image_path
+      instance.save()
     except Exception as e:
+      create_csv_if_not_exists(csv_path)
       if not is_image_path_present(csv_path, image_path):
         with open(csv_path, "a", newline="") as csvfile:
           csv_writer = csv.writer(csvfile)
           csv_writer.writerow([cropped_image_path, non_cropped_image_path])
+
+
+@receiver(pre_delete, sender=models.UserPermissionTag)
+def remove_permission_tag_from_profiles(sender, instance, **kwargs):
+    # Get all profiles associated with the instance being deleted
+  profiles = models.Profile.objects.filter(user_permission_tags=instance)
+
+  # Remove the instance from each profile's user_permission_tags
+  for profile in profiles:
+    profile.user_permission_tags.remove(instance)
+
+
+@receiver(m2m_changed, sender=models.Profile.user_permission_tags.through)
+def update_highest_tag(sender, instance, action, pk_set, **kwargs):
+  if action == 'post_add' or action == 'post_remove':
+    highest_tag = models.UserPermissionTag.get_highest_tag(
+        list(instance.user_permission_tags.all()))
+    instance.highest_tag = highest_tag
+    instance.save()

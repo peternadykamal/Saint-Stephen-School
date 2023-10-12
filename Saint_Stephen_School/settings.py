@@ -10,10 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from utils.get_env_value import get_env_value
-from utils.get_current_git_branch import get_current_git_branch
-from pathlib import Path
 import os
+import socket
+from pathlib import Path
+
+from utils.get_current_git_branch import get_current_git_branch
+from utils.get_env_value import get_env_value
+from utils.get_local_ipaddress import get_ip_address
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# XXX SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-j76sdd(dc+wa=(d8prvwk311l@4g=dvgzs$d-9(f08asj5!x!)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -31,10 +34,12 @@ if get_current_git_branch() == 'main':
 else:
   DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1',
-                 'saint-stephen-school.peternady.social']
+# DEBUG = False
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', get_ip_address(),
+                 'saint-stephen-school.peternady.social',]
 CSRF_TRUSTED_ORIGINS = [
-    'https://saint-stephen-school.peternady.social', 'https://127.0.0.1']
+    'https://saint-stephen-school.peternady.social', 'http://127.0.0.1', f'http://{get_ip_address()}']
 
 # Application definition
 
@@ -49,7 +54,15 @@ INSTALLED_APPS = [
 
     'landing.apps.LandingConfig',
     'users.apps.UsersConfig',
+    "compressor",
+    'slippers',
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
+    'users.middleware.UserProfileMiddleware',
     'livereload.middleware.LiveReloadScript',
 ]
 
@@ -82,6 +96,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'Saint_Stephen_School.context_processors.navigation_config',
             ],
+            "builtins": ["slippers.templatetags.slippers"],
         },
     },
 ]
@@ -111,6 +126,13 @@ else:
   db_user = get_env_value("DB_USER_PROD")
   db_password = get_env_value("DB_PASSWORD_PROD")
   db_name = get_env_value("DB_NAME_PROD")
+
+# if the host is peter-nady, then use the local database
+if socket.gethostname() == 'peter-nady':
+  db_host = "peter-nady"
+  db_user = get_env_value("DB_USER_DEV")
+  db_password = get_env_value("DB_PASSWORD_DEV")
+  db_name = get_env_value("DB_NAME_DEV")
 
 DATABASES = {
     'default': {
@@ -155,18 +177,30 @@ TIME_ZONE = 'Africa/Cairo'
 
 USE_I18N = True
 
-USE_TZ = True
+# USE_TZ = True  # this causes some issues with mysql queries that is related to datetimes
+# (specifically the attendance form query)
+# , https://docs.djangoproject.com/en/1.11/ref/settings/#time-zone
+# note that now TIME_ZONE value doesn't matter because we are using USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = '/files/'
+MEDIA_URL = 'files/'
+PROTECTED_MEDIA_URL = 'protected/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# because i use javascript modules in some cases, which because of the new es6 standard,
+# the browser will not load them if they are not served with the correct mime type so i need to give them type="module"
+# in this case yeah the browser become able to read the files correctly but django can't identity the module type
+# so in this case i need to explicitly tell django that each file with .js extension is a javascript module
+if DEBUG:
+  import mimetypes
+  mimetypes.add_type("application/javascript", ".js", True)
 
 # This tell django where to uplod user generated content
 STATIC_ROOT = os.path.join(BASE_DIR, 'deployedStaticFiles')
@@ -182,3 +216,6 @@ MANUALLY_CROPPED_PATHES_CSV = os.path.join(
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# django compressor settings
+COMPRESS_ENABLED = True

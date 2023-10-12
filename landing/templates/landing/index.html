@@ -1,73 +1,76 @@
-{% extends 'header&footer.html' %}
+{% extends "header&footer.html" %}
 {% load static %}
-
-{% block bodyClass %}bg-champagne{% endblock bodyClass %}
+{% block bodyClass %}
+  bg-champagnelight
+{% endblock bodyClass %}
 {% block content %}
-<div class="container-fluid">
-  <div class="container hero-container">
-    <div class="church-image">
-      <img class="img-fluid" src="{% static 'images' %}/church.png" alt="church" />
-      <div class="border border-2 border-browndarkest brown-square rounded-2"></div>
-      <div class="bg-bgcolor shadow text-card rounded-2 pe-5 p-4 text-textcolor">
-        <span class="almarai-bold h3">مرحبًا بكم في مدرسة الشهيد استيفانوس بكنيسة السيدة العذراء مريم
+  <div class="container-fluid">
+    <div class="container hero-container">
+      <div class="church-image">
+        <img class="img-fluid" src="{% static 'images' %}/church.png" alt="church" />
+        <div class="border border-2 border-browndarkest brown-square rounded-2"></div>
+        <div class="bg-bgcolor shadow text-card rounded-2 pe-5 p-4 text-textcolor">
+          <span class="almarai-bold h3">مرحبًا بكم في مدرسة الشهيد استيفانوس بكنيسة السيدة العذراء مريم
           والشهيد مارجرجس بغبريال!</span>
-        <div class="lateef-regular h5 mt-3 mb-4 pe-3">
-          مدرسة "الشهيد اسْتِفَانُوس" هي مكان تعليمي مميز يسعى إلى تأهيل
-          أطفالنا منذ الصغر في حفظ الألحان، وتعليم طقوس وتاريخ الكنيسة
-          الأرثوذكسية. نهدف إلى بناء أسس دينية وثقافية راسخة لأطفالنا من
-          خلال مناهج تعليمية متميزة. نحن فخورون بأن نقدم هذا المساحة
-          الأكاديمية المميزة لتعليم وتأهيل الأطفال في ترتيل الحان.
+          <div class="lateef-regular h5 mt-3 mb-4 pe-3">
+            مدرسة "الشهيد اسْتِفَانُوس" هي مكان تعليمي مميز يسعى إلى تأهيل
+            أطفالنا منذ الصغر في حفظ الألحان، وتعليم طقوس وتاريخ الكنيسة
+            الأرثوذكسية. نهدف إلى بناء أسس دينية وثقافية راسخة لأطفالنا من
+            خلال مناهج تعليمية متميزة. نحن فخورون بأن نقدم هذا المساحة
+            الأكاديمية المميزة لتعليم وتأهيل الأطفال في ترتيل الحان.
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="container-fluid bg-bgcolor">
-  <div class="container my-5">
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-3 me-md-5 me-0"></div>
-      <div class="col-12 col-sm-6 row">
-        <div class="col almarai-bold text-browndarkest text-start h4 pe-0">
-          لماذا قررنا تسمية مدرستنا باسم "الشهيد اسْتِفَانُوس"؟
+  <div class="container-fluid bg-bgcolor">
+    <div class="container my-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-3 me-md-5 me-0"></div>
+        <div class="col-12 col-sm-6 row">
+          <div class="col almarai-bold text-browndarkest text-start h4 pe-0">
+            لماذا قررنا تسمية مدرستنا باسم "الشهيد اسْتِفَانُوس"؟
+          </div>
+          <div class="col-3 align-self-start p-0">
+            <div class="border border-1 border-browndarkest mt-3"></div>
+          </div>
         </div>
-        <div class="col-3 align-self-start p-0">
-          <div class="border border-1 border-browndarkest mt-3"></div>
+        <div class="w-100 d-none d-md-block"></div>
+        <div class="col-12 col-sm-3 d-none d-md-block me-md-5 me-0 my-auto">
+          <img src="{% static 'images' %}/Saint Stephen.png"
+               class="img-fluid rounded-4"
+               alt="Saint Stephen" />
         </div>
-      </div>
-      <div class="w-100 d-none d-md-block"></div>
-      <div class="col-12 col-sm-3 d-none d-md-block me-md-5 me-0 my-auto">
-        <img src="{% static 'images' %}/Saint Stephen.png" class="img-fluid rounded-4" alt="Saint Stephen" />
-      </div>
-      <div class="col-12 col-sm-6 border border-2 border-textcoloralt rounded-4 p-4 pe-5 text-start lateef-regular h5">
-        <div>
-          اسم "استفانوس" مأخوذ من اللغة اليونانية ويعني "تاج" أو "إكليل من
-          الزهور". وقد كان استفانوس يخدم في الكنيسة المسيحية كشماس، وكان
-          يُعَتَبَر قدوةً في الإيمان والروحانية. وكان من بين السبعة الذين
-          انتُخِبُوا لخدمة الموائد وتوزيع المساعدات على المحتاجين (أعمال 6:
-          1-6).
-        </div>
-        <div>
-          وقد قام استفانوس بدور بارز في الدفاع عن الإيمان المسيحي والتصدي
-          للانحرافات والتحديات التي واجهتهم. كان يشهد بإخلاص عن الرسالة وكرم
-          موسى والأنبياء ويعلن أن الإيمان بالمسيح هو الطريق الصحيح. ورغم
-          تعرضه للضغوط والاتهامات الزائفة، ظل واقفًا بثبات على إيمانه
-          ورسالته.
-        </div>
-        <div>
-          لقد تعرض "الشهيد اسْتِفَانُوس" للتجديف والرجم حتى استشهد، وقد ألقى
-          كلمة مؤثرة قبل رحيله أكد فيها على اعتزازه بإيمانه ورؤيته للسماء
-          مفتوحة والمسيح قائمًا عن يمين الله.
-        </div>
-        <div>
-          بناءً على رغبتنا في تحفيز الأطفال وتأهيلهم لخدمة الكنيسة، قررنا
-          تسمية مدرستنا باسم "الشهيد اسْتِفَانُوس" لنستلهم من شجاعته
-          وتفانيه. إنها مدرسة تهدف إلى تعليم وتعمق "الحان للشمامسة" وتعليم
-          وتدريب الأطفال على حفظها وترتيلها بإتقان. كما سنساعد الأطفال على
-          دراسة وفهم "طقس وتاريخ الكنيسة"، ما يجعلهم أجيالًا ملتزمة ومؤهلة
-          للخدمة الروحية.
+        <div class="col-12 col-sm-6 border border-2 border-textcoloralt rounded-4 p-4 pe-5 text-start lateef-regular h5">
+          <div>
+            اسم "استفانوس" مأخوذ من اللغة اليونانية ويعني "تاج" أو "إكليل من
+            الزهور". وقد كان استفانوس يخدم في الكنيسة المسيحية كشماس، وكان
+            يُعَتَبَر قدوةً في الإيمان والروحانية. وكان من بين السبعة الذين
+            انتُخِبُوا لخدمة الموائد وتوزيع المساعدات على المحتاجين (أعمال 6:
+            1-6).
+          </div>
+          <div>
+            وقد قام استفانوس بدور بارز في الدفاع عن الإيمان المسيحي والتصدي
+            للانحرافات والتحديات التي واجهتهم. كان يشهد بإخلاص عن الرسالة وكرم
+            موسى والأنبياء ويعلن أن الإيمان بالمسيح هو الطريق الصحيح. ورغم
+            تعرضه للضغوط والاتهامات الزائفة، ظل واقفًا بثبات على إيمانه
+            ورسالته.
+          </div>
+          <div>
+            لقد تعرض "الشهيد اسْتِفَانُوس" للتجديف والرجم حتى استشهد، وقد ألقى
+            كلمة مؤثرة قبل رحيله أكد فيها على اعتزازه بإيمانه ورؤيته للسماء
+            مفتوحة والمسيح قائمًا عن يمين الله.
+          </div>
+          <div>
+            بناءً على رغبتنا في تحفيز الأطفال وتأهيلهم لخدمة الكنيسة، قررنا
+            تسمية مدرستنا باسم "الشهيد اسْتِفَانُوس" لنستلهم من شجاعته
+            وتفانيه. إنها مدرسة تهدف إلى تعليم وتعمق "الحان للشمامسة" وتعليم
+            وتدريب الأطفال على حفظها وترتيلها بإتقان. كما سنساعد الأطفال على
+            دراسة وفهم "طقس وتاريخ الكنيسة"، ما يجعلهم أجيالًا ملتزمة ومؤهلة
+            للخدمة الروحية.
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock content %}

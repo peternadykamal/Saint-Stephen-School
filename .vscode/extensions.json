@@ -15,6 +15,7 @@
     "usernamehw.errorlens",
     "glenn2223.live-sass",
     "stackbreak.comment-divider",
-    "ms-python.vscode-pylance"
+    "ms-python.vscode-pylance",
+    "monosans.djlint"
   ]
 }

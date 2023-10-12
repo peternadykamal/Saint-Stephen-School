@@ -1,54 +1,82 @@
 {% load static %}
-
-<footer class="mt-auto bg-browndark pt-4">
-  <div class="container text-center">
-    <div class="h1 reemkufi-regular text-textcolor mb-0">
-      مدرسة الشَّهِيد اِسْتِفَانُوس
-    </div>
-    <div class="almarai-light text-textcolor">
-      بكنيسة السيدة العذراء مريم والشهيد مارجرجس بغبريال
-    </div>
-    <div class="row justify-content-center mt-4">
-      <div class="col-xl-2 col-md-3 col">
-        <div class="text-start mb-3 fs-4" dir="ltr">
-          <div class="text-muted text-decoration-none d-block mb-md-0 mb-3">
-            <span class="fs-5 fw-light text-bgcolor">03 5033626</span>
-            <i class="bi bi-telephone text-bgcolor"></i>
+<footer class="mt-auto bg-browndark pt-2 d-flex flex-column justify-content-end">
+  {% if request.user_agent.is_mobile %}
+    <div class="container position-relative">
+      <div class="position-absolute top-0 end-0 text-textcolor lh-sm">
+        <div class="text-textcolor reemkufi-regular fs-6 me-2 mt-1">مدرسة الشَّهِيد اِسْتِفَانُوس</div>
+      </div>
+      <div class="pt-3">
+        <div class="almarai-bold">تواصل معنا</div>
+        <div class="row">
+          <div class="col">
+            <div class="text-start fs-4">
+              <div class="fs-6 d-block">
+                <span class="fw-light text-bgcolor"  dir="ltr">03 5033626</span>
+                <i class="bi bi-telephone text-bgcolor"></i>
+              </div>
+              <a class="text-muted text-decoration-none fs-6 d-block"
+                 href="https://goo.gl/maps/CBc8CB8wvpcrB6d58">
+                <span class="text-bgcolor almarai-light">موقع المدرسة</span>
+                <i class="bi bi-geo-alt text-bgcolor"></i>
+              </a>
+            </div>
           </div>
-          <a
-            class="text-muted text-decoration-none d-block mb-md-0 mb-3"
-            href="https://goo.gl/maps/CBc8CB8wvpcrB6d58"
-          >
-            <span class="fs-5 text-bgcolor almarai-light">موقع المدرسة</span>
-            <i class="bi bi-geo-alt text-bgcolor"></i>
-          </a>
-        </div>
-      </div>
-      <div class="col-xl-2 col-md-3 col">
-        <div class="text-end mb-3 fs-4" dir="ltr">
-          <a
-            class="text-muted text-decoration-none d-block mb-md-0 mb-3"
-            href="https://www.facebook.com/tlmazetastefanous?mibextid=ZbWKwL"
-          >
-            <i class="bi bi-facebook text-bgcolor"></i>
-            <span class="fs-5 fw-bold text-bgcolor">Facebook</span>
-          </a>
-          <a
-            class="text-muted text-decoration-none d-block mb-md-0 mb-3"
-            href="#"
-          >
-            <i class="bi bi-envelope-fill text-bgcolor"></i>
-            <span class="fs-5 fw-bold text-bgcolor">Email</span>
-          </a>
+          <div class="col">
+            <div class="text-end fs-6">
+              <a class="text-muted text-decoration-none d-block"
+                 href="https://www.facebook.com/tlmazetastefanous?mibextid=ZbWKwL">
+                <span class="text-bgcolor">Facebook</span>
+                <i class="bi bi-facebook text-bgcolor"></i>
+              </a>
+              <a class="text-muted text-decoration-none d-block" href="#">
+                <span class="text-bgcolor">Email</span>
+                <i class="bi bi-envelope text-bgcolor"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div
-    dir="ltr"
-    class="container-fluid d-flex justify-content-center bg-browndarker text-bgcolor"
-    lang="en"
-  >
-    &copy; 2023. by Peter Nady &amp; Kamal Nady
-  </div>
+  {% else %}
+    <div class="container my-2">
+      <div class="row justify-content-between flex-row-reverse">
+        <div class="col-md-5 text-center d-md-block d-none">
+          <div class="h2 reemkufi-regular text-browndarkest mb-0">مدرسة الشَّهِيد اِسْتِفَانُوس</div>
+          <div class="almarai-light text-browndarkest text-truncate">بكنيسة السيدة العذراء مريم والشهيد مارجرجس بغبريال</div>
+        </div>
+        <div class="row justify-content-center col-xl-4 col">
+          <div class="col">
+            <div class="text-end fs-4">
+              <div class="text-muted text-decoration-none d-block">
+                <span class="fs-5 fw-light text-bgcolor"  dir="ltr">03 5033626</span>
+                <i class="bi bi-telephone text-bgcolor"></i>
+              </div>
+              <a class="text-muted text-decoration-none d-block"
+                 href="https://goo.gl/maps/CBc8CB8wvpcrB6d58">
+                <span class="fs-5 text-bgcolor almarai-light">موقع المدرسة</span>
+                <i class="bi bi-geo-alt text-bgcolor"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="text-end fs-4">
+              <a class="text-muted text-decoration-none d-block"
+                 href="https://www.facebook.com/tlmazetastefanous?mibextid=ZbWKwL">
+                <span class="fs-5 fw-bold text-bgcolor">Facebook</span>
+                <i class="bi bi-facebook text-bgcolor"></i>
+              </a>
+              <a class="text-muted text-decoration-none d-block" href="#">
+                <span class="fs-5 fw-bold text-bgcolor">Email</span>
+                <i class="bi bi-envelope text-bgcolor"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <div dir="ltr"
+       class="container-fluid d-flex justify-content-center bg-browndarker text-bgcolor"
+       style="font-size: 0.8rem"
+       lang="en">&copy; 2023. by Peter Nady &amp; Kamal Nady</div>
 </footer>

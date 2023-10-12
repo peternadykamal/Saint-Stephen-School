@@ -1,11 +1,20 @@
-from django.conf import settings
-
-from PIL import Image
-from autocrop import Cropper
-import PIL
-from utils.get_env_value import get_env_value
-import os
 import csv
+import os
+
+import PIL
+from autocrop import Cropper
+from django.conf import settings
+from PIL import Image
+
+from utils.get_env_value import get_env_value
+
+
+def create_csv_if_not_exists(csv_path):
+  if not os.path.exists(csv_path):
+    with open(csv_path, "w", newline="") as csvfile:
+      csv_writer = csv.writer(csvfile)
+      # Add headers or any initial data if needed
+      csv_writer.writerow(["Cropped Image Path", "Non-Cropped Image Path"])
 
 
 def is_image_path_present(csv_filename, image_path):
@@ -32,6 +41,8 @@ def cropManually(input_path):
 
 
 def cropImage(input_path, destination_path):
+  if not os.path.exists(input_path):
+    raise FileNotFoundError("Image file does not exist.")
   try:
     length = get_env_value("PROFILE_IMAGE_RESOLUTION")
     cropper = Cropper(face_percent=50, height=length, width=length)
@@ -44,7 +55,6 @@ def cropImage(input_path, destination_path):
 
   original_filename = os.path.basename(input_path)
   os.makedirs(destination_path, exist_ok=True)
-  print(os.path.join(destination_path, original_filename))
   original_image.save(os.path.join(destination_path, original_filename))
 
   if cropped_array is not None and cropped_array.any():

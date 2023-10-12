@@ -1,0 +1,22 @@
+<div class="toast-container position-absolute p-3 end-0"
+     style="top: 5%"
+     id="toastContainer">
+  <!-- Toast -->
+  <div id="confirmationToast"
+       class="toast bg-bgcolor"
+       role="alert"
+       aria-live="assertive"
+       aria-atomic="true">
+    <div class="toast-body">
+      <h5>هل أنت متأكد من أنك تريد حذف هذا الشعار؟</h5>
+      <div class="m-md-0 m-4 mt-0 d-flex justify-content-around">
+        <button id="deleteTag"
+                url="{% url 'delete-tag' tag_id=form.tag_id %}"
+                class="col-md col-12 btn btn-browndarkest rounded-0 px-3 py-2 almarai-light">مسح شعار</button>
+        <button type="button"
+                class="col-md col-12 btn btn-pewter rounded-0 px-3 py-2 almarai-light d-flex align-items-center justify-content-center"
+                data-bs-dismiss="toast">إلغاء</button>
+      </div>
+    </div>
+  </div>
+</div>

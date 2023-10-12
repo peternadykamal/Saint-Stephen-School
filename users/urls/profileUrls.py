@@ -1,5 +1,6 @@
 from django.urls import path
-from . import views
+
+from users import views
 
 urlpatterns = [
     path('profile-form/', views.profileForm, name='profile-form'),
@@ -11,4 +12,10 @@ urlpatterns = [
     path('get_talmza_level_years/', views.getTalmzaLevelYears,
          name="get_talmza_level_years"),
 
+    path('profile/search/', views.searchUsers, name="search_users"),
+    path('profile/get/<uuid:user_id>/',
+         views.getUserProfile, name="get_user_profile"),
+
+    path('attendance/',
+         views.attendanceForm, name="attendance_form"),
 ]

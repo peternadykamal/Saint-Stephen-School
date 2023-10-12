@@ -69,6 +69,20 @@
       "problemMatcher": []
     },
     {
+      "label": "rest migrations for app_name",
+      "type": "shell",
+      "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py migrate ${input:parameter} 0001_initial; python manage.py makemigrations ${input:parameter}; python manage.y migrate; }",
+      "windows": {
+        "command": "if (Test-Path .\\env\\Scripts\\activate) { .\\env\\Scripts\\activate; python manage.py migrate ${input:parameter} 0001_initial; python manage.py makemigrations ${input:parameter}; python manage.py migrate; }"
+      },
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Run frontend rtlcss converter",
       "type": "shell",
       "command": "cd ./frontend; npm run watch",
@@ -83,7 +97,9 @@
       "label": "Generate Fixtures for users",
       "type": "shell",
       "command": "${workspaceFolder}\\users\\tests\\dumpData.bat",
-      "args": ["${input:parameter}"],
+      "args": [
+        "${input:parameter}"
+      ],
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -106,15 +122,29 @@
       "problemMatcher": []
     },
     {
-      "label": "deploy and runserver",
+      "label": "deploy and runserver windows",
       "type": "shell",
       "command": "${workspaceFolder}\\utils\\batScripts\\deploy.bat",
       "presentation": {
         "echo": true,
         "reveal": "always",
-        "panel": "shared"
+        "panel": "shared",
+        "close": true
       },
       "dependsOn": "install requirements",
+      "problemMatcher": []
+    },
+    {
+      "label": "deploy and runserver linux",
+      "type": "shell",
+      "command": "echo ${input:password} | sudo -S ${workspaceFolder}/utils/batScripts/deploy.bash",
+      "presentation": {
+        "echo": true,
+        "panel": "shared",
+        "reveal": "silent",
+        "revealProblems": "onProblem",
+        "close": true
+      },
       "problemMatcher": []
     }
   ],
@@ -123,6 +153,12 @@
       "id": "parameter",
       "description": "parameter",
       "type": "promptString"
+    },
+    {
+      "id": "password",
+      "type": "promptString",
+      "description": "Enter your password",
+      "password": true
     }
   ]
 }

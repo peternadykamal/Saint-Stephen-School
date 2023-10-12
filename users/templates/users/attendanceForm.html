@@ -1,0 +1,47 @@
+{% extends "header&footer.html" %}
+{% load static %}
+{% load slippers %}
+{% block scripts %}
+  <script src="{% static 'js' %}/utils.js"  type="module" defer></script>
+  <script src="{% static 'js' %}/attendancePage.js"  type="module" defer></script>
+{% endblock scripts %}
+{% block content %}
+  <div class="d-flex flex-column align-items-center">
+    <div id="clock" dir="ltr" class="text-textcoloralt mt-5">
+      <span class="editable-span d-inline-block text-center reemkufi-regular"
+            id="hours"
+            contenteditable="false">12</span>
+      :
+      <span class="editable-span d-inline-block text-center reemkufi-regular"
+            id="minutes"
+            contenteditable="false">00</span>
+      :
+      <span class="editable-span d-inline-block text-center reemkufi-regular"
+            id="seconds"
+            contenteditable="false">00</span>
+      <span class="editable-span d-inline-block text-center reemkufi-regular fs-2"
+            id="ampm"
+            contenteditable="false">AM</span>
+    </div>
+    <button id="playPauseButton" class="fs-1 p-0 text-textcoloralt btn border-0">
+      <i class="bi bi-pause-btn"></i>
+    </button>
+  </div>
+  <div class="container d-flex justify-content-center">
+    <form method="post" class="col-md-3 col">
+      {% csrf_token %}
+      <div id="attendance_date_error"
+           class="invalid-feedback d-block almarai-regular text-redalert">{{ form.attendance_date.errors.0 }}</div>
+      {% input id=form.username.name label=form.username.label required=form.username.field.required errors=form.username.errors %}
+      {% with date_attrs=form.attendance_date.field.widget.attrs %}
+        {% dateTime id=form.attendance_date.name label=form.attendance_date.label required=form.attendance_date.field.required step=date_attrs.step max=date_attrs.max min=date_attrs.min value=form.attendance_date.value errors=form.attendance_date.errors field_class="d-none" %}
+      {% endwith %}
+      {% select id=form.attendance_type.name choices=form.attendance_type.field.choices label=form.attendance_type.label errors=form.attendance_type.errors %}
+      {% select id=form.status.name choices=form.status.field.choices label=form.status.label field_class="d-none" errors=form.status.errors %}
+      {% button color="black" label="تسجيل" size="MD" round=1 type="submit" value="Submit" button_class="col-12 mt-4" id="submitButton" %}
+    </form>
+  </div>
+  <div id="data-container"
+       data-mapping='{ "username":"{{ form.username.name }}", "attendance_date":"{{ form.attendance_date.name }}", "attendance_type":"{{ form.attendance_type.name }}", "status":"{{ form.status.name }}" }'>
+  </div>
+{% endblock content %}

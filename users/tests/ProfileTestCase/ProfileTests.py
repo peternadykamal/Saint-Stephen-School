@@ -1,19 +1,20 @@
+import os
+
 from django.test import TestCase
+
 # Replace "your_app" with the actual name of your app
 from users.models import Profile, TalmzaLevel
-
-import os
 
 
 class ProfileTestCase(TestCase):
   basePath = os.path.dirname(__file__) + '/fixtures'
   # List the fixture file paths here
-  fixtures = [f'{basePath}/ProfileData.json',
+  fixtures = [f'{basePath}/UserPermissionTagData.json',
               f'{basePath}/UserData.json',
               f'{basePath}/AddressData.json',
               f'{basePath}/TalmzaLevelData.json',
               f'{basePath}/SchoolLevelData.json',
-              f'{basePath}/UserPermissionTagData.json',
+              f'{basePath}/ProfileData.json',
               ]
 
   def setUp(self):

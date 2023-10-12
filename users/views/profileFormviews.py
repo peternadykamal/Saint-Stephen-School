@@ -1,27 +1,30 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.http import JsonResponse
+import datetime
+import json
+from asyncio import Condition
+from datetime import date, timedelta
+from pathlib import Path
 
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
-
+from django import forms
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect, render
 
+from decorators.checkPermissionDecorator import (has_permission,
+                                                 has_permission_tag)
 from users import models
 from users.forms import ProfileForm
-
-import datetime
-from datetime import timedelta, date
-from pathlib import Path
-import json
 
 currentYear = datetime.date.today().year
 
 
 @ login_required(login_url='sign-in')
 def profileForm(request):
+  # if request method is GET and there is a query string with id or
+  # if the request method is POST and there is a userId in the request body
   if ((request.method == 'GET' and request.GET.get('id')) or (request.method == 'POST' and request.POST.get('userId'))):
     return updateProfileForm(request)
   else:
@@ -43,7 +46,7 @@ def putTalmzaFieldInContext(profile, context):
 
   for level in talmzaLevels:
     isSelected = False
-    if profile:
+    if profile and profile.talmza_level:
       isSelected = profile.talmza_level.id == level.id
     talmzaChoices.append((level.id, level.level_name, isSelected))
 
@@ -57,7 +60,7 @@ def putSchoolFieldInContext(profile, context):
 
   for level in schoolLevels:
     isSelected = False
-    if profile:
+    if profile and profile.school_level:
       isSelected = profile.school_level.id == level.id
     schoolChoices.append((level.id, level.level_name, isSelected))
 
@@ -65,22 +68,26 @@ def putSchoolFieldInContext(profile, context):
 
 
 @login_required(login_url='sign-in')
+@has_permission('add_profile')
 def newProfileForm(request):
   context = {}
   profile = None
   profileForm = ProfileForm()
-
   if request.method == 'POST':
-
     profileForm = ProfileForm(
         request.POST, request.FILES)
+
+    # check if the user can access the talmaza section in the profile form
+    if not request.profile.hasPermission('add_profile_talmza_level'):
+      profileForm.fields.pop('current_talmza_level_year')
+      profileForm.fields.pop('talmza_level')
 
     if profileForm.is_valid():
       amount_of_money_payed = getAmountOfMoneyPayed(request)
       profile = profileForm.save(commit=False)
 
       if models.ExpensesProfileForm.validateAmountPayed(amount_of_money_payed):
-        profile.address = models.Address.getAddressFromRequset(request)
+        profile.address = models.Address.getAddressFromRequest(request)
         profile.user = createNewUser(context)
 
         profile.save()
@@ -101,26 +108,36 @@ def newProfileForm(request):
   putSchoolFieldInContext(profile, context)
   putTalmzaFieldInContext(profile, context)
   putBirthdateFieldInContext(profile, context)
+  canAccessTalmzaFields(request, profile, context)
   return render(request, 'users/profileForm.html', context)
 
 
 @ login_required(login_url='sign-in')
+@ has_permission('change_profile')
 def updateProfileForm(request):
   context = {}
   profile = None
   profileForm = ProfileForm()
 
+  # when user search for a profile, and it called on profile-form/?id=...
   if request.method == 'GET':
     profileIdSearch = request.GET.get('id')
 
     profile = getProfileIfExists(context, profileIdSearch)
     profileForm = ProfileForm(instance=profile)
 
+  # when user submit the form which is already available in the database
   if request.method == 'POST':
     profileIdSearch = request.POST['userId']
     profile = getProfileIfExists(context, profileIdSearch)
     profileForm = ProfileForm(
         request.POST, request.FILES, instance=profile)
+
+    # there is some attributes only a user with specific permissions can change them
+    permissions = request.profile.getAllPermissions()
+    if not request.profile.hasPermission('change_profile_talmza_level'):
+      profileForm.fields.pop('current_talmza_level_year')
+      profileForm.fields.pop('talmza_level')
 
     if profileForm.is_valid():
       amount_of_money_payed = getAmountOfMoneyPayed(request)
@@ -165,7 +182,17 @@ def updateProfileForm(request):
   putSchoolFieldInContext(profile, context)
   putTalmzaFieldInContext(profile, context)
   putBirthdateFieldInContext(profile, context)
+  canAccessTalmzaFields(request, profile, context)
   return render(request, 'users/profileForm.html', context)
+
+# check if the user can access the talmaza section in the profile form
+
+
+def canAccessTalmzaFields(request, profile, context):
+  # check if the user can access the talmaza section in the profile form
+  condition = (profile != None and request.profile.hasPermission('change_profile_talmza_level')) or (
+      profile != None and (request.profile.hasPermission('add_profile_talmza_level')))
+  context["canAccessTalmazaSection"] = condition
 
 
 def getProfileIfExists(context, id):
@@ -182,10 +209,10 @@ def getAmountOfMoneyPayed(request):
 
 def updateProfileAddress(profile, request):
   if profile.address:
-    profile.address = models.Address.getAddressFromRequset(
+    profile.address = models.Address.getAddressFromRequest(
         request, profile.address)
   else:
-    profile.address = models.Address.getAddressFromRequset(request)
+    profile.address = models.Address.getAddressFromRequest(request)
 
 
 def createNewExpenses(amount_of_money_payed, profile, context):

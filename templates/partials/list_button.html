@@ -1,0 +1,36 @@
+{% var button_class=button_class|add:" list-group-item list-group-item-action d-flex justify-content-between fs-5 " %}
+{% var color=color|default:"black" %}
+{% if not anchor %}
+  {% var button=button|default:True %}
+{% endif %}
+{% comment %} color {% endcomment %}
+{% if color == "black" %}
+  {% var button_class=button_class|add:" text-browndarkest " %}
+{% elif color == "green" %}
+  {% var button_class=button_class|add:" text-greenalert " %}
+{% elif color == "red" %}
+  {% var button_class=button_class|add:" text-redalert " %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% if button %}
+  <button type="button"
+          class="{{ button_class }}"
+          {% attrs hx-trigger hx-post hx-get hx-target %}
+          id="{{ id }}">
+    <div class="text-truncate">{{ label }}</div>
+    <i class="bi bi-chevron-left"></i>
+  </button>
+{% elif anchor %}
+  <a class="{{ button_class }}" {% attrs href %} id="{{ id }}">
+    <div class="text-truncate">{{ label }}</div>
+    <i class="bi bi-chevron-left"></i>
+  </a>
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} 
+  <div class="list-group">
+    {% list_button color="green" label="hello" %}
+    {% fragment as url %} {% url "get_school_level_years" %} {% endfragment %}
+    {% list_button anchor color="black" href=url label="hello_--------------------" %}
+  </div>
+{% endcomment %}

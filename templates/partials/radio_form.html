@@ -1,0 +1,24 @@
+{% load crispy_forms_field %}
+<div class="mb-3" id="div_{{ field.auto_id }}">
+  <label class="form-label requiredField form-label lateef-regular fs-4 mb-0"
+         for="{{ field.auto_id }}">
+    {{ field.label }}
+    {% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
+  </label>
+  <div class="border border-2 border-textcoloralt rounded-3 p-2">
+    {% for choice in field.field.choices %}
+      <div class="form-check form-check-inline">
+        <input class="border border-2 border-browndark p-2 form-check-input"
+               id="{{ field.auto_id }}_{{ forloop.counter0 }}"
+               name="{{ field.name }}"
+               type="radio"
+               value="{{ choice.0 }}"
+               {% if choice.0 == field.value.0 %}checked{% endif %}
+               {% if field.field.required %}required{% endif %}>
+        <label class="form-check-label"
+               for="{{ field.auto_id }}_{{ forloop.counter0 }}">{{ choice.1 }}</label>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% for error in field.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}

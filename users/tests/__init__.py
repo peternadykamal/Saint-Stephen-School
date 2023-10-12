@@ -1,2 +1,3 @@
 from .ProfileTestCase.ProfileTests import ProfileTestCase
 from .userPermissionTagTestCase.userPermissionTagTests import UserPermissionTagTestCase
+from .profileCRUDViewsTestCase.profileCRUDViewsTests import ProfileCRUDViewsTestCase

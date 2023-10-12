@@ -1,0 +1,93 @@
+{% comment %} 
+until now there are 3 types of buttons (note that this includes anchor tags)
+1. circular button (no label just an icon)
+2. defualt button (have many variances like size, color, border roundness, with or without an icon)
+3. list element button https://getbootstrap.com/docs/5.3/components/list-group/#links-and-buttons
+{% endcomment %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} defualt values {% endcomment %}
+{% var color=color|default:"black" %}
+{% var size=size|default:"MD" %}
+{% var round=round|default:"0" %}
+{% var icon=icon|default:"" %}
+{% if not anchor %}
+  {% var button=button|default:True %}
+{% endif %}
+{% var shadow=shadow|default:"" %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% var icon_class=icon_class|add:" bi " %}
+{% comment %} color {% endcomment %}
+{% if color == "black" %}
+  {% var button_class=button_class|add:" btn btn-browndarkest " %}
+{% elif color == "brown" %}
+  {% var button_class=button_class|add:" btn btn-brown " %}
+{% elif color == "green" %}
+  {% var button_class=button_class|add:" btn btn-greenalert " %}
+{% elif color == "red" %}
+  {% var button_class=button_class|add:" btn border border-2 border-redalert " %}
+  {% var label_class=label_class|add:" text-redalert " %}
+  {% var icon_class=icon_class|add:" text-redalert " %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} size {% endcomment %}
+{% if size == "XL" %}
+  {% var button_class=button_class|add:" p-3 " %}
+  {% var label_class=label_class|add:" almarai-light fs-3 " %}
+  {% var icon_class=icon_class|add:" fs-3 " %}
+{% elif size == "L" %}
+  {% var button_class=button_class|add:" p-2 " %}
+  {% var label_class=label_class|add:" d-inline-block py-1 almarai-light fs-4 " %}
+  {% var icon_class=icon_class|add:" fs-4 " %}
+{% elif size == "MD" %}
+  {% var button_class=button_class|add:" p-2 " %}
+  {% var label_class=label_class|add:" almarai-regular fs-5 " %}
+  {% var icon_class=icon_class|add:" fs-5 " %}
+{% elif size == "SM" %}
+  {% var button_class=button_class|add:" px-2 py-1" %}
+  {% var label_class=label_class|add:" almarai-regular " %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} round {% endcomment %}
+{% if round == 0 %}
+  {% var button_class=button_class|add:" rounded-0 " %}
+{% elif round == 1 %}
+  {% var button_class=button_class|add:" rounded-2 " %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} shadow {% endcomment %}
+{% if shadow %}
+  {% var button_class=button_class|add:" shadow " %}
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% if button %}
+  <button class="{{ button_class }} {% if truncate_label %}d-flex{% endif %}"
+          {% attrs type value hx-trigger hx-post hx-get hx-target %}
+          id="{{ id }}">
+    {% if icon %}<i class="{{ icon_class }} {{ icon }}"></i>{% endif %}
+    {% if truncate_label %}
+      <div class="{{ label_class }} text-truncate">{{ label }}</div>
+    {% else %}
+      <span class="{{ label_class }}">{{ label }}</span>
+    {% endif %}
+  </button>
+{% elif anchor %}
+  <a class="{{ button_class }} {% if truncate_label %}d-flex{% endif %}"
+     {% attrs href %}
+     id="{{ id }}">
+    {% if icon %}<i class="{{ icon_class }} {{ icon }}"></i>{% endif %}
+    {% if truncate_label %}
+      <div class="{{ label_class }} text-truncate">{{ label }}</div>
+    {% else %}
+      <span class="{{ label_class }}">{{ label }}</span>
+    {% endif %}
+  </a>
+{% endif %}
+{% comment %} ---------------------------------------------------------------- {% endcomment %}
+{% comment %} 
+  {% button color="black" label="button" size="XL" round=0 icon="bi-trash" %}
+  {% button color="brown" label="button" size="L" round=1 icon="bi-trash" %}
+  {% button color="green" label="button" size="MD" round=0 icon="bi-trash" %}
+  {% fragment as url %} {% url "get_school_level_years" %} {% endfragment %}
+  {% button color="red" label="button" size="SM" round=1 icon="bi-trash" anchor href=url %}
+  {% button color="black" label="---------- hello ----------" button_class="col-2" size="SM" round=1 truncate_label %}
+{% endcomment %}

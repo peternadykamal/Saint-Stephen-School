@@ -1,0 +1,76 @@
+[
+{
+  "model": "users.userpermissiontag",
+  "pk": "5ef1ed41-bfbe-4375-9354-88a549ca91ab",
+  "fields": {
+    "order": 2,
+    "tag_name": "tag3",
+    "parent": "bb9bb7df-9517-4c91-a735-c529a61ab49c",
+    "child": "72433fa4-c462-4c57-bbc9-83a0ec7ed2f9",
+    "is_top": false,
+    "is_buttom": false,
+    "permissions": []
+  }
+},
+{
+  "model": "users.userpermissiontag",
+  "pk": "72433fa4-c462-4c57-bbc9-83a0ec7ed2f9",
+  "fields": {
+    "order": 3,
+    "tag_name": "tag4",
+    "parent": "5ef1ed41-bfbe-4375-9354-88a549ca91ab",
+    "child": "a907ef5f-4c11-41bc-9648-355f7d23111d",
+    "is_top": false,
+    "is_buttom": false,
+    "permissions": []
+  }
+},
+{
+  "model": "users.userpermissiontag",
+  "pk": "a907ef5f-4c11-41bc-9648-355f7d23111d",
+  "fields": {
+    "order": 4,
+    "tag_name": "مخدوم",
+    "parent": "72433fa4-c462-4c57-bbc9-83a0ec7ed2f9",
+    "child": null,
+    "is_top": false,
+    "is_buttom": true,
+    "permissions": [
+      16,
+      32,
+      52,
+      28,
+      36,
+      40
+    ]
+  }
+},
+{
+  "model": "users.userpermissiontag",
+  "pk": "bb9bb7df-9517-4c91-a735-c529a61ab49c",
+  "fields": {
+    "order": 1,
+    "tag_name": "tag2",
+    "parent": "fb109f48-aea3-495a-a9e7-6cd671dfceb8",
+    "child": "5ef1ed41-bfbe-4375-9354-88a549ca91ab",
+    "is_top": false,
+    "is_buttom": false,
+    "permissions": []
+  }
+},
+{
+  "model": "users.userpermissiontag",
+  "pk": "fb109f48-aea3-495a-a9e7-6cd671dfceb8",
+  "fields": {
+    "order": 0,
+    "tag_name": "admin",
+    "parent": null,
+    "child": "bb9bb7df-9517-4c91-a735-c529a61ab49c",
+    "is_top": true,
+    "is_buttom": false,
+    "permissions": [
+      25
+    ]
+  }
+}
+]
