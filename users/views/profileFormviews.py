@@ -108,7 +108,7 @@ def newProfileForm(request):
   putSchoolFieldInContext(profile, context)
   putTalmzaFieldInContext(profile, context)
   putBirthdateFieldInContext(profile, context)
-  canAccessTalmzaFields(request, profile, context)
+  canAccessTalmzaFields(request, context)
   return render(request, 'users/profileForm.html', context)
 
 
@@ -182,16 +182,16 @@ def updateProfileForm(request):
   putSchoolFieldInContext(profile, context)
   putTalmzaFieldInContext(profile, context)
   putBirthdateFieldInContext(profile, context)
-  canAccessTalmzaFields(request, profile, context)
+  canAccessTalmzaFields(request, context)
   return render(request, 'users/profileForm.html', context)
 
 # check if the user can access the talmaza section in the profile form
 
 
-def canAccessTalmzaFields(request, profile, context):
+def canAccessTalmzaFields(request, context):
   # check if the user can access the talmaza section in the profile form
-  condition = (profile != None and request.profile.hasPermission('change_profile_talmza_level')) or (
-      profile != None and (request.profile.hasPermission('add_profile_talmza_level')))
+  condition = request.profile.hasPermission(
+      'change_profile_talmza_level') or request.profile.hasPermission('add_profile_talmza_level')
   context["canAccessTalmazaSection"] = condition
 
 

@@ -34,6 +34,13 @@ popd
 start /B "" "%nginx_exe%"
 popd
 
+:: create these folder if they don't exsit
+mkdir "%nginx_folder%\temp\uwsgi_temp" 2>nul
+mkdir "%nginx_folder%\temp\scgi_temp" 2>nul
+mkdir "%nginx_folder%\temp\proxy_temp" 2>nul
+mkdir "%nginx_folder%\temp\fastcgi_temp" 2>nul
+mkdir "%nginx_folder%\temp\client_body_temp" 2>nul
+
 :: run waitress
 echo Starting waitress...
 start /B "" python .\utils\batScripts\waitress_config.py
