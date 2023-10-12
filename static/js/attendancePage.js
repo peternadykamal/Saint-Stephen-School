@@ -220,6 +220,45 @@ function parseAndSetDateTime(event) {
   }
 }
 
+// Function to save the clock state (editable or not) and value to local storage
+function saveClockState() {
+  localStorage.setItem("isClockEditable", isClockEditable);
+  localStorage.setItem(
+    "clockHours",
+    document.getElementById("hours").textContent
+  );
+  localStorage.setItem(
+    "clockMinutes",
+    document.getElementById("minutes").textContent
+  );
+  localStorage.setItem(
+    "clockSeconds",
+    document.getElementById("seconds").textContent
+  );
+  localStorage.setItem(
+    "clockAmPm",
+    document.getElementById("ampm").textContent
+  );
+}
+
+// Function to load the clock state (editable or not) and value from local storage
+function loadClockState() {
+  const savedEditable = localStorage.getItem("isClockEditable") || "false";
+  if (savedEditable === "true") {
+    // the clock state is false by default, so we need to toggle it
+    toggleClockEditability();
+    // Load the clock values from local storage
+    document.getElementById("hours").textContent =
+      localStorage.getItem("clockHours") || "12";
+    document.getElementById("minutes").textContent =
+      localStorage.getItem("clockMinutes") || "00";
+    document.getElementById("seconds").textContent =
+      localStorage.getItem("clockSeconds") || "00";
+    document.getElementById("ampm").textContent =
+      localStorage.getItem("clockAmPm") || "AM";
+  }
+}
+
 // when the page is loaded
 document.addEventListener("DOMContentLoaded", function () {
   // Event listener for the "Toggle Editable" button
@@ -239,9 +278,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Event listener for the "Set Date and Time" button
   document
     .getElementById("submitButton")
-    .addEventListener("click", parseAndSetDateTime);
+    .addEventListener("click", function () {
+      parseAndSetDateTime();
+      saveClockState();
+    });
 
   // Initialize the clock and start updating
   updateClockValues();
   clockInterval = setInterval(updateClockValues, 1000);
+  loadClockState();
 });
